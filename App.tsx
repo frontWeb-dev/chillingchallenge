@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import {ThemeProvider} from "styled-components/native"; // StyledComponents - ThemeProvider
+import { NavigationContainer } from "@react-navigation/native"; // StyledComponents - ThemeProvider
 import { SafeAreaProvider } from "react-native-safe-area-context"; // SafeArea
 import * as SplashScreen from "expo-splash-screen"; // SplashScreen
 import * as Font from "expo-font"; // Font
 
-import {theme} from "./src/global/theme/theme";
-
+import { theme } from "./src/global/theme/theme";
+import { RootNavigator } from "./src/navigations/RootNavigator";
+import { ThemeProvider } from "styled-components/native";
 
 // 로컬 폰트 불러오기: font-family로 사용 가능!
 Font.loadAsync({
@@ -21,7 +21,6 @@ Font.loadAsync({
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
-
   useEffect(() => {
     setTimeout(() => {
       SplashScreen.hideAsync();
@@ -33,7 +32,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <SafeAreaProvider>
           <NavigationContainer>
-
+            <RootNavigator />
           </NavigationContainer>
         </SafeAreaProvider>
       </ThemeProvider>
