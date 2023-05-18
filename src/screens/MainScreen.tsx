@@ -20,7 +20,8 @@ const MainScreen: React.FC = () => {
         <Desc>당신의 이야기를 그려볼까요?</Desc>
         <Desc>'칠링 챌링'과 첫 걸음을 내딛어봐요.</Desc>
         <View>
-          <TouchableOpacity
+          <Button
+            title="카카오"
             onPress={() => navigation.navigate("KakaoLogin", { screen: "KakaoLogin" })}
           />
         </View>
