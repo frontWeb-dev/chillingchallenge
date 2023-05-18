@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components/native";
+import { NavigationContainer } from "@react-navigation/native";
+import {ThemeProvider} from "styled-components/native"; // STyledComponents - ThemeProvider
 import { SafeAreaProvider } from "react-native-safe-area-context"; // SafeArea
 import * as SplashScreen from "expo-splash-screen"; // SplashScreen
 import * as Font from "expo-font"; // Font
+
+import {theme} from "./src/global/theme/theme";
 
 
 // 로컬 폰트 불러오기: font-family로 사용 가능!
@@ -27,6 +30,13 @@ export default function App() {
 
   return (
     <>
+      <ThemeProvider theme={theme}>
+        <SafeAreaProvider>
+          <NavigationContainer>
+
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </ThemeProvider>
     </>
   );
 }
