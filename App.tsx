@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import {ThemeProvider} from "styled-components/native"; // STyledComponents - ThemeProvider
+import {ThemeProvider} from "styled-components/native"; // StyledComponents - ThemeProvider
 import { SafeAreaProvider } from "react-native-safe-area-context"; // SafeArea
 import * as SplashScreen from "expo-splash-screen"; // SplashScreen
 import * as Font from "expo-font"; // Font
