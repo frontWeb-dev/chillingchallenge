@@ -9,6 +9,7 @@ import UserScreen from "../screens/UserScreen";
 const TabBar = createBottomTabNavigator();
 
 const TabNavigator: React.FC = () => {
+
   return (
     <TabBar.Navigator>
       <TabBar.Screen
@@ -16,11 +17,14 @@ const TabNavigator: React.FC = () => {
         component={SelectScreen}
         options={{
           headerShown: false,
+          tabBarLabelStyle: {
+            color: "#47af51"
+          },
           tabBarIcon: ({ focused }) =>
             !focused  ? (
-              <FontAwesome5 name="running" size={24} color="#e0e0e0" />
+              <FontAwesome5 name="running" size={24} color="#9fdfa4" />
               ) : (
-              <FontAwesome5 name="running" size={24} color="#0c9bfb" />
+              <FontAwesome5 name="running" size={24} color="#47af51" />
             ),
         }}
       />
@@ -29,11 +33,14 @@ const TabNavigator: React.FC = () => {
         component={CommunityScreen}
         options={{
           headerShown: false,
+          tabBarLabelStyle: {
+            color: "#47af51"
+          },
           tabBarIcon: ({ focused }) =>
             !focused  ? (
-              <Ionicons name="people" size={24} color="#e0e0e0" />
+              <Ionicons name="people" size={24} color="#9fdfa4" />
               ) : (
-              <Ionicons name="people" size={24} color="#0c9bfb" />
+              <Ionicons name="people" size={24} color="#47af51" />
             ),
         }}
       />
@@ -42,11 +49,14 @@ const TabNavigator: React.FC = () => {
         component={UserScreen}
         options={{
           headerShown: false,
+          tabBarLabelStyle: {
+            color: "#47af51"
+          },
           tabBarIcon: ({ focused }) =>
             !focused  ? (
-              <FontAwesome name="user-circle" size={24} color="#e0e0e0" />
+              <FontAwesome name="user-circle" size={24} color="#9fdfa4" />
               ) : (
-              <FontAwesome name="user-circle" size={24} color="#0c9bfb" />
+              <FontAwesome name="user-circle" size={24} color="#47af51" />
             ),
         }}
       />

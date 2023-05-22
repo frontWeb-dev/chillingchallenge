@@ -2,9 +2,6 @@ import React from "react";
 import { LinkingOptions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import LoginScreen from "../screens/LoginScreen";
-import SignUpScreen from "../screens/SignUpScreen";
-import UserScreen from "../screens/UserScreen";
 import MainScreen from "../screens/MainScreen";
 import KakaoLogin from "../components/login/KakaoLogin";
 import TabNavigator from "./TabNavigator";

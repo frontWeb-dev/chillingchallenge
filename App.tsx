@@ -6,7 +6,7 @@ import * as Font from "expo-font"; // Font
 
 import { theme } from "./src/global/theme/theme";
 import { RootNavigator } from "./src/navigations/RootNavigator";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components/native";
 
 // SplashScreen 자동 숨김 방지
 SplashScreen.preventAutoHideAsync();
