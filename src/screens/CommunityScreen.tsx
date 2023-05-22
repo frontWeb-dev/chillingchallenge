@@ -4,12 +4,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const View = SafeAreaView;
 
-const UserScreen: React.FC = () => {
+const CommunityScreen: React.FC = () => {
   return (
     <View>
-      <Text>사용자 화면입니당!</Text>
+      <Text>피드 화면입니당!</Text>
     </View>
   );
 };
 
-export default UserScreen;
+export default CommunityScreen;
