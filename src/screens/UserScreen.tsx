@@ -1,14 +1,15 @@
 import React from "react";
 import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-const View = SafeAreaView;
+import Layout from "../components/Layout";
+import Margin from "../components/margin/Margin";
 
 const UserScreen: React.FC = () => {
   return (
-    <View>
+    <Layout>
+      <Margin props={16} />
       <Text>사용자 화면입니당!</Text>
-    </View>
+    </Layout>
   );
 };
 

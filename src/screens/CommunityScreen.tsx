@@ -1,14 +1,12 @@
 import React from "react";
 import { Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-
-const View = SafeAreaView;
+import Layout from "../components/Layout";
 
 const CommunityScreen: React.FC = () => {
   return (
-    <View>
+    <Layout>
       <Text>피드 화면입니당!</Text>
-    </View>
+    </Layout>
   );
 };
 
