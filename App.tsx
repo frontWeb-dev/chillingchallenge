@@ -4,18 +4,19 @@ import { SafeAreaProvider } from "react-native-safe-area-context"; // SafeArea
 import * as SplashScreen from "expo-splash-screen"; // SplashScreen
 import * as Font from "expo-font"; // Font
 
-import { theme } from "./src/global/theme/theme";
+import { theme } from "./src/theme";
 import { RootNavigator } from "./src/navigations/RootNavigator";
-import { ThemeProvider } from "styled-components/native";
+import { DefaultTheme, ThemeProvider } from "styled-components/native";
 
 // SplashScreen 자동 숨김 방지
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   // 로컬 폰트 불러오기: font-family로 사용 가능!
-  const [ fontsLoaded, setFontsLoaded ] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
   useEffect(() => {
-    const loadFonts = async() => {
+    const loadFonts = async () => {
       await Font.loadAsync({
         Light: require("./src/global/fonts/NanumSquareL.ttf"),
         Regular: require("./src/global/fonts/NanumSquareR.ttf"),
@@ -37,7 +38,7 @@ export default function App() {
 
   return (
     <>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme as DefaultTheme}>
         <SafeAreaProvider>
           <NavigationContainer>
             <RootNavigator />
