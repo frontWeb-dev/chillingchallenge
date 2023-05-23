@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Theme } from "../theme";
 
 interface HeaderProps {
   text: string;
@@ -10,31 +11,29 @@ const Header = ({ text }: HeaderProps) => {
     <HeaderView>
       <Text>{text}</Text>
     </HeaderView>
-  )
+  );
 };
 
 // styled
 const HeaderView = styled.View`
   width: 100%;
   display: flex;
-  flexDirection: row;
-  backgroundColor: ${props => props.theme["green_100"]};
-  paddingVertical: 15;
-  paddingHorizontal: 15;
-  justifyContent: space-between;
-  alignItems: center;
+  flex-direction: row;
+  background-color: ${(props: { theme: Theme }) => props.theme.colors.green_100};
+  padding: 15px;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const Text = styled.Text`
-  fontSize: 24;
-  color: ${props => props.theme["green_200"]};
-  fontFamily: ExtraBold;
+  font-size: 24px;
+  color: ${(props: { theme: Theme }) => props.theme.colors.green_200};
+  font-family: ExtraBold;
 `;
 
 const TouchableArea = styled.TouchableOpacity`
-  activeOpacity: 0.8;
-  paddingHorizontal: 6;
-  paddingVertical: 5;
+  opacity: 0.8;
+  padding: 6px 5px;
 `;
 
 export default Header;
