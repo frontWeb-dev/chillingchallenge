@@ -1,8 +1,19 @@
-import { DefaultTheme as ThemeType } from "styled-components/native";
-import { colors } from "./src/theme"; // 예시로 theme 파일의 colors를 import
+import "styled-components/native";
 
-declare module "styled-components" {
-  export interface DefaultTheme extends ThemeType {
-    colors: typeof colors; // theme 파일에서 정의한 colors 타입을 사용
+declare module "styled-components/native" {
+  export interface DefaultTheme {
+    colors: {
+      green_100: string;
+      green_200: string;
+      blue_100: string;
+      blue_200: string;
+      black: string;
+      white: string;
+      yellow: string;
+      grey_100: string;
+      grey_200: string;
+      grey_300: string;
+      red: string;
+    };
   }
 }

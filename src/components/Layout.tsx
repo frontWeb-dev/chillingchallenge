@@ -8,11 +8,21 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  return <Wrapper>{children}</Wrapper>;
+  return (
+    <Wrapper>
+      <Inner>{children}</Inner>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled(SafeAreaView)`
   flex: 1;
-  padding: 0 10px;
+  background-color: #47af51;
+`;
+
+const Inner = styled.View`
+  width: 100%;
+  flex: 1;
+  background-color: white;
 `;
 export default Layout;
