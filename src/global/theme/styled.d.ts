@@ -2,6 +2,9 @@ import "styled-components/native";
 
 declare module "styled-components/native" {
   export interface DefaultTheme {
+    green_100: string;
+    green_200: string;
+
     blue_100: string;
     blue_200: string;
     black: string;

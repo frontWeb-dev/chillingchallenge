@@ -1,4 +1,7 @@
 const theme = {
+  green_100: "9fdfa4",
+  green_200: "#47af51",
+
   blue_100: "#0c9bfb",
   blue_200: "#fff",
   black: "#323232",

@@ -1,11 +1,17 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
+
+import Layout from "../components/Layout";
+import Header from "../components/Header";
+import Margin from "../components/Margin";
 
 const UserScreen: React.FC = () => {
   return (
-    <View>
-      <Text>User Screen</Text>
-    </View>
+    <Layout>
+      <Header text="사용자 화면"/>
+      <Margin props={16} />
+      <Text>사용자 화면입니당!</Text>
+    </Layout>
   );
 };
 
