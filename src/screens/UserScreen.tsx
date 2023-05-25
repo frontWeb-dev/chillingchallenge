@@ -1,18 +1,32 @@
-import React from "react";
-import { Text, View } from "react-native";
+import React, { useState } from "react";
+import styled from "styled-components/native";
 
 import Layout from "../components/Layout";
 import Header from "../components/Header";
 import Margin from "../components/Margin";
-import styled from "styled-components/native";
+import Profile from "../components/profile/Profile";
+import UserButton from "../components/profile/UserButton";
 
 const UserScreen: React.FC = () => {
+
+  const [isSelected, setIsSelected] = useState(1);
+
+
   return (
     <Layout>
-      <Header text="사용자 화면" />
+      <Header text="나의 칠링챌링" />
       <Margin props={16} />
       <Container>
-        <Text>사용자 화면입니당!</Text>
+        <Profile
+          username="웃고 싶은 날엔"
+          registerDate={55}
+          missionNumber={1}
+        />
+        <Margin props={30} />
+        <UserButton
+          isSelected={isSelected}
+          setIsSelected={setIsSelected}
+        />
       </Container>
     </Layout>
   );
@@ -20,6 +34,7 @@ const UserScreen: React.FC = () => {
 
 export default UserScreen;
 
+// styled
 const Container = styled.View`
-  padding: 10px;
+  paddingHorizontal: 15px;
 `;

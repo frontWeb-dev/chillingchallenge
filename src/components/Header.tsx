@@ -18,17 +18,17 @@ const Header = ({ text }: HeaderProps) => {
 const HeaderView = styled.View`
   width: 100%;
   display: flex;
-  flex-direction: row;
-  background-color: ${(props: { theme: Theme }) => props.theme.colors.green_200};
+  flexDirection: row;
+  backgroundColor: ${(props: { theme: Theme }) => props.theme.colors.green_200};
   padding: 15px;
-  justify-content: space-between;
-  align-items: center;
+  justifyContent: space-between;
+  alignItems: center;
 `;
 
 const Text = styled.Text`
-  font-size: 24px;
+  fontSize: 24px;
   color: ${(props: { theme: Theme }) => props.theme.colors.white};
-  font-family: ExtraBold;
+  fontFamily: ExtraBold;
 `;
 
 const TouchableArea = styled.TouchableOpacity`
