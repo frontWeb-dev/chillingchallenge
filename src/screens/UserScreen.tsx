@@ -11,8 +11,9 @@ import Calendar from "../components/profile/Calendar";
 import { useCalendar } from "../hooks/useCalendar";
 
 const UserScreen: React.FC = () => {
-  // 버튼 선택 관련 state
-  const [isSelected, setIsSelected] = useState(1);
+  // state
+  const [isSelected, setIsSelected] = useState(1); // 카테고리 선택 관련
+  const [isAttended, setIsAttended] = useState(["2023-05-15", "2023-05-16"]); // 출석 관련
 
   // 달력 관련 hooks
   const { selectedDate, handleSelectDate, handlePrevMonth, handleNextMonth } = useCalendar();
@@ -39,6 +40,7 @@ const UserScreen: React.FC = () => {
             onSelectDate={handleSelectDate}
             onPrevMonth={handlePrevMonth}
             onNextMonth={handleNextMonth}
+            isAttended={isAttended}
           />
         )}
       </Container>

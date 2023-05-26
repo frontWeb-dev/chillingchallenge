@@ -1,13 +1,15 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { TouchableOpacity } from "react-native";
 import dayjs, { Dayjs } from "dayjs";
+
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 
 interface CalendarProps {
   selectedDate: Dayjs;
   onSelectDate: (date: Dayjs) => void;
   onPrevMonth: () => void;
   onNextMonth: () => void;
+  isAttended: string[];
 }
 
 const Calendar: React.FC<CalendarProps> = ({
@@ -15,6 +17,7 @@ const Calendar: React.FC<CalendarProps> = ({
   onSelectDate,
   onPrevMonth,
   onNextMonth,
+  isAttended,
 }) => {
 
   // 달력 앞 뒤 공백 채우기
@@ -32,6 +35,7 @@ const Calendar: React.FC<CalendarProps> = ({
       const day = week.add(i, "day");
       const isCurrentMonth = day.isSame(selectedDate, "month");
       const isSelected = day.isSame(selectedDate, "day");
+      const isAttendedDay = isAttended.includes(day.format("YYYY-MM-DD"));
       
       days.push(
         <DayButton
@@ -39,13 +43,16 @@ const Calendar: React.FC<CalendarProps> = ({
           onPress={() => onSelectDate(day)}
           isSelected={isSelected}
           isCurrentMonth={isCurrentMonth}
+          isAttendedDay={isAttendedDay}
         >
+          {isAttendedDay ?  <MaterialCommunityIcons name="leaf-circle" size={30} color="#6EBE75" /> : 
           <DayText
             isSelected={isSelected}
             isCurrentMonth={isCurrentMonth}
           >
             {day.format("D")}
           </DayText>
+          }
         </DayButton>
       );
     }
@@ -151,8 +158,8 @@ const DayButton = styled.TouchableOpacity`
   justifyContent: center;
   alignItems: center;
   borderRadius: 10px;
-  ${(props: { isCurrentMonth: boolean; isSelected: boolean; }) =>
-    props.isCurrentMonth &&
+  ${(props: { isCurrentMonth: boolean; isSelected: boolean; isAttendedDay: boolean;}) =>
+    props.isCurrentMonth && !props.isAttendedDay &&
     css`
       background-color: ${props.isSelected ? "#6EBE75" : "transparent"};
     `}
