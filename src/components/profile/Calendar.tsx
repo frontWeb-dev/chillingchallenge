@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity } from "react-native";
 import dayjs, { Dayjs } from "dayjs";
 
 interface CalendarProps {
@@ -16,6 +16,7 @@ const Calendar: React.FC<CalendarProps> = ({
   onPrevMonth,
   onNextMonth,
 }) => {
+
   // 달력 앞 뒤 공백 채우기
   const startOfMonth = dayjs(selectedDate).startOf("month");
   const endOfMonth = dayjs(selectedDate).endOf("month");
@@ -31,13 +32,20 @@ const Calendar: React.FC<CalendarProps> = ({
       const day = week.add(i, "day");
       const isCurrentMonth = day.isSame(selectedDate, "month");
       const isSelected = day.isSame(selectedDate, "day");
-
+      
       days.push(
         <DayButton
           key={day.format("YYYY-MM-DD")}
           onPress={() => onSelectDate(day)}
+          isSelected={isSelected}
+          isCurrentMonth={isCurrentMonth}
         >
-          <DayText>{day.format("D")}</DayText>
+          <DayText
+            isSelected={isSelected}
+            isCurrentMonth={isCurrentMonth}
+          >
+            {day.format("D")}
+          </DayText>
         </DayButton>
       );
     }
@@ -50,27 +58,53 @@ const Calendar: React.FC<CalendarProps> = ({
   }
 
   return (
-    <View>
-      <HeaderContainer>
-        <TouchableOpacity onPress={onPrevMonth}>
-          <MoveButton>{`<`}</MoveButton>
-        </TouchableOpacity>
-        <HeaderText>{selectedDate.format("MMMM YYYY")}</HeaderText>
-        <TouchableOpacity onPress={onNextMonth}>
-          <MoveButton>{`>`}</MoveButton>
-        </TouchableOpacity>
-      </HeaderContainer>
-      <CalendarFrame>{weeks}</CalendarFrame>
-    </View>
+    <>
+      <CalendarContainer>
+        <HeaderContainer>
+          <MoveButton onPress={onPrevMonth}>
+            <MoveButtonText>{`<`}</MoveButtonText>
+          </MoveButton>
+          <HeaderText>{selectedDate.format("YYYY M월")}</HeaderText>
+          <MoveButton onPress={onNextMonth}>
+            <MoveButtonText>{`>`}</MoveButtonText>
+          </MoveButton>
+        </HeaderContainer>
+        <ColumnContainer>
+          <ColumnText>S</ColumnText>
+          <ColumnText>M</ColumnText>
+          <ColumnText>T</ColumnText>
+          <ColumnText>W</ColumnText>
+          <ColumnText>T</ColumnText>
+          <ColumnText>F</ColumnText>
+          <ColumnText>S</ColumnText>
+        </ColumnContainer>
+        <CalendarFrame>{weeks}</CalendarFrame>
+      </CalendarContainer>
+    </>
   );
 };
 
 // styled
+
+const CalendarContainer = styled.View`
+  width: 100%;
+  display: flex;
+  flexDirection: column;
+  justifyContent: center;
+  alignItems: center;
+  paddingHorizontal: 15px;
+  paddingVertical: 15px;
+  backgroundColor: #F0F4F1;
+  borderRadius: 20px;
+`;
+
 const HeaderContainer = styled.View`
+  width: 100%;
   flexDirection: row;
   justifyContent: space-between;
   alignItems: center;
   marginBottom: 10;
+  paddingHorizontal: 20px;
 `;
 
 const HeaderText = styled.Text`
@@ -78,19 +112,37 @@ const HeaderText = styled.Text`
   fontFamily: "ExtraBold";
 `;
 
-const MoveButton = styled.Text`
+const MoveButton = styled.TouchableOpacity`
+  activeOpacity: 0.8;
+  paddingVertical: 5px;
+`;
+
+const MoveButtonText = styled.Text`
   fontSize: 18;
   fontFamily: "ExtraBold";
 `;
 
+const ColumnContainer = styled.View`
+  width: 100%;  
+  display: flex;
+  flexDirection: row;
+  justifyContent: space-around;
+  alignItems: center;
+  paddingVertical: 6px;
+`;
+
 const CalendarFrame = styled.View`
+  width: 100%;  
+  display: flex;
   flexDirection: column;
 `;
 
 const WeekContainer = styled.View`
+  width: 100%;
   flexDirection: row;
   justifyContent: space-around;
-  paddingVertical: 2px;
+  alignItems: center;
+  paddingVertical: 6px;
 `;
 
 const DayButton = styled.TouchableOpacity`
@@ -99,11 +151,31 @@ const DayButton = styled.TouchableOpacity`
   justifyContent: center;
   alignItems: center;
   borderRadius: 10px;
+  ${(props: { isCurrentMonth: boolean; isSelected: boolean; }) =>
+    props.isCurrentMonth &&
+    css`
+      background-color: ${props.isSelected ? "#6EBE75" : "transparent"};
+    `}
+`;
+
+const ColumnText = styled.Text`
+  fontSize: 12px;
+  fontFamily: "ExtraBold";
 `;
 
 const DayText = styled.Text`
   fontSize: 12px;
   fontFamily: "Medium";
+  ${(props: { isCurrentMonth: boolean; isSelected: boolean }) =>
+  !props.isCurrentMonth &&
+  css`
+    opacity: 0.3;
+  `}
+  ${(props: { isCurrentMonth: boolean; isSelected: boolean; }) =>
+    props.isCurrentMonth &&
+    css`
+      color: ${props.isSelected ? "#FFFFFF" : "#000000"};
+    `}
 `;
 
 export default Calendar;

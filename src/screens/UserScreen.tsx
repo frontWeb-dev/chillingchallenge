@@ -46,12 +46,14 @@ const UserScreen: React.FC = () => {
           setIsSelected={setIsSelected}
         />
         <Margin props={30} />
-        <Calendar
-          selectedDate={selectedDate}
-          onSelectDate={handleSelectDate}
-          onPrevMonth={handlePrevMonth}
-          onNextMonth={handleNextMonth}
-        />
+        {isSelected === 3 && (
+          <Calendar
+            selectedDate={selectedDate}
+            onSelectDate={handleSelectDate}
+            onPrevMonth={handlePrevMonth}
+            onNextMonth={handleNextMonth}
+          />
+        )}
       </Container>
     </Layout>
   );

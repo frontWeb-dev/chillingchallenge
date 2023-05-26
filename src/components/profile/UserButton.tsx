@@ -56,7 +56,7 @@ const ButtonListContainer = styled.View`
   alignItems: center;
 `;
 
-const ButtonContainer = styled.TouchableOpacity<{ isSelected: boolean }>`
+const ButtonContainer = styled.TouchableOpacity`
   activeOpacity: 0.8;
   display: flex;
   flexDirection: column;
@@ -68,7 +68,7 @@ const ButtonContainer = styled.TouchableOpacity<{ isSelected: boolean }>`
   border: 0.5px solid #909090;
   borderRadius: 20px;
   gap: 5px;
-  ${(props) =>
+  ${(props: { isSelected: boolean; }) =>
     props.isSelected &&
     css`
       background-color: #6EBE75;
