@@ -4,7 +4,7 @@ import { FontAwesome5, Ionicons, FontAwesome, } from "@expo/vector-icons";
 
 import SelectScreen from "../screens/SelectScreen";
 import CommunityScreen from "../screens/CommunityScreen";
-import UserScreen from "../screens/UserScreen";
+import UserNavigator from "./UserNavigator";
 
 const TabBar = createBottomTabNavigator();
 
@@ -46,7 +46,7 @@ const TabNavigator: React.FC = () => {
       />
       <TabBar.Screen
         name="프로필"
-        component={UserScreen}
+        component={UserNavigator}
         options={{
           headerShown: false,
           tabBarLabelStyle: {

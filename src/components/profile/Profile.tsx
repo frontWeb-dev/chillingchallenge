@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
 import { Ionicons } from '@expo/vector-icons'; 
 
@@ -10,6 +11,12 @@ interface ProfileProps {
 }
 
 const Profile = ({username, registerDate, missionNumber}: ProfileProps) => {
+  const navigation = useNavigation();
+
+  const handleSettingButtonPress = () => {
+    navigation.navigate("UserSettingScreen");
+  }
+
   return (
     <>
       <ProfileContainer>
@@ -25,7 +32,9 @@ const Profile = ({username, registerDate, missionNumber}: ProfileProps) => {
             {missionNumber}개의 칠링챌링을 완료하셨군요!
           </MissionText>
         </ProfileTextContainer>
-        <SettingButton>
+        <SettingButton
+          onPress={() => handleSettingButtonPress()}
+        >
           <Ionicons name="settings-sharp" size={25} color="#909090" />
         </SettingButton>
       </ProfileContainer>
