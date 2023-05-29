@@ -20,9 +20,9 @@ const ThirdPage = ({ setPageStatus }: ThirdPageProps) => {
       />
       <Margin props={50} />
       <DescriptionContainer
-        headerText="활동뱃지 모으기"
+        headerText="활동배지 모으기"
         contentText={`미션을 수행할수록
-모이는 뱃지들을 보며
+모이는 배지들을 보며
 활력을 얻어요.`
         }
       />
