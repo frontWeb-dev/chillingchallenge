@@ -5,9 +5,10 @@ interface CardProps {
   children: React.ReactNode;
   isDone: boolean;
   bedge?: string;
+  onPress: () => void;
 }
-const Card = ({ children, isDone, bedge }: CardProps) => (
-  <Container isDone={isDone}>
+const Card = ({ children, isDone, bedge, onPress }: CardProps) => (
+  <Container isDone={isDone} onPress={onPress}>
     {bedge && (
       <Bedge>
         <Text>{bedge}</Text>
@@ -19,7 +20,7 @@ const Card = ({ children, isDone, bedge }: CardProps) => (
 
 export default Card;
 
-const Container = styled.View`
+const Container = styled.TouchableOpacity`
   position: relative;
   padding: 30px 20px;
   margin-bottom: 30px;
