@@ -14,10 +14,11 @@ const FirstPage = ({ setPageStatus }: FirstPageProps) => {
 
   return (
     <>
-      <MediaContainer
-        props={1}
-      />
       <Margin props={50} />
+      <MediaContainer
+        type={1}
+      />
+      <Margin props={30} />
       <DescriptionContainer
         headerText="일일 미션 수행하기"
         contentText={`사소해 보이는 일들도
