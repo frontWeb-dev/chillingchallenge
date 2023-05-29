@@ -1,15 +1,43 @@
-import React from "react";
-import { Text } from "react-native";
+import { ImageBackground, Text } from "react-native";
 import Layout from "../../components/Layout";
+import Header from "../../components/Header";
+import { missions } from "../../mocks/missions";
+import Card from "../../components/Card";
+import styled from "styled-components/native";
 
 const SelectScreen: React.FC = () => {
   return (
     <Layout>
-      <Text>
-        미션 선택 화면입니당!
-      </Text>
+      <Header text="오늘의 칠링챌링" />
+      <Container>
+        {missions.map((el) => (
+          <Card key={el.id} isDone={el.bedge === "미션 완료"} bedge={el.bedge}>
+            <ImageBackground
+              source={{ uri: el.bgImage }}
+              resizeMode="cover"
+              style={{ flex: 1, justifyContent: "space-between" }}
+            >
+              <Title>{el.title}</Title>
+              <Desc>{el.comment}</Desc>
+            </ImageBackground>
+          </Card>
+        ))}
+      </Container>
     </Layout>
   );
 };
 
 export default SelectScreen;
+
+const Container = styled.View`
+  padding: 30px;
+`;
+
+const Title = styled.Text`
+  font-size: 20px;
+  font-weight: bold;
+`;
+
+const Desc = styled.Text`
+  font-size: 14px;
+`;
