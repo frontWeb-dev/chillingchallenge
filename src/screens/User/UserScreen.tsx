@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 
-import Layout from "../components/Layout";
-import Header from "../components/Header";
-import Margin from "../components/Margin";
-import Profile from "../components/profile/Profile";
-import UserButton from "../components/profile/UserButton";
-import Calendar from "../components/profile/Calendar";
+import Layout from "../../components/Layout";
+import Header from "../../components/Header";
+import Margin from "../../components/Margin";
+import Profile from "../../components/profile/Profile";
+import UserButton from "../../components/profile/UserButton";
+import Calendar from "../../components/profile/Calendar";
 
-import { useCalendar } from "../hooks/useCalendar";
+import { useCalendar } from "../../hooks/useCalendar";
 
 const UserScreen: React.FC = () => {
   // state

@@ -1,10 +1,11 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import UserScreen from "../screens/UserScreen";
-import UserSettingScreen from "../screens/UserSettingScreen";
+import UserScreen from "../screens/User/UserScreen";
+import UserSettingScreen from "../screens/User/UserSettingScreen";
 
 export type UserNavigatorParamList = {
+  [x: string]: any;
   UserScreen: undefined;
   UserSettingScreen: undefined;
 };
@@ -12,6 +13,7 @@ export type UserNavigatorParamList = {
 const Stack = createNativeStackNavigator<UserNavigatorParamList>();
 
 const UserNavigator: React.FC = () => {
+
   return (
     <>
       <Stack.Navigator initialRouteName="UserScreen">

@@ -4,11 +4,11 @@ import * as ImagePicker from "expo-image-picker";
 
 interface ImageUploaderProps {
   setImageSelected: (imageUri: string) => void;
+  uploaderType: string;
 }
 
-const ImageUploader = ({ setImageSelected }: ImageUploaderProps) => {
-  // const [imageUri, setImageUri] = useState<string | null>(null);
-  const [imageUri, setImageUri] = useState("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vectorstock.com%2Froyalty-free-vector%2Fimage-preview-icon-picture-placeholder-vector-31284806&psig=AOvVaw1UX0CB4MCuZ3VS4TJiNkjF&ust=1685254870550000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCOi-7ODtlP8CFQAAAAAdAAAAABAE");
+const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) => {
+  const [imageUri, setImageUri] = useState<string | null>(null);
 
   const handleSelectImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -17,36 +17,34 @@ const ImageUploader = ({ setImageSelected }: ImageUploaderProps) => {
       return;
     }
 
-    const result: any = await ImagePicker.launchImageLibraryAsync({
+    const result: ImagePicker.ImagePickerResult = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [1, 1],
       quality: 1,
     });
 
-    if (!result.canceled) {
-      setImageUri(result.uri);
-      setImageSelected(result.uri);
+    if (!result.canceled && result.assets && result.assets.length > 0) {
+      const selectedAsset = result.assets[0];
+      setImageUri(selectedAsset.uri);
+      setImageSelected(selectedAsset.uri);
     }
   };
 
   return (
     <>
       <UploaderContainer>
-        <PreviewImageContainer
-          onPress={() => handleSelectImage()}
-        >
-          <PreviewImage source={imageUri}/>
-          <UploadText>
-            사진을 업로드 해주세요!
-          </UploadText>
+        <PreviewImageContainer onPress={handleSelectImage}>
+          <PreviewImage source={{ uri: imageUri }} />
+          {uploaderType === "PROFILE" ? <></> : <UploadText>사진을 업로드 해주세요!</UploadText>}
         </PreviewImageContainer>
       </UploaderContainer>
     </>
-  )
+  );
 };
 
 export default ImageUploader;
+
 
 // styled
 const UploaderContainer = styled.View`
@@ -58,7 +56,6 @@ const UploaderContainer = styled.View`
 `;
 
 const PreviewImageContainer = styled.TouchableOpacity`
-  width: 100%;
   activeOpacity: 0.8;
   display: flex;
   flexDirection: column;
@@ -70,7 +67,8 @@ const PreviewImageContainer = styled.TouchableOpacity`
 const PreviewImage = styled.Image`
   width: 100px;
   height: 100px;
-  borderRadius: 12px;
+  borderRadius: 100px;
+  border: 1px solid grey;
 `;
 
 const UploadText = styled.Text`
