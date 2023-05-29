@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { Animated } from "react-native";
 import styled from "styled-components/native"
 
 interface DescriptionContainerProps {
@@ -7,12 +8,29 @@ interface DescriptionContainerProps {
 }
 
 const DescriptionContainer = ({ headerText, contentText }: DescriptionContainerProps) => {
+
+  const headerTextAnim = useRef(new Animated.Value(0)).current;
+  const contentTextAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(headerTextAnim, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+    setTimeout(() => {
+      Animated.timing(contentTextAnim, {
+        toValue: 1,
+        useNativeDriver: true,
+      }).start();
+    }, 1000);
+  }, []);
+
   return (
     <Wrapper>
-      <HeaderText>
+      <HeaderText style={{ opacity: headerTextAnim }}>
         {headerText}
       </HeaderText>
-      <ContentText>
+      <ContentText style={{ opacity: contentTextAnim }}>
         {contentText}
       </ContentText>
     </Wrapper>
@@ -31,13 +49,13 @@ const Wrapper = styled.View`
   gap: 42px;
 `;
 
-const HeaderText = styled.Text`
+const HeaderText = styled(Animated.Text)`
   font-size: 24px;
   font-family: "ExtraBold";
   color: #404040;
 `;
 
-const ContentText = styled.Text`
+const ContentText = styled(Animated.Text)`
   font-size: 18px;
   font-family: "Regular";
   color: grey;
