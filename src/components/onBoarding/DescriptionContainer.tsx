@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { Animated } from "react-native";
+import { Animated, Easing } from "react-native";
 import styled from "styled-components/native"
 
 interface DescriptionContainerProps {
@@ -8,7 +8,6 @@ interface DescriptionContainerProps {
 }
 
 const DescriptionContainer = ({ headerText, contentText }: DescriptionContainerProps) => {
-
   const headerTextAnim = useRef(new Animated.Value(0)).current;
   const contentTextAnim = useRef(new Animated.Value(0)).current;
 
@@ -16,11 +15,14 @@ const DescriptionContainer = ({ headerText, contentText }: DescriptionContainerP
     Animated.timing(headerTextAnim, {
       toValue: 1,
       useNativeDriver: true,
+      duration: 1000,
+      easing: Easing.out(Easing.linear),
     }).start();
     setTimeout(() => {
       Animated.timing(contentTextAnim, {
         toValue: 1,
         useNativeDriver: true,
+        easing: Easing.out(Easing.linear),
       }).start();
     }, 1000);
   }, []);

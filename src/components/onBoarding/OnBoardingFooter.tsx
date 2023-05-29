@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
+
+import { RootNavigatorParamList } from "../../navigations/RootNavigator";
 
 interface OnBoardingFooterProps {
   step: number;
@@ -8,19 +11,36 @@ interface OnBoardingFooterProps {
 }
 
 const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
+  const navigation = useNavigation<RootNavigatorParamList>();
+
+  const [isButtonEnabled, setIsButtonEnabled] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsButtonEnabled(true);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
 
   const handleNextButton = () => {
-    switch (step) {
-      case 1:
-        setPageStatus("Second");
-        break;
-      case 2:
-        setPageStatus("Third");
-        break;
-      case 3:
-        break;
-      default:
-        break;
+    if (isButtonEnabled) {
+      switch (step) {
+        case 1:
+          setPageStatus("Second");
+          break;
+        case 2:
+          setPageStatus("Third");
+          break;
+        case 3:
+          navigation.navigate("TabNavigator");
+          break;
+        default:
+          break;
+      };
     };
   };
 
@@ -37,7 +57,7 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
           <ProgressCircle isActive={step >= 2}/>
           <ProgressCircle isActive={step >= 3}/>
         </ProgressContainer>
-        <NextButton onPress={handleNextButton}>
+        <NextButton onPress={handleNextButton} disabled={!isButtonEnabled} isEnabled={isButtonEnabled}>
         {step === 3 ? <Ionicons name="checkmark-outline" size={28} color="#fff" />: <Ionicons name="chevron-forward" size={28} color="#fff" />}
         </NextButton>
       </FooterContainer>
@@ -87,11 +107,11 @@ const ProgressCircle = styled.View<{ isActive: boolean }>`
   background-color: ${({ isActive }) => (isActive ? "grey" : "lightgrey")};
 `;
 
-const NextButton = styled.TouchableOpacity`
+const NextButton = styled.TouchableOpacity<{ isEnabled: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 24px;
-  background-color: grey;
+  background-color: ${({ isEnabled }) => (isEnabled ? "grey" : "lightgrey")};
   display: flex;
   flex-direction: row;
   justify-content: center;

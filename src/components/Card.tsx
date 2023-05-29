@@ -38,7 +38,7 @@ const Bedge = styled.View`
   height: 24px;
   justify-content: center;
   background-color: #000;
-  border-radius: 50%;
+  border-radius: 50px;
 `;
 
 const Text = styled.Text`

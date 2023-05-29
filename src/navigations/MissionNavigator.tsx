@@ -17,7 +17,7 @@ const MissionNavigator: React.FC = () => {
 
   return (
     <>
-      <Stack.Navigator initialRouteName="MissionScreen">
+      <Stack.Navigator initialRouteName="SelectScreen">
         <Stack.Screen name="SelectScreen" component={SelectScreen} options={{ headerShown: false }} />
         <Stack.Screen name="MissionScreen" component={MissionScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
