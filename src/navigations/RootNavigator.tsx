@@ -8,6 +8,7 @@ import KakaoLogin from "../components/login/KakaoLogin";
 import TabNavigator from "./TabNavigator";
 
 export type RootNavigatorParamList = {
+  [x: string]: any;
   MainScreen: undefined;
   TabNavigator: undefined;
   KakaoLogin: undefined;
