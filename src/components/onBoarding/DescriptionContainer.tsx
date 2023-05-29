@@ -2,17 +2,18 @@ import React from "react";
 import styled from "styled-components/native"
 
 interface DescriptionContainerProps {
-  props: number;
+  headerText: string;
+  contentText: string;
 }
 
-const DescriptionContainer = ({ props }: DescriptionContainerProps) => {
+const DescriptionContainer = ({ headerText, contentText }: DescriptionContainerProps) => {
   return (
     <Wrapper>
       <HeaderText>
-        일일 미션 수행하기
+        {headerText}
       </HeaderText>
       <ContentText>
-        사소해 보이는 일들도{"\n"}차곡차곡 해내다 보면{"\n"}어느새 커다란 행복이 되어 있을 거예요.
+        {contentText}
       </ContentText>
     </Wrapper>
   )
