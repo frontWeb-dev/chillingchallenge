@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { Animated, Easing } from "react-native";
-import styled from "styled-components/native"
+import styled from "styled-components/native";
 
 interface DescriptionContainerProps {
   headerText: string;
@@ -29,14 +29,10 @@ const DescriptionContainer = ({ headerText, contentText }: DescriptionContainerP
 
   return (
     <Wrapper>
-      <HeaderText style={{ opacity: headerTextAnim }}>
-        {headerText}
-      </HeaderText>
-      <ContentText style={{ opacity: contentTextAnim }}>
-        {contentText}
-      </ContentText>
+      <HeaderText style={{ opacity: headerTextAnim }}>{headerText}</HeaderText>
+      <ContentText style={{ opacity: contentTextAnim }}>{contentText}</ContentText>
     </Wrapper>
-  )
+  );
 };
 
 export default DescriptionContainer;
@@ -48,7 +44,7 @@ const Wrapper = styled.View`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 42px;
+  gap: 30px;
 `;
 
 const HeaderText = styled(Animated.Text)`
