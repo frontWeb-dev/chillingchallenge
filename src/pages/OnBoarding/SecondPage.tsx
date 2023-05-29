@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components/native";
 
 import MediaContainer from "../../components/onBoarding/MediaContainer";
 import Margin from "../../components/Margin";
@@ -15,10 +14,11 @@ const SecondPage = ({ setPageStatus }: SecondPageProps) => {
 
   return (
     <>
-      <MediaContainer
-        props={1}
-      />
       <Margin props={50} />
+      <MediaContainer
+        type={2}
+      />
+      <Margin props={30} />
       <DescriptionContainer
         headerText="프론트 잘하면 좋겠당"
         contentText={`함께 미션을 하는 사람들과

@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components/native";
 
 import MediaContainer from "../../components/onBoarding/MediaContainer";
 import Margin from "../../components/Margin";
@@ -15,10 +14,11 @@ const ThirdPage = ({ setPageStatus }: ThirdPageProps) => {
 
   return (
     <>
-      <MediaContainer
-        props={1}
-      />
       <Margin props={50} />
+      <MediaContainer
+        type={3}
+      />
+      <Margin props={30} />
       <DescriptionContainer
         headerText="활동배지 모으기"
         contentText={`미션을 수행할수록
