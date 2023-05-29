@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/core";
 
 import { Ionicons } from '@expo/vector-icons'; 
+
+import { UserNavigatorParamList } from "../../navigations/UserNavigator";
 
 interface ProfileProps {
   username: string;
@@ -10,12 +12,13 @@ interface ProfileProps {
   missionNumber: number;
 }
 
-const Profile = ({username, registerDate, missionNumber}: ProfileProps) => {
-  const navigation = useNavigation();
+const Profile: React.FC<ProfileProps> = ({ username, registerDate, missionNumber }) => {
+  const navigation = useNavigation<UserNavigatorParamList>();
 
   const handleSettingButtonPress = () => {
     navigation.navigate("UserSettingScreen");
   }
+
 
   return (
     <>

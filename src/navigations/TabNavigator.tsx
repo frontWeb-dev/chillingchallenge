@@ -2,9 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5, Ionicons, FontAwesome, } from "@expo/vector-icons";
 
-import SelectScreen from "../screens/SelectScreen";
 import CommunityScreen from "../screens/CommunityScreen";
 import UserNavigator from "./UserNavigator";
+import MissionNavigator from "./MissionNavigator";
 
 const TabBar = createBottomTabNavigator();
 
@@ -14,7 +14,7 @@ const TabNavigator: React.FC = () => {
     <TabBar.Navigator>
       <TabBar.Screen
         name="미션 선택"
-        component={SelectScreen}
+        component={MissionNavigator}
         options={{
           headerShown: false,
           tabBarLabelStyle: {
