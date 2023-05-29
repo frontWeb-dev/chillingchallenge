@@ -50,9 +50,9 @@ export default Profile;
 // styled
 const ProfileContainer = styled.View`
   display: flex;
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   gap: 20px;
 `;
@@ -60,34 +60,34 @@ const ProfileContainer = styled.View`
 const ProfileImage = styled.Image`
   width: 65px;
   height: 65px;
-  resizeMode: cover;
-  borderRadius: 12px;
+  resize-mode: cover;
+  border-radius: 12px;
 `;
 
 const ProfileTextContainer = styled.View`
   flex: 1;
   display: flex;
-  flexDirection: column;
-  justifyContent: space-between;
+  flex-direction: column;
+  justify-content: space-between;
   gap: 6.5px;
 `;
 
 const UsernameText = styled.Text`
-  fontSize: 20px;
-  fontFamily: "ExtraBold";
+  font-size: 20px;
+  font-family: "ExtraBold";
 `;
 
 const DateText = styled.Text`
   color: #909090;
-  fontSize: 10px;
-  fontFamily: "Regular";
+  font-size: 10px;
+  font-family: "Regular";
 `;
 
 const MissionText = styled.Text`
-  fontSize: 12px;
-  fontFamily: "Regular";
+  font-size: 12px;
+  font-family: "Regular";
 `;
 
 const SettingButton = styled.TouchableOpacity`
-  activeOpacity: 0.8;
+  active-opacity: 0.8;
 `;
