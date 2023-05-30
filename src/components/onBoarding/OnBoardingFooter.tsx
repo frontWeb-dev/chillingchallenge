@@ -25,6 +25,21 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
     };
   }, []);
 
+  const handleSkipButton = () => {
+    switch (step) {
+      case 1:
+        navigation.navigate("TabNavigator");
+        break;
+      case 2:
+        navigation.navigate("TabNavigator");
+        break;
+      case 3:
+        setPageStatus("First");
+        break;
+      default:
+        break;
+    }
+  };
 
   const handleNextButton = () => {
     if (isButtonEnabled) {
@@ -47,9 +62,11 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
   return (
     <>
       <FooterContainer>
-        <SkipButton>
+        <SkipButton
+          onPress={handleSkipButton}
+        >
           <SkipText>
-            Skip
+            {step === 3 ? "redo" : "Skip"}
           </SkipText>
         </SkipButton>
         <ProgressContainer>
