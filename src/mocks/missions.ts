@@ -7,6 +7,7 @@ export const missions = [
     bgImage:
       "https://github.com/frontWeb-dev/carrot-market/assets/101559564/5bc957a4-4f98-4078-a776-dc192bfa8cfd",
     bedge: "미션 완료",
+    type: 3,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const missions = [
     bgImage:
       "https://github.com/frontWeb-dev/carrot-market/assets/101559564/5bc957a4-4f98-4078-a776-dc192bfa8cfd",
     bedge: "진행 중",
+    type: 2,
   },
   {
     id: 3,
@@ -24,5 +26,6 @@ export const missions = [
     desc: "desc",
     bgImage:
       "https://github.com/frontWeb-dev/carrot-market/assets/101559564/5bc957a4-4f98-4078-a776-dc192bfa8cfd",
+    type: 1,
   },
 ];
