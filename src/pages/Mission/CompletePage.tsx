@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components/native";
 
 import LongButton from "../../components/mission/LongButton";
+import { useNavigation } from "@react-navigation/native";
+import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
 
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -11,20 +13,19 @@ interface CompletePageProps {
   desc: string;
   bgImage: string;
   type: number;
-};  
+}
 
 const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
-
+  const navigation = useNavigation<MissionNavigatorParamList>();
   return (
     <>
       <Wrapper>
-        <MissionQuote>
-          미션 완료
-        </MissionQuote>
+        <MissionQuote>미션 완료</MissionQuote>
         <LongButton
           type="Complete"
           text="다른 미션하러 가기"
           setMissionStatus={setMissionStatus}
+          onSubmit={() => navigation.navigate("SelectScreen")}
         />
       </Wrapper>
     </>
@@ -32,7 +33,6 @@ const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
 };
 
 export default CompletePage;
-
 
 // styled
 const Wrapper = styled.View`

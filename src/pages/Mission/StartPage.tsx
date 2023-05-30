@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/native";
-
 import LongButton from "../../components/mission/LongButton";
 import Margin from "../../components/Margin";
 
@@ -12,36 +11,26 @@ interface StartPageProps {
   desc: string;
   bgImage: string;
   type: number;
-};  
+}
 
 const StartPage = ({ setMissionStatus, comment, desc }: StartPageProps) => {
-
   return (
     <>
       <Wrapper>
-        <MissionQuote>
-          "{comment}"
-        </MissionQuote>
+        <MissionQuote>"{comment}"</MissionQuote>
         <Margin props={50} />
         <ContentContainer>
-          <SubHeader>
-            챌린지 설명
-          </SubHeader>
-          <Description>
-            {desc}
-          </Description>
+          <SubHeader>챌린지 설명</SubHeader>
+          <Description>{desc}</Description>
           <Margin props={10} />
-          <SubHeader>
-            챌린지 방법
-          </SubHeader>
-          <Description>
-            {desc}
-          </Description>
+          <SubHeader>챌린지 방법</SubHeader>
+          <Description>{desc}</Description>
         </ContentContainer>
         <LongButton
           type="START"
           text="미션 시작하기"
           setMissionStatus={setMissionStatus}
+          onSubmit={() => setMissionStatus("InProgress")}
         />
       </Wrapper>
     </>
@@ -49,7 +38,6 @@ const StartPage = ({ setMissionStatus, comment, desc }: StartPageProps) => {
 };
 
 export default StartPage;
-
 
 // styled
 const Wrapper = styled.View`
