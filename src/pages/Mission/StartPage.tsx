@@ -5,6 +5,12 @@ import LongButton from "../../components/mission/LongButton";
 
 interface StartPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
+  id: number;
+  title: string;
+  comment: string;
+  desc: string;
+  bgImage: string;
+  type: number;
 };  
 
 const StartPage = ({ setMissionStatus }: StartPageProps) => {

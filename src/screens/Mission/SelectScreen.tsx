@@ -14,6 +14,7 @@ export interface MissionData {
   desc: string;
   bedge?: string;
   bgImage: string;
+  type: number;
 }
 
 const SelectScreen: React.FC = () => {
