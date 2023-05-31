@@ -1,11 +1,15 @@
-import { ImageBackground, Text } from "react-native";
-import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import { missions } from "../../mocks/missions";
-import Card from "../../components/Card";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
+import { ImageBackground, Text } from "react-native";
+
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
+import { missions } from "../../mocks/missions";
+import { getMissionState } from "../../utils/MissionState";
+
+import Layout from "../../components/Layout";
+import Header from "../../components/Header";
+import Card from "../../components/Card";
 
 export interface MissionData {
   id: number;
@@ -18,6 +22,22 @@ export interface MissionData {
 }
 
 const SelectScreen: React.FC = () => {
+
+  const [missionState, setMissionState] =useState({});
+
+  useEffect(() => {
+    const fetchMissionState = async () => {
+      const state = await getMissionState();
+      if (state !== null) {
+        const stateObject = JSON.parse(state);
+        setMissionState(stateObject);
+      }
+    };
+
+    fetchMissionState();
+  }, [])
+
+
   const navigation = useNavigation<MissionNavigatorParamList>();
   const onPress = (el: MissionData) => {
     if (el.bedge === "미션 완료") return;
