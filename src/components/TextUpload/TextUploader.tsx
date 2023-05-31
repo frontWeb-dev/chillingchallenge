@@ -3,29 +3,21 @@ import styled from "styled-components/native";
 
 interface InProgressPageProps {
   type: number;
-  setForm: React.Dispatch<React.SetStateAction<{ text: string | string[] }>>;
+  form?: string;
+  setForm: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const TextUploader = ({ type, setForm }: InProgressPageProps) => {
-  useEffect(() => {
-    if (type === 2) {
-      setForm({ text: "" });
-    } else if (type === 3) {
-      setForm({ text: [] });
-    }
-  }, []);
-
+const TextUploader = ({ type, setForm, form }: InProgressPageProps) => {
   const onChangeText = (text: string) => {
-    setForm({
-      text: text,
-    });
+    setForm(text);
   };
 
   return (
     <TextForm>
       <TextInput
-        placeholder="오늘의 미션 내용 적어보기"
+        placeholder="텍스트를 입력하세요."
         onChangeText={(text: string) => onChangeText(text)}
+        value={form}
       />
     </TextForm>
   );
@@ -36,10 +28,10 @@ export default TextUploader;
 const TextForm = styled.View`
   width: 100%;
   padding: 20px;
-  margin: 20px 0;
+  margin-bottom: 20px;
   flex: 1;
   justify-content: space-between;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #ccc;
   border-radius: 20px;
 `;
 
