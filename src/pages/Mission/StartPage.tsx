@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
+
 import LongButton from "../../components/mission/LongButton";
 import Margin from "../../components/Margin";
+
+import { setMissionState } from "../../utils/MissionState";
 
 interface StartPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -13,7 +16,13 @@ interface StartPageProps {
   type: number;
 }
 
-const StartPage = ({ setMissionStatus, comment, desc }: StartPageProps) => {
+const StartPage = ({ setMissionStatus, comment, desc, id }: StartPageProps) => {
+
+  const handleStartMission = async () => {
+    await setMissionState(id, 2);
+    setMissionStatus("InProgress");
+  };
+
   return (
     <>
       <Wrapper>
@@ -30,7 +39,7 @@ const StartPage = ({ setMissionStatus, comment, desc }: StartPageProps) => {
           type="START"
           text="미션 시작하기"
           setMissionStatus={setMissionStatus}
-          onSubmit={() => setMissionStatus("InProgress")}
+          onSubmit={handleStartMission}
         />
       </Wrapper>
     </>

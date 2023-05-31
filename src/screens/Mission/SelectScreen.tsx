@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components/native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ImageBackground, Text } from "react-native";
 
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
@@ -16,31 +16,37 @@ export interface MissionData {
   title: string;
   comment: string;
   desc: string;
-  bedge?: string;
   bgImage: string;
   type: number;
 }
 
+type MissionState = {
+  [key: number]: string;
+};
+
 const SelectScreen: React.FC = () => {
 
-  const [missionState, setMissionState] =useState({});
+  const [missionState, setMissionState] =useState<MissionState>({});
 
-  useEffect(() => {
-    const fetchMissionState = async () => {
-      const state = await getMissionState();
-      if (state !== null) {
-        const stateObject = JSON.parse(state);
-        setMissionState(stateObject);
-      }
-    };
-
-    fetchMissionState();
-  }, [])
+  useFocusEffect(
+    React.useCallback(() => {
+      const fetchMissionState = async () => {
+        const state = await getMissionState();
+        if (state !== null) {
+          const missionStateObj = JSON.parse(state);
+          setMissionState(missionStateObj);
+        }
+      };
+      fetchMissionState();
+      return () => {
+      };
+    }, [])
+  );
 
 
   const navigation = useNavigation<MissionNavigatorParamList>();
-  const onPress = (el: MissionData) => {
-    if (el.bedge === "미션 완료") return;
+  const onPress = (badge: number, el: MissionData) => {
+    if (badge === 3) return;
     navigation.navigate("MissionScreen", { data: el });
   };
 
@@ -48,23 +54,26 @@ const SelectScreen: React.FC = () => {
     <Layout>
       <Header text="오늘의 칠링챌링" />
       <Container>
-        {missions.map((el) => (
-          <Card
-            key={el.id}
-            isDone={el.bedge === "미션 완료"}
-            bedge={el.bedge}
-            onPress={() => onPress(el)}
-          >
-            <ImageBackground
-              source={{ uri: el.bgImage }}
-              resizeMode="cover"
-              style={{ flex: 1, justifyContent: "space-between" }}
+        {missions.map((el) => {
+          const missionStateValue = parseInt(missionState[el.id]);
+          const badge = missionStateValue !== undefined ? missionStateValue : 1;
+          return (
+            <Card
+              key={el.id}
+              isDone={badge === 3}
+              badge={badge}
+              onPress={() => onPress(badge, el)}
             >
-              <Title>{el.title}</Title>
-              <Desc>{el.comment}</Desc>
-            </ImageBackground>
-          </Card>
-        ))}
+              <ImageBackground
+                source={{ uri: el.bgImage }}
+                resizeMode="cover"
+                style={{ flex: 1, justifyContent: "space-between" }}
+              >
+                <Title>{el.title}</Title>
+                <Desc>{el.comment}</Desc>
+              </ImageBackground>
+            </Card>
+        )})}
       </Container>
     </Layout>
   );
