@@ -5,15 +5,11 @@ import { useNavigation } from "@react-navigation/native";
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
 
 interface LongButtonProps {
-  type: string;
   text: string;
-  setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
   onSubmit?: () => void;
 }
 
-const LongButton = ({ text, type, setMissionStatus, onSubmit }: LongButtonProps) => {
-  const navigation = useNavigation<MissionNavigatorParamList>();
-
+const LongButton = ({ text, onSubmit }: LongButtonProps) => {
   // const handleOnPress = () => {
   //   switch (type) {
   //     case "START":

@@ -23,9 +23,9 @@ export const missions = [
     id: 3,
     title: "좋아하는 시 필사하기",
     comment: "당신에게 위안을 가져다 준 시가 있나요?",
-    desc: "desc",
+    desc: ["1단계", "2단계", "3단계", "4단계"],
     bgImage:
       "https://github.com/frontWeb-dev/carrot-market/assets/101559564/5bc957a4-4f98-4078-a776-dc192bfa8cfd",
-    type: 1,
+    type: 3,
   },
 ];
