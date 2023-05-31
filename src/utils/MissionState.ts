@@ -9,12 +9,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
  * */ 
 
 // 미션 상태 저장하기
-export const setMissionState =  async (missionState: string) => {
+export const setMissionState = async (id: number, state: number) => {
   try {
-    await AsyncStorage.setItem("mission-state", missionState);
-  } catch (e) {
-    console.log(e);
-  };
+    const missionState = await AsyncStorage.getItem("mission-state");
+    if (missionState !== null) {
+      const missionStateObj = JSON.parse(missionState);
+      missionStateObj[id] = state;
+      await AsyncStorage.setItem("mission-state", JSON.stringify(missionStateObj));
+    } else {
+      const newMissionStateObj = {
+        [id]: state
+      };
+      await AsyncStorage.setItem("mission-state", JSON.stringify(newMissionStateObj));
+    }
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 

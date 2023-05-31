@@ -1,22 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 
 interface CardProps {
   children: React.ReactNode;
   isDone: boolean;
-  bedge?: string;
+  badge: number;
   onPress: () => void;
 }
-const Card = ({ children, isDone, bedge, onPress }: CardProps) => (
-  <Container isDone={isDone} onPress={onPress}>
-    {bedge && (
-      <Bedge>
-        <Text>{bedge}</Text>
-      </Bedge>
-    )}
-    {children}
-  </Container>
-);
+const Card = ({ children, isDone, badge, onPress }: CardProps) => {
+  const [ badgeText, setBadgeText ] = useState("");
+
+  useEffect(() => {
+    if (badge === 3) {
+      setBadgeText("진행 완료");
+    } else if (badge === 2) {
+      setBadgeText("진행 중");
+    } else {
+      setBadgeText("시작 전")
+    }
+  }, [badge]);
+
+  return (
+    <Container isDone={isDone} onPress={onPress}>
+      <Badge>
+        <Text>{badgeText}</Text>
+      </Badge>
+      {children}
+    </Container>
+  );
+};
 
 export default Card;
 
@@ -31,7 +43,7 @@ const Container = styled.TouchableOpacity`
   background-color: ${(props: { isDone: boolean }) => (props.isDone ? "#f1f1f1" : "#fff")};
 `;
 
-const Bedge = styled.View`
+const Badge = styled.View`
   position: absolute;
   top: 10px;
   right: 10px;
