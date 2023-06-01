@@ -22,9 +22,7 @@ const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
       <Wrapper>
         <MissionQuote>미션 완료</MissionQuote>
         <LongButton
-          type="Complete"
           text="다른 미션하러 가기"
-          setMissionStatus={setMissionStatus}
           onSubmit={() => navigation.navigate("SelectScreen")}
         />
       </Wrapper>

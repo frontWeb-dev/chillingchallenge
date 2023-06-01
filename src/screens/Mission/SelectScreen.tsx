@@ -15,7 +15,7 @@ export interface MissionData {
   id: number;
   title: string;
   comment: string;
-  desc: string;
+  desc: any;
   bgImage: string;
   type: number;
 }

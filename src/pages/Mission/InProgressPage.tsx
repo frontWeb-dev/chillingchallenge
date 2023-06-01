@@ -28,7 +28,7 @@ const InProgressPage = ({ setMissionStatus, type, desc }: InProgressPageProps) =
 
   switch (type) {
     case 1:
-      uploader = <ImageUploader setImageSelected={setImageSelected} uploaderType="PROFILE" />;
+      uploader = <ImageUploader setImageSelected={setImageSelected} uploaderType="UPLOAD" desc={desc}/>;
       break;
     case 2:
       uploader = <TextUploader type={type} setForm={setForm} />;
@@ -59,7 +59,7 @@ const InProgressPage = ({ setMissionStatus, type, desc }: InProgressPageProps) =
 
   return (
     <Wrapper>
-      <MissionQuote>{type === 3 ? desc[page - 1] : desc}</MissionQuote>
+      <MissionQuote type={type} >{type === 3 ? desc[page - 1] : desc}</MissionQuote>
       {uploader}
       <LongButton text={page === 4 ? "인증 등록 하기" : "다음"} onSubmit={handleSubmit} />
     </Wrapper>
@@ -78,7 +78,7 @@ const Wrapper = styled.View`
 const MissionQuote = styled.Text`
   flex: 1;
   padding: 0 20px;
-  margin-top: 50px;
+  margin-top: ${(props: {type: number}) => (props.type === 1 ? "0px" : "50px")};
   font-size: 16px;
   text-align: center;
 `;
