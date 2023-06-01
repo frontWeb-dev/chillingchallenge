@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import LongButton from "../../components/mission/LongButton";
 import { useNavigation } from "@react-navigation/native";
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
+import Happiness from "../../components/happy/Happiness";
 
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -17,6 +18,7 @@ const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
     <>
       <Wrapper>
         <MissionQuote>미션 완료</MissionQuote>
+        <Happiness/>
         <LongButton
           text="다른 미션하러 가기"
           onSubmit={() => navigation.navigate("SelectScreen")}
