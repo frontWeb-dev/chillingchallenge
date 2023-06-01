@@ -10,7 +10,7 @@ const TabBar = createBottomTabNavigator();
 
 const TabNavigator: React.FC = () => {
   return (
-    <TabBar.Navigator>
+    <TabBar.Navigator screenOptions={{ tabBarStyle: { padding: 10 } }}>
       <TabBar.Screen
         name="미션 선택"
         component={MissionNavigator}
