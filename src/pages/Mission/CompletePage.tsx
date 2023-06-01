@@ -1,4 +1,5 @@
 import React from "react";
+import dayjs from 'dayjs';
 import { ScrollView } from "react-native";
 import styled from "styled-components/native";
 
@@ -6,6 +7,7 @@ import LongButton from "../../components/mission/LongButton";
 import { useNavigation } from "@react-navigation/native";
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
 import Happiness from "../../components/happy/Happiness";
+import { setAttendance } from "../../utils/Attendance";
 
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -17,6 +19,9 @@ const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
   const navigation = useNavigation<MissionNavigatorParamList>();
 
   const handleUploadButton = () => {
+    const today = dayjs();
+    const formattedDate = today.format('YYYY-MM-DD');
+    setAttendance(formattedDate);
     navigation.navigate("SelectScreen");
   };
 
@@ -28,7 +33,7 @@ const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
           <Happiness/>
           <LongButton
             text="업로드하기"
-            onSubmit={() => navigation.navigate("SelectScreen")}
+            onSubmit={() => handleUploadButton()}
           />
         </Wrapper>
       </ScrollView>
