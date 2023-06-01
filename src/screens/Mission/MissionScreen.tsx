@@ -19,7 +19,8 @@ const MissionScreen: React.FC = () => {
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
   const [comment, setComment] = useState<string>("");
-  const [method, setMethod] = useState<string>("");
+  const [desc, setDesc] = useState("");
+  const [method, setMethod] = useState<string | string[]>("");
   const [bgImage, setBgImage] = useState<string>("");
   const [type, setType] = useState<number>(0);
 
@@ -27,6 +28,7 @@ const MissionScreen: React.FC = () => {
     setId(params?.data?.id);
     setTitle(params?.data?.title);
     setComment(params?.data?.comment);
+    setDesc(params?.data?.desc);
     setMethod(params?.data?.method);
     setBgImage(params?.data?.bgImage);
     setType(params?.data?.type);
@@ -38,37 +40,29 @@ const MissionScreen: React.FC = () => {
 
   switch (missionStatus) {
     case "Start":
-      pageComponent = <StartPage 
-        setMissionStatus={setMissionStatus}
-        id={id}
-        title={title}
-        comment={comment}
-        method={method}
-        bgImage={bgImage}
-        type={type}
-      />;
+      pageComponent = (
+        <StartPage
+          setMissionStatus={setMissionStatus}
+          id={id}
+          comment={comment}
+          desc={desc}
+          type={type}
+        />
+      );
       break;
     case "InProgress":
-      pageComponent = <InProgressPage 
-        setMissionStatus={setMissionStatus}
-        id={id}
-        title={title}
-        comment={comment}
-        method={method}
-        bgImage={bgImage}
-        type={type}
-      />;
+      pageComponent = (
+        <InProgressPage
+          setMissionStatus={setMissionStatus}
+          id={id}
+          comment={comment}
+          method={method}
+          type={type}
+        />
+      );
       break;
     case "Complete":
-      pageComponent = <CompletePage 
-        setMissionStatus={setMissionStatus}
-        id={id}
-        title={title}
-        comment={comment}
-        method={method}
-        bgImage={bgImage}
-        type={type}
-      />;
+      pageComponent = <CompletePage setMissionStatus={setMissionStatus} id={id} type={type} />;
       break;
     default:
       pageComponent = null;

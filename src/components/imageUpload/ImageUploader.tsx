@@ -5,10 +5,9 @@ import * as ImagePicker from "expo-image-picker";
 interface ImageUploaderProps {
   setImageSelected: (imageUri: string) => void;
   uploaderType: string;
-  method?: string | string[];
 }
 
-const ImageUploader = ({ setImageSelected, uploaderType, method }: ImageUploaderProps) => {
+const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) => {
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [isImageUploaded, setIsImageUploaded] = useState<boolean>(false);
 
@@ -31,55 +30,53 @@ const ImageUploader = ({ setImageSelected, uploaderType, method }: ImageUploader
       await setImageUri(selectedAsset.uri);
       setImageSelected(selectedAsset.uri);
       setIsImageUploaded(true);
-      console.log("imageUri: ", imageUri)
+      console.log("imageUri: ", imageUri);
     }
   };
 
   return (
-    <>
-      <UploaderContainer>
-        <PreviewImageContainer onPress={() => handleSelectImage()}>
-          {isImageUploaded === false ? <></> : <UploadText>📷 사진 변경하기</UploadText>}
-          <PreviewImage source={{ uri: imageUri }} uploaderType={uploaderType}/>
-        </PreviewImageContainer>
-      </UploaderContainer>
-    </>
+    <UploaderContainer>
+      <PreviewImageContainer onPress={() => handleSelectImage()}>
+        {isImageUploaded === false ? <></> : <UploadText>📷 사진 변경하기</UploadText>}
+        <PreviewImage source={{ uri: imageUri }} uploaderType={uploaderType} />
+      </PreviewImageContainer>
+    </UploaderContainer>
   );
 };
 
 export default ImageUploader;
 
-
 // styled
 const UploaderContainer = styled.View`
   width: 100%;
   flex: 1;
-  display: flex;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  margin-bottom: 100px;
+  padding: 20px 0;
+  justify-content: center;
+  align-items: center;
 `;
 
 const PreviewImageContainer = styled.TouchableOpacity`
-  activeOpacity: 0.8;
-  display: flex;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  gap: 10px;
+  width: 100%;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  opacity: 0.8;
 `;
 
 const PreviewImage = styled.Image`
-  width: ${(props: {uploaderType: string}) => (props.uploaderType === "PROFILE" ? "100px" : "320px")};
-  height: ${(props: {uploaderType: string}) => (props.uploaderType === "PROFILE" ? "100px" : "320px")};
-  borderRadius: ${(props: {uploaderType: string}) => (props.uploaderType === "PROFILE" ? "100px" : "8px")};
+  width: ${(props: { uploaderType: string }) =>
+    props.uploaderType === "PROFILE" ? "100px" : "100%"};
+  height: ${(props: { uploaderType: string }) =>
+    props.uploaderType === "PROFILE" ? "100px" : "100%"};
+  object-fit: cover;
   border: 1px solid grey;
+  border-radius: ${(props: { uploaderType: string }) =>
+    props.uploaderType === "PROFILE" ? "100px" : "8px"};
 `;
 
 const UploadText = styled.Text`
-  fontSize: 14px;
-  fontFamily: "Medium";
+  font-size: 14px;
+  font-family: "Medium";
   text-align: center;
-  line-height: 24px;
 `;

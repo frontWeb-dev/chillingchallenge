@@ -8,10 +8,6 @@ import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
   id: number;
-  title: string;
-  comment: string;
-  method: string;
-  bgImage: string;
   type: number;
 }
 

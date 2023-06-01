@@ -28,6 +28,7 @@ export default TextUploader;
 const TextForm = styled.View`
   width: 100%;
   padding: 20px;
+  margin-top: 30px;
   margin-bottom: 20px;
   flex: 1;
   justify-content: space-between;
