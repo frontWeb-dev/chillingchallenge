@@ -9,20 +9,15 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <Wrapper>
+    <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "#47af51" }}>
       <Inner>{children}</Inner>
-    </Wrapper>
+    </SafeAreaView>
   );
 };
-
-const Wrapper = styled(SafeAreaView)`
-  flex: 1;
-  background-color: #47af51;
-`;
 
 const Inner = styled.View`
   width: 100%;
   flex: 1;
-  background-color: white;
+  background-color: #fff;
 `;
 export default Layout;
