@@ -46,7 +46,7 @@ const FeedScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text="칠링챌링 스토리" />
+      <Header text="칠링챌링 스토리" noBack={true}/>
       <Container
         data={state.data}
         renderItem={renderItem}

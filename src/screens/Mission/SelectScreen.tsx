@@ -52,7 +52,7 @@ const SelectScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text="오늘의 칠링챌링" />
+      <Header text="오늘의 칠링챌링" noBack={true}/>
       <Container>
         {missions.map((el) => {
           const missionStateValue = parseInt(missionState[el.id]);
