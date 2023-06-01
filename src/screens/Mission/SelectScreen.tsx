@@ -15,7 +15,8 @@ export interface MissionData {
   id: number;
   title: string;
   comment: string;
-  method: any;
+  method: string | string[];
+  desc: string;
   bgImage: string;
   type: number;
 }
@@ -25,8 +26,7 @@ type MissionState = {
 };
 
 const SelectScreen: React.FC = () => {
-
-  const [missionState, setMissionState] =useState<MissionState>({});
+  const [missionState, setMissionState] = useState<MissionState>({});
 
   useFocusEffect(
     React.useCallback(() => {
@@ -38,11 +38,9 @@ const SelectScreen: React.FC = () => {
         }
       };
       fetchMissionState();
-      return () => {
-      };
+      return () => {};
     }, [])
   );
-
 
   const navigation = useNavigation<MissionNavigatorParamList>();
   const onPress = (badge: number, el: MissionData) => {
@@ -52,18 +50,13 @@ const SelectScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text="오늘의 칠링챌링" noBack={true}/>
+      <Header text="오늘의 칠링챌링" noBack={true} />
       <Container>
         {missions.map((el) => {
           const missionStateValue = parseInt(missionState[el.id]);
           const badge = missionStateValue !== undefined ? missionStateValue : 1;
           return (
-            <Card
-              key={el.id}
-              isDone={badge === 3}
-              badge={badge}
-              onPress={() => onPress(badge, el)}
-            >
+            <Card key={el.id} isDone={badge === 3} badge={badge} onPress={() => onPress(badge, el)}>
               <ImageBackground
                 source={{ uri: el.bgImage }}
                 resizeMode="cover"
@@ -73,7 +66,8 @@ const SelectScreen: React.FC = () => {
                 <Comment>{el.comment}</Comment>
               </ImageBackground>
             </Card>
-        )})}
+          );
+        })}
       </Container>
     </Layout>
   );
