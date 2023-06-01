@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { ImageURISource } from "react-native";
 import styled from "styled-components/native";
 
 interface CardProps {
   children: React.ReactNode;
   isDone: boolean;
   badge: number;
+  image: ImageURISource;
   onPress: () => void;
 }
-const Card = ({ children, isDone, badge, onPress }: CardProps) => {
+const Card = ({ children, isDone, badge, image, onPress }: CardProps) => {
   const [badgeText, setBadgeText] = useState("");
 
   useEffect(() => {
@@ -16,16 +18,21 @@ const Card = ({ children, isDone, badge, onPress }: CardProps) => {
     } else if (badge === 2) {
       setBadgeText("진행 중");
     } else {
-      setBadgeText("시작 전");
+      setBadgeText("");
     }
   }, [badge]);
 
   return (
     <Container isDone={isDone} onPress={onPress}>
-      <Badge>
-        <Text>{badgeText}</Text>
-      </Badge>
       {children}
+      <ImageView>
+        <BgView>
+          <BgImage source={image} resizeMode="cover"></BgImage>
+        </BgView>
+        <Badge>
+          <Text>{badgeText}</Text>
+        </Badge>
+      </ImageView>
     </Container>
   );
 };
@@ -34,27 +41,48 @@ export default Card;
 
 const Container = styled.TouchableOpacity`
   position: relative;
-  padding: 30px 20px;
+  padding: 20px;
   flex: 1;
+  flex-direction: row;
   border: 1px solid #ddd;
   border-radius: 20px;
   box-shadow: 2px 2px 2px #5d5d5d;
   background-color: ${(props: { isDone: boolean }) => (props.isDone ? "#f1f1f1" : "#fff")};
 `;
 
-const Badge = styled.View`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 65px;
-  height: 24px;
+const ImageView = styled.View`
+  flex: 1;
   justify-content: center;
-  background-color: #000;
-  border-radius: 50px;
+  align-items: center;
+  gap: 20px;
+`;
+
+const BgView = styled.View`
+  width: 60px;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: #d6d6d6;
+`;
+
+const BgImage = styled.Image`
+  left: 20px;
+  width: 90%;
+  height: 40px;
+  object-fit: contain;
+`;
+
+const Badge = styled.View`
+  width: 48px;
+  padding: 4px;
+  justify-content: center;
+  background-color: #d6d6d6;
+  border-radius: 5px;
 `;
 
 const Text = styled.Text`
-  color: #fff;
-  font-size: 14px;
+  color: #000;
+  font-size: 12px;
   text-align: center;
 `;

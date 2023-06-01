@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components/native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { ImageBackground, Text } from "react-native";
+import { ImageURISource } from "react-native";
 
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
 import { missions } from "../../mocks/missions";
@@ -17,7 +17,7 @@ export interface MissionData {
   comment: string;
   method: string | string[];
   desc: string;
-  bgImage: string;
+  bgImage: ImageURISource;
   type: number;
 }
 
@@ -49,6 +49,7 @@ const SelectScreen: React.FC = () => {
   );
 
   const navigation = useNavigation<MissionNavigatorParamList>();
+
   const onPress = (badge: number, el: MissionData) => {
     if (badge === 3) return;
     navigation.navigate("MissionScreen", { data: el });
@@ -97,16 +98,13 @@ const SelectScreen: React.FC = () => {
                 key={el.id}
                 isDone={badge === 3}
                 badge={badge}
+                image={el.bgImage}
                 onPress={() => onPress(badge, el)}
               >
-                <ImageBackground
-                  source={{ uri: el.bgImage }}
-                  resizeMode="cover"
-                  style={{ flex: 1, justifyContent: "space-between" }}
-                >
+                <ContentView>
                   <Title>{el.title}</Title>
                   <Comment>{el.comment}</Comment>
-                </ImageBackground>
+                </ContentView>
               </Card>
             );
           })}
@@ -140,13 +138,21 @@ const CardContainer = styled.View`
   gap: 20px;
 `;
 
+const ContentView = styled.View`
+  flex: 2;
+  margin-right: 10px;
+  justify-content: center;
+  gap: 20px;
+`;
+
 const Title = styled.Text`
   font-size: 20px;
   font-weight: bold;
 `;
 
 const Comment = styled.Text`
-  font-size: 14px;
+  font-size: 13px;
+  // font-family: "Light";
 `;
 
 const DDate = styled.Text`
