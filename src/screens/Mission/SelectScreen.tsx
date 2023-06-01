@@ -15,7 +15,7 @@ export interface MissionData {
   id: number;
   title: string;
   comment: string;
-  desc: any;
+  method: string | string[];
   bgImage: string;
   type: number;
 }
@@ -70,7 +70,7 @@ const SelectScreen: React.FC = () => {
                 style={{ flex: 1, justifyContent: "space-between" }}
               >
                 <Title>{el.title}</Title>
-                <Desc>{el.comment}</Desc>
+                <Comment>{el.comment}</Comment>
               </ImageBackground>
             </Card>
         )})}
@@ -90,6 +90,6 @@ const Title = styled.Text`
   font-weight: bold;
 `;
 
-const Desc = styled.Text`
+const Comment = styled.Text`
   font-size: 14px;
 `;

@@ -10,21 +10,6 @@ interface LongButtonProps {
 }
 
 const LongButton = ({ text, onSubmit }: LongButtonProps) => {
-  // const handleOnPress = () => {
-  //   switch (type) {
-  //     case "START":
-  //       setMissionStatus("InProgress");
-  //       break;
-  //     case "InProgress":
-  //       setMissionStatus("Complete");
-  //       break;
-  //     case "Complete":
-  //       navigation.navigate("SelectScreen");
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
 
   return (
     <ButtonContainer onPress={onSubmit}>

@@ -11,12 +11,12 @@ interface InProgressPageProps {
   id: number;
   title: string;
   comment: string;
-  desc: string;
+  method: string;
   bgImage: string;
   type: number;
 }
 
-const InProgressPage = ({ setMissionStatus, type, desc }: InProgressPageProps) => {
+const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps) => {
   const [page, setPage] = useState(1);
   const [form, setForm] = useState("");
   const [imageSelected, setImageSelected] = useState("");
@@ -28,7 +28,7 @@ const InProgressPage = ({ setMissionStatus, type, desc }: InProgressPageProps) =
 
   switch (type) {
     case 1:
-      uploader = <ImageUploader setImageSelected={setImageSelected} uploaderType="UPLOAD" desc={desc}/>;
+      uploader = <ImageUploader setImageSelected={setImageSelected} uploaderType="UPLOAD" method={method}/>;
       break;
     case 2:
       uploader = <TextUploader type={type} setForm={setForm} />;
@@ -59,7 +59,7 @@ const InProgressPage = ({ setMissionStatus, type, desc }: InProgressPageProps) =
 
   return (
     <Wrapper>
-      <MissionQuote type={type} >{type === 3 ? desc[page - 1] : desc}</MissionQuote>
+      <MissionQuote type={type} >{type === 3 ? method[page - 1] : method}</MissionQuote>
       {uploader}
       <LongButton text={page === 4 ? "인증 등록 하기" : "다음"} onSubmit={handleSubmit} />
     </Wrapper>
