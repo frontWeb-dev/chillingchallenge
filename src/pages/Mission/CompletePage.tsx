@@ -1,4 +1,5 @@
 import React from "react";
+import { ScrollView } from "react-native";
 import styled from "styled-components/native";
 
 import LongButton from "../../components/mission/LongButton";
@@ -14,16 +15,23 @@ interface CompletePageProps {
 
 const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
   const navigation = useNavigation<MissionNavigatorParamList>();
+
+  const handleUploadButton = () => {
+    navigation.navigate("SelectScreen");
+  };
+
   return (
     <>
-      <Wrapper>
-        <MissionQuote>미션 완료</MissionQuote>
-        <Happiness/>
-        <LongButton
-          text="다른 미션하러 가기"
-          onSubmit={() => navigation.navigate("SelectScreen")}
-        />
-      </Wrapper>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <Wrapper>
+          <MissionQuote>미션 완료</MissionQuote>
+          <Happiness/>
+          <LongButton
+            text="업로드하기"
+            onSubmit={() => navigation.navigate("SelectScreen")}
+          />
+        </Wrapper>
+      </ScrollView>
     </>
   );
 };
