@@ -2,13 +2,19 @@ import React, {useState, useEffect } from "react";
 import styled from "styled-components/native";
 
 import HappyStar from "./HappyStar";
+import HappyText from "./HappyText";
 
 const Happiness: React.FC = () => {
   const [happyPoint, setHappyPoint] = useState(0);
+  const [happyText, setHappyText] = useState("");
 
   return (
     <>
       <Wrapper>
+        <HappyText
+          happyText={happyText}
+          setHappyText={setHappyText}
+        />
         <HappyStar
           happyPoint={happyPoint}
           setHappyPoint={setHappyPoint}

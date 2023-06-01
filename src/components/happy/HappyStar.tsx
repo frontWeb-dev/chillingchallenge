@@ -18,19 +18,19 @@ const HappyStar = ({happyPoint, setHappyPoint}: HappyStarProps) => {
     <>
       <ButtonWrapper>
         <StarContainer onPress={() => handleStarButton(1)}>
-          {happyPoint >= 1 ? <AntDesign name="star" size={24} color="yellow" /> : <AntDesign name="staro" size={24} color="yellow" />}
+          {happyPoint >= 1 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
         </StarContainer>
         <StarContainer onPress={() => handleStarButton(2)}>
-          {happyPoint >= 2 ? <AntDesign name="star" size={24} color="yellow" /> : <AntDesign name="staro" size={24} color="yellow" />}
+          {happyPoint >= 2 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
         </StarContainer>
         <StarContainer onPress={() => handleStarButton(3)}>
-          {happyPoint >= 3 ? <AntDesign name="star" size={24} color="yellow" /> : <AntDesign name="staro" size={24} color="yellow" />}
+          {happyPoint >= 3 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
         </StarContainer>
         <StarContainer onPress={() => handleStarButton(4)}>
-          {happyPoint >= 4 ? <AntDesign name="star" size={24} color="yellow" /> : <AntDesign name="staro" size={24} color="yellow" />}
+          {happyPoint >= 4 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
         </StarContainer>
         <StarContainer onPress={() => handleStarButton(5)}>
-          {happyPoint >= 5 ? <AntDesign name="star" size={24} color="yellow" /> : <AntDesign name="staro" size={24} color="yellow" />}
+          {happyPoint >= 5 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
         </StarContainer>
       </ButtonWrapper>
     </>
@@ -46,10 +46,16 @@ const ButtonWrapper = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 10px 30px;
+  border: 1px solid lightgrey;
+  border-radius: 12px;
 `;
 
 const StarContainer = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
+  activeOpacity: 0.8;
 `;
 
