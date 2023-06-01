@@ -9,10 +9,8 @@ import { useLongTextStore, useShortTextStore } from "../../store/store";
 interface InProgressPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
   id: number;
-  title: string;
   comment: string;
   method: string | string[];
-  bgImage: string;
   type: number;
 }
 
@@ -23,12 +21,12 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
 
   const { text, addText, clearText } = useShortTextStore();
   const { texts, addTexts, clearTexts } = useLongTextStore();
-  
+
   let uploader;
 
   switch (type) {
     case 1:
-      uploader = <ImageUploader setImageSelected={setImageSelected} uploaderType="UPLOAD" method={method}/>;
+      uploader = <ImageUploader setImageSelected={setImageSelected} uploaderType="UPLOAD" />;
       break;
     case 2:
       uploader = <TextUploader type={type} setForm={setForm} />;
@@ -59,8 +57,10 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
 
   return (
     <Wrapper>
-      <MissionQuote type={type}>{type === 3 ? method[page - 1] : method}</MissionQuote>
-      {uploader}
+      <Container>
+        <MissionQuote type={type}>{type === 3 ? method[page - 1] : method}</MissionQuote>
+        <Uploader>{uploader}</Uploader>
+      </Container>
       <LongButton text={page === 4 ? "인증 등록 하기" : "다음"} onSubmit={handleSubmit} />
     </Wrapper>
   );
@@ -73,12 +73,25 @@ const Wrapper = styled.View`
   width: 100%;
   flex: 1;
   padding: 10px 20px;
+  justify-content: space-between;
+`;
+
+const Container = styled.View`
+  width: 100%;
+  flex: 1;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+`;
+
+const Uploader = styled.View`
+  width: 100%;
+  flex: 3;
 `;
 
 const MissionQuote = styled.Text`
-  flex: 1;
-  padding: 0 20px;
-  margin-top: ${(props: {type: number}) => (props.type === 1 ? "0px" : "50px")};
+  padding: 0 10px;
   font-size: 16px;
   text-align: center;
+  line-height: 20px;
 `;
