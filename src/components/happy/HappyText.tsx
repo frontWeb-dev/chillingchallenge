@@ -51,7 +51,7 @@ const HappyDesc = styled.Text`
 
 const HappyForm = styled.View`
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid ${(props) => props.theme.borderColor};
   padding: 20px;
   border-radius: 20px;
 `;

@@ -22,7 +22,7 @@ const FeedScreen: React.FC = () => {
       });
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }: { item: any }) => (
     <Feed style={{ borderBottomWidth: 1, marginTop: 20 }}>
       <View>
         <Title>미션 제목</Title>
@@ -46,11 +46,11 @@ const FeedScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text="칠링챌링 스토리" noBack={true}/>
+      <Header text="칠링챌링 스토리" noBack={true} />
       <Container
         data={state.data}
         renderItem={renderItem}
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item: any) => item.id}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={1}
       />
@@ -79,12 +79,12 @@ const View = styled.View`
 
 const Title = styled.Text`
   font-size: 18px;
-  font-style: "ExtraBold";
+  font-family: "ExtraBold";
 `;
 
 const Date = styled.Text`
   font-size: 14px;
-  color: #4d4d4d;
+  color: ${(props) => props.theme.subTextColor};
 `;
 
 const Image = styled.Image`

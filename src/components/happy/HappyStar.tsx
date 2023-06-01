@@ -2,35 +2,55 @@ import React from "react";
 import { Animated } from "react-native";
 import styled from "styled-components/native";
 
-import { AntDesign } from '@expo/vector-icons'; 
+import { AntDesign } from "@expo/vector-icons";
 
 interface HappyStarProps {
   happyPoint: number;
   setHappyPoint: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const HappyStar = ({happyPoint, setHappyPoint}: HappyStarProps) => {
+const HappyStar = ({ happyPoint, setHappyPoint }: HappyStarProps) => {
   const handleStarButton = (point: number) => {
     setHappyPoint(point);
   };
 
-  return(
+  return (
     <>
       <ButtonWrapper>
-        <StarContainer onPress={() => handleStarButton(1)}>
-          {happyPoint >= 1 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(1)}>
+          {happyPoint >= 1 ? (
+            <AntDesign name="star" size={30} color="yellow" />
+          ) : (
+            <AntDesign name="staro" size={30} color="yellow" />
+          )}
         </StarContainer>
-        <StarContainer onPress={() => handleStarButton(2)}>
-          {happyPoint >= 2 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(2)}>
+          {happyPoint >= 2 ? (
+            <AntDesign name="star" size={30} color="yellow" />
+          ) : (
+            <AntDesign name="staro" size={30} color="yellow" />
+          )}
         </StarContainer>
-        <StarContainer onPress={() => handleStarButton(3)}>
-          {happyPoint >= 3 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(3)}>
+          {happyPoint >= 3 ? (
+            <AntDesign name="star" size={30} color="yellow" />
+          ) : (
+            <AntDesign name="staro" size={30} color="yellow" />
+          )}
         </StarContainer>
-        <StarContainer onPress={() => handleStarButton(4)}>
-          {happyPoint >= 4 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(4)}>
+          {happyPoint >= 4 ? (
+            <AntDesign name="star" size={30} color="yellow" />
+          ) : (
+            <AntDesign name="staro" size={30} color="yellow" />
+          )}
         </StarContainer>
-        <StarContainer onPress={() => handleStarButton(5)}>
-          {happyPoint >= 5 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(5)}>
+          {happyPoint >= 5 ? (
+            <AntDesign name="star" size={30} color="yellow" />
+          ) : (
+            <AntDesign name="staro" size={30} color="yellow" />
+          )}
         </StarContainer>
       </ButtonWrapper>
     </>
@@ -56,6 +76,4 @@ const StarContainer = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  activeOpacity: 0.8;
 `;
-

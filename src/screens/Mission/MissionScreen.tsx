@@ -8,6 +8,7 @@ import InProgressPage from "../../pages/Mission/InProgressPage";
 import CompletePage from "../../pages/Mission/CompletePage";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { MissionData } from "./SelectScreen";
+import { ImageURISource } from "react-native/types";
 
 type RootStackParamList = {
   MissionScreen: { data: MissionData };
@@ -21,7 +22,7 @@ const MissionScreen: React.FC = () => {
   const [comment, setComment] = useState<string>("");
   const [desc, setDesc] = useState("");
   const [method, setMethod] = useState<string | string[]>("");
-  const [bgImage, setBgImage] = useState<string>("");
+  const [bgImage, setBgImage] = useState<ImageURISource>();
   const [type, setType] = useState<number>(0);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ const MissionScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text={title} />
+      <Header text={title.replace("\n", "")} />
       <Margin props={30} />
       {pageComponent}
     </Layout>

@@ -1,7 +1,25 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es2016"],
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "baseUrl": "./src",
+
+    "types": ["styled-components-react-native"]
   },
-  "esModuleInterop": true
+  "exclude": [
+    "expo/tsconfig.base",
+    "node_modules",
+    "bable.config.js",
+    "metro.config.js",
+    "jest.config,js"
+  ],
+  "extends": "expo/tsconfig.base"
 }

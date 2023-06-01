@@ -33,16 +33,9 @@ const UserScreen: React.FC = () => {
       <Header text="나의 칠링챌링" noBack={true} />
       <Margin props={16} />
       <Container>
-        <Profile
-          username="웃고 싶은 날엔"
-          registerDate={55}
-          missionNumber={1}
-        />
+        <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />
         <Margin props={30} />
-        <UserButton
-          isSelected={isSelected}
-          setIsSelected={setIsSelected}
-        />
+        <UserButton isSelected={isSelected} setIsSelected={setIsSelected} />
         <Margin props={30} />
         {isSelected === 3 && (
           <Calendar
@@ -62,5 +55,5 @@ export default UserScreen;
 
 // styled
 const Container = styled.View`
-  paddingHorizontal: 15px;
+  padding: 0 15px;
 `;

@@ -55,31 +55,35 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
           break;
         default:
           break;
-      };
-    };
+      }
+    }
   };
 
   return (
     <>
       <FooterContainer>
-        <SkipButton
-          onPress={handleSkipButton}
-        >
-          <SkipText>
-            {step === 3 ? "redo" : "Skip"}
-          </SkipText>
+        <SkipButton active-opacity={0.8} onPress={handleSkipButton}>
+          <SkipText>{step === 3 ? "redo" : "Skip"}</SkipText>
         </SkipButton>
         <ProgressContainer>
-          <ProgressCircle isActive={step >= 1}/>
-          <ProgressCircle isActive={step >= 2}/>
-          <ProgressCircle isActive={step >= 3}/>
+          <ProgressCircle isActive={step >= 1} />
+          <ProgressCircle isActive={step >= 2} />
+          <ProgressCircle isActive={step >= 3} />
         </ProgressContainer>
-        <NextButton onPress={handleNextButton} disabled={!isButtonEnabled} isEnabled={isButtonEnabled}>
-        {step === 3 ? <Ionicons name="checkmark-outline" size={28} color="#fff" />: <Ionicons name="chevron-forward" size={28} color="#fff" />}
+        <NextButton
+          onPress={handleNextButton}
+          disabled={!isButtonEnabled}
+          isEnabled={isButtonEnabled}
+        >
+          {step === 3 ? (
+            <Ionicons name="checkmark-outline" size={28} color="#fff" />
+          ) : (
+            <Ionicons name="chevron-forward" size={28} color="#fff" />
+          )}
         </NextButton>
       </FooterContainer>
     </>
-  )
+  );
 };
 
 export default OnBoardingFooter;
@@ -95,13 +99,10 @@ const FooterContainer = styled.View`
 `;
 
 const SkipButton = styled.TouchableOpacity`
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 40px;
   height: 40px;
-  active-opacity: 0.8;
 `;
 
 const SkipText = styled.Text`
@@ -110,26 +111,24 @@ const SkipText = styled.Text`
 `;
 
 const ProgressContainer = styled.View`
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   gap: 4px;
   align-items: center;
 `;
 
-const ProgressCircle = styled.View`
+const ProgressCircle = styled.View<{ isActive: boolean }>`
   width: 11px;
   height: 11px;
   border-radius: 11px;
-  background-color: ${(props : { isActive: boolean }) => (props.isActive ? "grey" : "lightgrey")};
+  background-color: ${(props) => (props.isActive ? "grey" : "lightgrey")};
 `;
 
-const NextButton = styled.TouchableOpacity`
+const NextButton = styled.TouchableOpacity<{ isEnabled: boolean }>`
   width: 40px;
   height: 40px;
   border-radius: 24px;
-  background-color: ${(props: { isEnabled: boolean }) => (props.isEnabled ? "grey" : "lightgrey")};
-  display: flex;
+  background-color: ${(props) => (props.isEnabled ? "grey" : "lightgrey")};
   flex-direction: row;
   justify-content: center;
   align-items: center;

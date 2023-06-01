@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from '@expo/vector-icons'; 
-
-import { Theme } from "../theme";
+import { Ionicons } from "@expo/vector-icons";
 
 interface HeaderProps {
   text: string;
@@ -17,13 +15,17 @@ const Header = ({ text, noBack }: HeaderProps) => {
     if (navigation.canGoBack()) {
       navigation.goBack();
     }
-  }
+  };
 
   return (
     <HeaderView>
-      { noBack ? <Container /> : <Button onPress={handleBackButton}>
-        <Ionicons name="ios-arrow-back" size={26} color="white" />
-      </Button>}
+      {noBack ? (
+        <Container />
+      ) : (
+        <Button activeOpacity={0.8} onPress={handleBackButton}>
+          <Ionicons name="ios-arrow-back" size={26} color="white" />
+        </Button>
+      )}
       <Text>{text}</Text>
       <Container />
     </HeaderView>
@@ -35,7 +37,7 @@ const HeaderView = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
-  background-color: ${(props: { theme: Theme }) => props.theme.colors.green_200};
+  background-color: ${(props) => props.theme.green_200};
   padding: 15px 20px;
   justify-content: space-between;
   align-items: center;
@@ -43,13 +45,11 @@ const HeaderView = styled.View`
 
 const Text = styled.Text`
   font-size: 24px;
-  color: ${(props: { theme: Theme }) => props.theme.colors.white};
+  color: ${(props) => props.theme.textInvertColor};
   font-family: ExtraBold;
 `;
 
-const Button = styled.TouchableOpacity`
-  activeOpacity: 0.8;
-`;
+const Button = styled.TouchableOpacity``;
 
 const Container = styled.View`
   width: 26px;

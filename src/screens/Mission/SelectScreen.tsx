@@ -151,7 +151,7 @@ const Title = styled.Text`
 `;
 
 const Comment = styled.Text`
-  font-size: 13px;
+  font-size: 14px;
   // font-family: "Light";
 `;
 

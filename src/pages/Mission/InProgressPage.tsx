@@ -60,7 +60,7 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
   return (
     <Wrapper>
       <Container>
-        <MissionQuote type={type}>{type === 3 ? method[page - 1] : method}</MissionQuote>
+        <MissionQuote>{type === 3 ? method[page - 1] : method}</MissionQuote>
         <Uploader>{uploader}</Uploader>
       </Container>
       <LongButton text={page === 4 ? "인증 등록 하기" : "다음"} onSubmit={handleSubmit} />
@@ -82,7 +82,6 @@ const Container = styled.View`
   width: 100%;
   flex: 1;
   justify-content: space-between;
-
   margin-bottom: 20px;
 `;
 
@@ -96,4 +95,5 @@ const MissionQuote = styled.Text`
   font-size: 16px;
   text-align: center;
   line-height: 20px;
+  color: ${(props) => props.theme.subTextColor};
 `;
