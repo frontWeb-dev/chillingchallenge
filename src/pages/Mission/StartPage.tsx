@@ -11,12 +11,12 @@ interface StartPageProps {
   id: number;
   title: string;
   comment: string;
-  desc: string;
+  method: string;
   bgImage: string;
   type: number;
 }
 
-const StartPage = ({ setMissionStatus, comment, desc, id }: StartPageProps) => {
+const StartPage = ({ setMissionStatus, comment, method, id }: StartPageProps) => {
 
   const handleStartMission = async () => {
     await setMissionState(id, 2);
@@ -30,10 +30,10 @@ const StartPage = ({ setMissionStatus, comment, desc, id }: StartPageProps) => {
         <Margin props={50} />
         <ContentContainer>
           <SubHeader>챌린지 설명</SubHeader>
-          <Description>{desc}</Description>
+          <Description>{method}</Description>
           <Margin props={10} />
           <SubHeader>챌린지 방법</SubHeader>
-          <Description>{desc}</Description>
+          <Description>{method}</Description>
         </ContentContainer>
         <LongButton
           text="미션 시작하기"

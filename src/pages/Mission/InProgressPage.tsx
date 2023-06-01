@@ -11,7 +11,7 @@ interface InProgressPageProps {
   id: number;
   title: string;
   comment: string;
-  method: string;
+  method: string | string[];
   bgImage: string;
   type: number;
 }
@@ -23,7 +23,7 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
 
   const { text, addText, clearText } = useShortTextStore();
   const { texts, addTexts, clearTexts } = useLongTextStore();
-
+  
   let uploader;
 
   switch (type) {
@@ -59,7 +59,7 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
 
   return (
     <Wrapper>
-      <MissionQuote type={type} >{type === 3 ? method[page - 1] : method}</MissionQuote>
+      <MissionQuote type={type}>{type === 3 ? method[page - 1] : method}</MissionQuote>
       {uploader}
       <LongButton text={page === 4 ? "인증 등록 하기" : "다음"} onSubmit={handleSubmit} />
     </Wrapper>

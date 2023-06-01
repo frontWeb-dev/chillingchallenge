@@ -19,7 +19,7 @@ const MissionScreen: React.FC = () => {
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
   const [comment, setComment] = useState<string>("");
-  const [desc, setDesc] = useState<string>("");
+  const [method, setMethod] = useState<string>("");
   const [bgImage, setBgImage] = useState<string>("");
   const [type, setType] = useState<number>(0);
 
@@ -27,7 +27,7 @@ const MissionScreen: React.FC = () => {
     setId(params?.data?.id);
     setTitle(params?.data?.title);
     setComment(params?.data?.comment);
-    setDesc(params?.data?.desc);
+    setMethod(params?.data?.method);
     setBgImage(params?.data?.bgImage);
     setType(params?.data?.type);
   }, [params]);
@@ -43,7 +43,7 @@ const MissionScreen: React.FC = () => {
         id={id}
         title={title}
         comment={comment}
-        desc={desc}
+        method={method}
         bgImage={bgImage}
         type={type}
       />;
@@ -54,7 +54,7 @@ const MissionScreen: React.FC = () => {
         id={id}
         title={title}
         comment={comment}
-        desc={desc}
+        method={method}
         bgImage={bgImage}
         type={type}
       />;
@@ -65,7 +65,7 @@ const MissionScreen: React.FC = () => {
         id={id}
         title={title}
         comment={comment}
-        desc={desc}
+        method={method}
         bgImage={bgImage}
         type={type}
       />;
