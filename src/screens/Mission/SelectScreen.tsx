@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components/native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { ImageBackground, Text } from "react-native";
@@ -21,11 +21,17 @@ export interface MissionData {
   type: number;
 }
 
+interface Time {
+  hours: number;
+  minutes: number;
+}
+
 type MissionState = {
   [key: number]: string;
 };
 
 const SelectScreen: React.FC = () => {
+  const [remainingTime, setRemainingTime] = useState<Time | null>(null);
   const [missionState, setMissionState] = useState<MissionState>({});
 
   useFocusEffect(
@@ -48,26 +54,74 @@ const SelectScreen: React.FC = () => {
     navigation.navigate("MissionScreen", { data: el });
   };
 
+  const updateRemainingTime = useCallback(() => {
+    const currentTime = new Date();
+    const nextDay10AM = new Date(
+      currentTime.getFullYear(),
+      currentTime.getMonth(),
+      currentTime.getDate() + 1,
+      10,
+      0,
+      0
+    );
+    const timeDiff = nextDay10AM.getTime() - currentTime.getTime();
+
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+    setRemainingTime({ hours, minutes });
+  }, []);
+
+  useEffect(() => {
+    updateRemainingTime();
+
+    const interval = setInterval(() => {
+      updateRemainingTime();
+    }, 60 * 1000); // 1분 (60초)
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [updateRemainingTime]);
+
   return (
     <Layout>
       <Header text="오늘의 칠링챌링" noBack={true} />
       <Container>
-        {missions.map((el) => {
-          const missionStateValue = parseInt(missionState[el.id]);
-          const badge = missionStateValue !== undefined ? missionStateValue : 1;
-          return (
-            <Card key={el.id} isDone={badge === 3} badge={badge} onPress={() => onPress(badge, el)}>
-              <ImageBackground
-                source={{ uri: el.bgImage }}
-                resizeMode="cover"
-                style={{ flex: 1, justifyContent: "space-between" }}
+        <CardContainer>
+          {missions.map((el) => {
+            const missionStateValue = parseInt(missionState[el.id]);
+            const badge = missionStateValue !== undefined ? missionStateValue : 1;
+            return (
+              <Card
+                key={el.id}
+                isDone={badge === 3}
+                badge={badge}
+                onPress={() => onPress(badge, el)}
               >
-                <Title>{el.title}</Title>
-                <Comment>{el.comment}</Comment>
-              </ImageBackground>
-            </Card>
-          );
-        })}
+                <ImageBackground
+                  source={{ uri: el.bgImage }}
+                  resizeMode="cover"
+                  style={{ flex: 1, justifyContent: "space-between" }}
+                >
+                  <Title>{el.title}</Title>
+                  <Comment>{el.comment}</Comment>
+                </ImageBackground>
+              </Card>
+            );
+          })}
+        </CardContainer>
+        {remainingTime ? (
+          <DDate>
+            미션 업데이트까지{" "}
+            <Time>
+              {remainingTime.hours}시간 {remainingTime.minutes}분
+            </Time>{" "}
+            남았어요.
+          </DDate>
+        ) : (
+          ""
+        )}
       </Container>
     </Layout>
   );
@@ -76,7 +130,14 @@ const SelectScreen: React.FC = () => {
 export default SelectScreen;
 
 const Container = styled.View`
-  padding: 30px;
+  flex: 1;
+  padding: 30px 30px 20px 30px;
+  gap: 30px;
+`;
+
+const CardContainer = styled.View`
+  flex: 1;
+  gap: 20px;
 `;
 
 const Title = styled.Text`
@@ -86,4 +147,11 @@ const Title = styled.Text`
 
 const Comment = styled.Text`
   font-size: 14px;
+`;
+
+const DDate = styled.Text`
+  text-align: center;
+`;
+const Time = styled.Text`
+  font-family: "ExtraBold";
 `;
