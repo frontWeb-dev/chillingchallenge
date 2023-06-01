@@ -20,7 +20,7 @@ const UserScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text="나의 칠링챌링" />
+      <Header text="나의 칠링챌링" noBack={true} />
       <Margin props={16} />
       <Container>
         <Profile
