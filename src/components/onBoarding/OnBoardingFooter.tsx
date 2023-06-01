@@ -117,18 +117,18 @@ const ProgressContainer = styled.View`
   align-items: center;
 `;
 
-const ProgressCircle = styled.View<{ isActive: boolean }>`
+const ProgressCircle = styled.View`
   width: 11px;
   height: 11px;
   border-radius: 11px;
-  background-color: ${({ isActive }) => (isActive ? "grey" : "lightgrey")};
+  background-color: ${(props : { isActive: boolean }) => (props.isActive ? "grey" : "lightgrey")};
 `;
 
-const NextButton = styled.TouchableOpacity<{ isEnabled: boolean }>`
+const NextButton = styled.TouchableOpacity`
   width: 40px;
   height: 40px;
   border-radius: 24px;
-  background-color: ${({ isEnabled }) => (isEnabled ? "grey" : "lightgrey")};
+  background-color: ${(props: { isEnabled: boolean }) => (props.isEnabled ? "grey" : "lightgrey")};
   display: flex;
   flex-direction: row;
   justify-content: center;
