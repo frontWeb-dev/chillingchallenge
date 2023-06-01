@@ -10,7 +10,7 @@ interface CompletePageProps {
   id: number;
   title: string;
   comment: string;
-  desc: string;
+  method: string;
   bgImage: string;
   type: number;
 }

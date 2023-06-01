@@ -5,10 +5,10 @@ import * as ImagePicker from "expo-image-picker";
 interface ImageUploaderProps {
   setImageSelected: (imageUri: string) => void;
   uploaderType: string;
-  desc?: string;
+  method?: string | string[];
 }
 
-const ImageUploader = ({ setImageSelected, uploaderType, desc }: ImageUploaderProps) => {
+const ImageUploader = ({ setImageSelected, uploaderType, method }: ImageUploaderProps) => {
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [isImageUploaded, setIsImageUploaded] = useState<boolean>(false);
 
