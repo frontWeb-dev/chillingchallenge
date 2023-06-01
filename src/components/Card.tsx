@@ -8,7 +8,7 @@ interface CardProps {
   onPress: () => void;
 }
 const Card = ({ children, isDone, badge, onPress }: CardProps) => {
-  const [ badgeText, setBadgeText ] = useState("");
+  const [badgeText, setBadgeText] = useState("");
 
   useEffect(() => {
     if (badge === 3) {
@@ -16,7 +16,7 @@ const Card = ({ children, isDone, badge, onPress }: CardProps) => {
     } else if (badge === 2) {
       setBadgeText("진행 중");
     } else {
-      setBadgeText("시작 전")
+      setBadgeText("시작 전");
     }
   }, [badge]);
 
@@ -35,8 +35,7 @@ export default Card;
 const Container = styled.TouchableOpacity`
   position: relative;
   padding: 30px 20px;
-  margin-bottom: 30px;
-  height: 140px;
+  flex: 1;
   border: 1px solid #ddd;
   border-radius: 20px;
   box-shadow: 2px 2px 2px #5d5d5d;
