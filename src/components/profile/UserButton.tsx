@@ -28,7 +28,7 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
         >
         <MaterialCommunityIcons name="clipboard-check-outline" size={50} color={isSelected === 2 ? "#FFFFFF" : "#47AF51"} />
           <ButtonText>
-            나의 챌링
+            나무 보기
           </ButtonText>
         </ButtonContainer>
         <ButtonContainer

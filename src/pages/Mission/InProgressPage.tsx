@@ -47,6 +47,8 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
       setForm("");
       setPage(page + 1);
       if (page === 4) setMissionStatus("Complete");
+    } else if (type === 1) {
+      setMissionStatus("Complete");
     }
   };
 
