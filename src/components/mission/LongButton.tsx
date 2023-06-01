@@ -10,9 +10,8 @@ interface LongButtonProps {
 }
 
 const LongButton = ({ text, onSubmit }: LongButtonProps) => {
-
   return (
-    <ButtonContainer onPress={onSubmit}>
+    <ButtonContainer activeOpacity={0.8} onPress={onSubmit}>
       <ButtonText>{text}</ButtonText>
     </ButtonContainer>
   );
@@ -30,7 +29,7 @@ const ButtonContainer = styled.TouchableOpacity`
 `;
 
 const ButtonText = styled.Text`
-  color: #fff;
+  color: ${(props) => props.theme.textInvertColor};
   font-size: 18px;
   font-family: "Bold";
   text-align: center;

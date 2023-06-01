@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 
 interface InProgressPageProps {
@@ -32,7 +32,7 @@ const TextForm = styled.View`
   margin-bottom: 20px;
   flex: 1;
   justify-content: space-between;
-  border: 1px solid #ccc;
+  border: 1px solid ${(props) => props.theme.borderColor};
   border-radius: 20px;
 `;
 

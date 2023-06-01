@@ -6,11 +6,7 @@ interface MarginProps {
 }
 
 const Margin = ({ props }: MarginProps) => {
-  return (
-    <View
-      style={{ marginTop: props }}
-    />
-  )
+  return <View style={{ marginTop: props }} />;
 };
 
 export default Margin;

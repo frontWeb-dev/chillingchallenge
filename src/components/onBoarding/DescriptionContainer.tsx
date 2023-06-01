@@ -50,13 +50,13 @@ const Wrapper = styled.View`
 const HeaderText = styled(Animated.Text)`
   font-size: 24px;
   font-family: "ExtraBold";
-  color: #404040;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const ContentText = styled(Animated.Text)`
   font-size: 18px;
   font-family: "Regular";
-  color: grey;
+  color: ${(props) => props.theme.subTextColor};
   text-align: center;
   line-height: 24px;
 `;

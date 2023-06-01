@@ -5,6 +5,7 @@ import { FontAwesome5, Ionicons, FontAwesome } from "@expo/vector-icons";
 import FeedScreen from "../screens/FeedScreen";
 import UserNavigator from "./UserNavigator";
 import MissionNavigator from "./MissionNavigator";
+import { useColorScheme } from "react-native";
 
 const TabBar = createBottomTabNavigator();
 

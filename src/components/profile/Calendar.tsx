@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components/native";
 import dayjs, { Dayjs } from "dayjs";
 
-import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 interface CalendarProps {
   selectedDate: Dayjs;
@@ -19,7 +19,6 @@ const Calendar: React.FC<CalendarProps> = ({
   onNextMonth,
   isAttended,
 }) => {
-
   // 달력 앞 뒤 공백 채우기
   const startOfMonth = dayjs(selectedDate).startOf("month");
   const endOfMonth = dayjs(selectedDate).endOf("month");
@@ -36,7 +35,7 @@ const Calendar: React.FC<CalendarProps> = ({
       const isCurrentMonth = day.isSame(selectedDate, "month");
       const isSelected = day.isSame(selectedDate, "day");
       const isAttendedDay = isAttended.includes(day.format("YYYY-MM-DD"));
-      
+
       days.push(
         <DayButton
           key={day.format("YYYY-MM-DD")}
@@ -45,22 +44,17 @@ const Calendar: React.FC<CalendarProps> = ({
           isCurrentMonth={isCurrentMonth}
           isAttendedDay={isAttendedDay}
         >
-          {isAttendedDay ?  <MaterialCommunityIcons name="leaf-circle" size={30} color="#6EBE75" /> : 
-          <DayText
-            isSelected={isSelected}
-            isCurrentMonth={isCurrentMonth}
-          >
-            {day.format("D")}
-          </DayText>
-          }
+          {isAttendedDay ? (
+            <MaterialCommunityIcons name="leaf-circle" size={30} color="#6EBE75" />
+          ) : (
+            <DayText isSelected={isSelected} isCurrentMonth={isCurrentMonth}>
+              {day.format("D")}
+            </DayText>
+          )}
         </DayButton>
       );
     }
-    weeks.push(
-      <WeekContainer key={week.format("YYYY-MM-DD")}>
-        {days}
-      </WeekContainer>
-    );
+    weeks.push(<WeekContainer key={week.format("YYYY-MM-DD")}>{days}</WeekContainer>);
     week = week.add(7, "day");
   }
 
@@ -68,7 +62,7 @@ const Calendar: React.FC<CalendarProps> = ({
     <>
       <CalendarContainer>
         <HeaderContainer>
-          <MoveButton onPress={onPrevMonth}>
+          <MoveButton activeOpacity={0.8} onPress={onPrevMonth}>
             <MoveButtonText>{`<`}</MoveButtonText>
           </MoveButton>
           <HeaderText>{selectedDate.format("YYYY M월")}</HeaderText>
@@ -95,90 +89,88 @@ const Calendar: React.FC<CalendarProps> = ({
 
 const CalendarContainer = styled.View`
   width: 100%;
-  display: flex;
-  flexDirection: column;
-  justifyContent: center;
-  alignItems: center;
-  paddingHorizontal: 15px;
-  paddingVertical: 15px;
-  backgroundColor: #F0F4F1;
-  borderRadius: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background-color: #f0f4f1;
+  border-radius: 20px;
 `;
 
 const HeaderContainer = styled.View`
   width: 100%;
-  flexDirection: row;
-  justifyContent: space-between;
-  alignItems: center;
-  marginBottom: 10;
-  paddingHorizontal: 20px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10;
+  padding: 0 20px;
 `;
 
 const HeaderText = styled.Text`
-  fontSize: 18;
-  fontFamily: "ExtraBold";
+  font-size: 18;
+  font-family: "ExtraBold";
 `;
 
 const MoveButton = styled.TouchableOpacity`
-  activeOpacity: 0.8;
-  paddingVertical: 5px;
+  padding: 5px 0;
 `;
 
 const MoveButtonText = styled.Text`
-  fontSize: 18;
-  fontFamily: "ExtraBold";
+  font-size: 18;
+  font-family: "ExtraBold";
 `;
 
 const ColumnContainer = styled.View`
-  width: 100%;  
-  display: flex;
-  flexDirection: row;
-  justifyContent: space-around;
-  alignItems: center;
-  paddingVertical: 6px;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0;
 `;
 
 const CalendarFrame = styled.View`
-  width: 100%;  
-  display: flex;
-  flexDirection: column;
+  width: 100%;
 `;
 
 const WeekContainer = styled.View`
   width: 100%;
-  flexDirection: row;
-  justifyContent: space-around;
-  alignItems: center;
-  paddingVertical: 6px;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0;
 `;
 
-const DayButton = styled.TouchableOpacity`
+const DayButton = styled.TouchableOpacity<{
+  isCurrentMonth: boolean;
+  isSelected: boolean;
+  isAttendedDay: boolean;
+}>`
   width: 30;
   height: 30;
-  justifyContent: center;
-  alignItems: center;
-  borderRadius: 10px;
-  ${(props: { isCurrentMonth: boolean; isSelected: boolean; isAttendedDay: boolean;}) =>
-    props.isCurrentMonth && !props.isAttendedDay &&
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  ${(props) =>
+    props.isCurrentMonth &&
+    !props.isAttendedDay &&
     css`
       background-color: ${props.isSelected ? "#6EBE75" : "transparent"};
     `}
 `;
 
 const ColumnText = styled.Text`
-  fontSize: 12px;
-  fontFamily: "ExtraBold";
+  font-size: 12px;
+  font-family: "ExtraBold";
 `;
 
-const DayText = styled.Text`
-  fontSize: 12px;
-  fontFamily: "Medium";
-  ${(props: { isCurrentMonth: boolean; isSelected: boolean }) =>
-  !props.isCurrentMonth &&
-  css`
-    opacity: 0.3;
-  `}
-  ${(props: { isCurrentMonth: boolean; isSelected: boolean; }) =>
+const DayText = styled.Text<{ isCurrentMonth: boolean; isSelected: boolean }>`
+  font-size: 12px;
+  font-family: "Medium";
+  ${(props) =>
+    !props.isCurrentMonth &&
+    css`
+      opacity: 0.3;
+    `}
+  ${(props) =>
     props.isCurrentMonth &&
     css`
       color: ${props.isSelected ? "#FFFFFF" : "#000000"};
