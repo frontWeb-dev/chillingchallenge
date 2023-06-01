@@ -2,10 +2,37 @@ import React from "react";
 import { Animated } from "react-native";
 import styled from "styled-components/native";
 
-const HappyStar: React.FC = () => {
+import { AntDesign } from '@expo/vector-icons'; 
+
+interface HappyStarProps {
+  happyPoint: number;
+  setHappyPoint: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const HappyStar = ({happyPoint, setHappyPoint}: HappyStarProps) => {
+  const handleStarButton = (point: number) => {
+    setHappyPoint(point);
+  };
+
   return(
     <>
-
+      <ButtonWrapper>
+        <StarContainer onPress={() => handleStarButton(1)}>
+          {happyPoint >= 1 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        </StarContainer>
+        <StarContainer onPress={() => handleStarButton(2)}>
+          {happyPoint >= 2 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        </StarContainer>
+        <StarContainer onPress={() => handleStarButton(3)}>
+          {happyPoint >= 3 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        </StarContainer>
+        <StarContainer onPress={() => handleStarButton(4)}>
+          {happyPoint >= 4 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        </StarContainer>
+        <StarContainer onPress={() => handleStarButton(5)}>
+          {happyPoint >= 5 ? <AntDesign name="star" size={30} color="yellow" /> : <AntDesign name="staro" size={30} color="yellow" />}
+        </StarContainer>
+      </ButtonWrapper>
     </>
   );
 };
@@ -13,3 +40,22 @@ const HappyStar: React.FC = () => {
 export default HappyStar;
 
 // styled
+const ButtonWrapper = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  border: 1px solid lightgrey;
+  border-radius: 12px;
+`;
+
+const StarContainer = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  activeOpacity: 0.8;
+`;
+
