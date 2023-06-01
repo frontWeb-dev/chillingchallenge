@@ -3,10 +3,10 @@ export const missions = [
     id: 1,
     title: "30분동안 산책하기",
     comment: "맑은 공기를 마시며 마음 속의 걱정을 덜어요",
-    desc: "desc",
+    desc: "산책하는 동안 자연이나 주변의 아름다운 장면을 사진으로 찍습니다. 사진 앱을 열어 찍은 사진 중 가장 좋은 사진을 선택합니다. 선택한 사진은 이미지 업로드 기능을 통해 업로드하시면 됩니다.",
     bgImage:
       "https://github.com/frontWeb-dev/carrot-market/assets/101559564/5bc957a4-4f98-4078-a776-dc192bfa8cfd",
-    type: 3,
+    type: 1,
   },
   {
     id: 2,
