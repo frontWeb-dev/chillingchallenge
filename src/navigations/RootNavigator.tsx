@@ -28,10 +28,14 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 
 const RootNavigator: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="OnBoardingScreen">
-      <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen} options={{ headerShown: false }} />
+    <Stack.Navigator initialRouteName="MainScreen">
+      <Stack.Screen
+        name="OnBoardingScreen"
+        component={OnBoardingScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false}} />
+      <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="KakaoLogin" component={KakaoLogin} />
     </Stack.Navigator>
   );
