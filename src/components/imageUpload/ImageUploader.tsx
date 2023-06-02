@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components/native";
+import styled, {css} from "styled-components/native";
 import * as ImagePicker from "expo-image-picker";
 
 interface ImageUploaderProps {
@@ -49,10 +49,10 @@ export default ImageUploader;
 // styled
 const UploaderContainer = styled.View`
   width: 100%;
-  flex: 1;
   padding: 20px 0;
   justify-content: center;
   align-items: center;
+  flex: 1;
 `;
 
 const PreviewImageContainer = styled.TouchableOpacity`
@@ -65,13 +65,13 @@ const PreviewImageContainer = styled.TouchableOpacity`
 
 const PreviewImage = styled.Image`
   width: ${(props: { uploaderType: string }) =>
-    props.uploaderType === "PROFILE" ? "100px" : "100%"};
+    props.uploaderType === "PROFILE" ? "150px" : "100%"};
   height: ${(props: { uploaderType: string }) =>
-    props.uploaderType === "PROFILE" ? "100px" : "100%"};
+    props.uploaderType === "PROFILE" ? "150px" : "100%"};
   object-fit: cover;
   border: 1px solid ${(props) => props.theme.borderColor};
   border-radius: ${(props: { uploaderType: string }) =>
-    props.uploaderType === "PROFILE" ? "100px" : "8px"};
+    props.uploaderType === "PROFILE" ? "150px" : "8px"};
 `;
 
 const UploadText = styled.Text`

@@ -5,6 +5,8 @@ import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Margin from "../../components/Margin";
 import ImageUploader from "../../components/imageUpload/ImageUploader";
+import UserInfo from "../../components/profile/UserInfo";
+import LongButton from "../../components/profile/LongButton";
 
 const UserSettingScreen: React.FC = () => {
   const [imageSelected, setImageSelected] = useState("");
@@ -18,6 +20,14 @@ const UserSettingScreen: React.FC = () => {
           setImageSelected={setImageSelected}
           uploaderType="PROFILE"
         />
+        <Margin props={30} />
+        <UserInfo
+          name="김아무개"
+          email="amoogae@naver.com"
+        />
+        <Margin props={30} />
+        <LongButton />
+        <Margin props={100} />
       </Layout>
     </>
   );
