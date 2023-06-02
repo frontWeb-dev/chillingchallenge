@@ -1,10 +1,9 @@
 import React from "react";
-import { View, Text, Button, TouchableOpacity } from "react-native";
+import { View, Text, Button, TouchableOpacity, Platform } from "react-native";
 
 import Layout from "../components/Layout";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/core";
-import { RootNavigatorParamList } from "../navigations/RootNavigator";
 import { NavigationProp } from "@react-navigation/native";
 
 export type RootStackParamList = {
@@ -13,19 +12,26 @@ export type RootStackParamList = {
 
 const MainScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
   return (
     <Layout>
-      <Container>
-        <Title>오늘 당신의 기분은 어떠신가요?</Title>
-        <Desc>당신의 이야기를 그려볼까요?</Desc>
-        <Desc>'칠링 챌링'과 첫 걸음을 내딛어봐요.</Desc>
-        <View>
-          <Button
-            title="카카오"
-            onPress={() => navigation.navigate("KakaoLogin", { screen: "KakaoLogin" })}
-          />
-        </View>
-      </Container>
+      {Platform.OS === "web" ? (
+        <Container>
+          <Title>Loading...</Title>
+        </Container>
+      ) : (
+        <Container>
+          <Title>오늘 당신의 기분은 어떠신가요?</Title>
+          <Desc>당신의 이야기를 그려볼까요?</Desc>
+          <Desc>'칠링 챌링'과 첫 걸음을 내딛어봐요.</Desc>
+          <View>
+            <Button
+              title="카카오"
+              onPress={() => navigation.navigate("KakaoLogin", { screen: "KakaoLogin" })}
+            />
+          </View>
+        </Container>
+      )}
     </Layout>
   );
 };
