@@ -10,7 +10,7 @@ export type RootStackParamList = {
 };
 
 const REST_API_KEY = "351c090ff6ac69a8bcd4d7ae9a364c99";
-const REDIRECT_URI = "http://192.168.219.102:19006/SelectScreen";
+const REDIRECT_URI = "http://192.168.219.102:19006/MainScreen";
 const INJECTED_JAVASCRIPT = `window.ReactNativeWebView.postMessage('message from webView')`;
 
 const KakaoLogin = () => {
@@ -46,7 +46,6 @@ const KakaoLogin = () => {
   };
 
   const getToken = async (token: string) => {
-    console.log(token);
     await axios
       .get(`http://localhost:8080/api/oauth2/kakao?code=${token}`)
       .then((res) => {
