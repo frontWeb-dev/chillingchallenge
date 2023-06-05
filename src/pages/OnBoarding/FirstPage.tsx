@@ -7,10 +7,12 @@ import OnBoardingFooter from "../../components/onBoarding/OnBoardingFooter";
 
 
 interface FirstPageProps {
-  setPageStatus: React.Dispatch<React.SetStateAction<string>>;
+  setPageStatus: React.Dispatch<React.SetStateAction<number>>;
+  activePageIndex: number;
+  pageIndex: number;
 };  
 
-const FirstPage = ({ setPageStatus }: FirstPageProps) => {
+const FirstPage = ({ setPageStatus, activePageIndex, pageIndex, }: FirstPageProps) => {
 
   return (
     <>
@@ -24,10 +26,8 @@ const FirstPage = ({ setPageStatus }: FirstPageProps) => {
 힐링을 가져다주는,
 그런 챌린지를 함께 해요.`
         }
-      />
-      <OnBoardingFooter
-        step={1}
-        setPageStatus={setPageStatus}
+        activePageIndex={activePageIndex}
+        pageIndex={pageIndex}
       />
     </>
   );

@@ -5,27 +5,33 @@ import styled from "styled-components/native";
 interface DescriptionContainerProps {
   headerText: string;
   contentText: string;
+  activePageIndex: number;
+  pageIndex: number;
 }
 
-const DescriptionContainer = ({ headerText, contentText }: DescriptionContainerProps) => {
+const DescriptionContainer = ({ headerText, contentText, pageIndex, activePageIndex }: DescriptionContainerProps) => {
   const headerTextAnim = useRef(new Animated.Value(0)).current;
   const contentTextAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.timing(headerTextAnim, {
-      toValue: 1,
-      useNativeDriver: true,
-      duration: 1000,
-      easing: Easing.out(Easing.linear),
-    }).start();
-    setTimeout(() => {
-      Animated.timing(contentTextAnim, {
-        toValue: 1,
+    const startAnimation = () => {
+      Animated.timing(headerTextAnim, {
+        toValue: pageIndex === activePageIndex ? 1 : 0,
         useNativeDriver: true,
+        duration: 1000,
         easing: Easing.out(Easing.linear),
       }).start();
-    }, 1000);
-  }, []);
+      setTimeout(() => {
+        Animated.timing(contentTextAnim, {
+          toValue: pageIndex === activePageIndex ? 1 : 0,
+          useNativeDriver: true,
+          easing: Easing.out(Easing.linear),
+        }).start();
+      }, 1000);
+    };
+
+    startAnimation();
+  }, [activePageIndex, pageIndex]);
 
   return (
     <Wrapper>

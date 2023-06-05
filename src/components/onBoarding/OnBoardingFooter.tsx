@@ -7,10 +7,11 @@ import { RootNavigatorParamList } from "../../navigations/RootNavigator";
 
 interface OnBoardingFooterProps {
   step: number;
-  setPageStatus: React.Dispatch<React.SetStateAction<string>>;
+  setPageStatus: React.Dispatch<React.SetStateAction<number>>;
+  handleStepPress: (step: number) => void; 
 }
 
-const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
+const OnBoardingFooter = ({ step, setPageStatus, handleStepPress }: OnBoardingFooterProps) => {
   const navigation = useNavigation<RootNavigatorParamList>();
 
   const [isButtonEnabled, setIsButtonEnabled] = useState(false);
@@ -34,7 +35,7 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
         navigation.navigate("TabNavigator");
         break;
       case 3:
-        setPageStatus("First");
+        navigation.navigate("TabNavigator");
         break;
       default:
         break;
@@ -45,13 +46,13 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
     if (isButtonEnabled) {
       switch (step) {
         case 1:
-          setPageStatus("Second");
+          handleStepPress(2); 
           break;
         case 2:
-          setPageStatus("Third");
+          handleStepPress(3); 
           break;
         case 3:
-          navigation.navigate("TabNavigator");
+          handleStepPress(4);
           break;
         default:
           break;
@@ -63,7 +64,7 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
     <>
       <FooterContainer>
         <SkipButton active-opacity={0.8} onPress={handleSkipButton}>
-          <SkipText>{step === 3 ? "redo" : "Skip"}</SkipText>
+          <SkipText>Skip</SkipText>
         </SkipButton>
         <ProgressContainer>
           <ProgressCircle isActive={step >= 1} />
@@ -73,13 +74,12 @@ const OnBoardingFooter = ({ step, setPageStatus }: OnBoardingFooterProps) => {
         <NextButton
           onPress={handleNextButton}
           disabled={!isButtonEnabled}
-          isEnabled={isButtonEnabled}
         >
-          {step === 3 ? (
-            <Ionicons name="checkmark-outline" size={28} color="#fff" />
-          ) : (
-            <Ionicons name="chevron-forward" size={28} color="#fff" />
-          )}
+          <NextButtonCircle
+            isEnabled={isButtonEnabled}
+          >
+            <Ionicons name="chevron-forward" size={24} color="#fff" />
+          </NextButtonCircle>
         </NextButton>
       </FooterContainer>
     </>
@@ -95,7 +95,7 @@ const FooterContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 15px 25px;
+  padding: 15px 40px;
 `;
 
 const SkipButton = styled.TouchableOpacity`
@@ -106,8 +106,10 @@ const SkipButton = styled.TouchableOpacity`
 `;
 
 const SkipText = styled.Text`
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Medium";
+  line-height: ${(props) => props.theme.font.subtitle};
+  letter-spacing: 0.5;
 `;
 
 const ProgressContainer = styled.View`
@@ -121,15 +123,23 @@ const ProgressCircle = styled.View<{ isActive: boolean }>`
   width: 11px;
   height: 11px;
   border-radius: 11px;
-  background-color: ${(props) => (props.isActive ? "grey" : "lightgrey")};
+  background-color: ${(props) => (props.isActive ? props.theme.color.green_200 : props.theme.color.green_100)};
 `;
 
-const NextButton = styled.TouchableOpacity<{ isEnabled: boolean }>`
+const NextButton = styled.TouchableOpacity`
   width: 40px;
   height: 40px;
-  border-radius: 24px;
-  background-color: ${(props) => (props.isEnabled ? "grey" : "lightgrey")};
   flex-direction: row;
   justify-content: center;
   align-items: center;
+`;
+
+const NextButtonCircle = styled.View<{ isEnabled: boolean }>`
+  width: 30px;
+  height: 30px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px;
+  background-color: ${(props) => (props.isEnabled ? props.theme.color.green_200 : props.theme.color.green_100)};
 `;

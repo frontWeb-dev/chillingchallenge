@@ -6,6 +6,7 @@ import OnBoardingScreen from "../screens/OnBoarding";
 import MainScreen from "../screens/MainScreen";
 import KakaoLogin from "../components/login/KakaoLogin";
 import TabNavigator from "./TabNavigator";
+import SplashScreen from "../screens/SplashScreen";
 
 export type RootNavigatorParamList = {
   [x: string]: any;
@@ -13,6 +14,7 @@ export type RootNavigatorParamList = {
   TabNavigator: undefined;
   KakaoLogin: undefined;
   OnBoardingScreen: undefined;
+  SplashScreen: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootNavigatorParamList>();
@@ -28,15 +30,31 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 
 const RootNavigator: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="OnBoardingScreen">
+    <Stack.Navigator initialRouteName="SplashScreen">
+      <Stack.Screen
+        name="SplashScreen"
+        component={SplashScreen}
+        options={{ headerShown: false}}
+      />
       <Stack.Screen
         name="OnBoardingScreen"
         component={OnBoardingScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="KakaoLogin" component={KakaoLogin} />
+      <Stack.Screen 
+        name="MainScreen" 
+        component={MainScreen} 
+        options={{ headerShown: false }} 
+      />
+      <Stack.Screen 
+        name="TabNavigator" 
+        component={TabNavigator} 
+        options={{ headerShown: false }} 
+      />
+      <Stack.Screen 
+        name="KakaoLogin" 
+        component={KakaoLogin} 
+      />
     </Stack.Navigator>
   );
 };
