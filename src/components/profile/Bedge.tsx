@@ -8,6 +8,7 @@ const UserBedgeScreen = () => {
       <Bedge>
         <BedgeImage
           source={bedges[index].type === "active" ? bedges[index].active : bedges[index].default}
+          resizeMode="cover"
         />
         <BedgeName type={bedges[index].type}>
           {bedges[index].type === "active" ? bedges[index]?.text : "?"}
@@ -39,31 +40,27 @@ const UserBedgeScreen = () => {
 
 export default UserBedgeScreen;
 
-const Container = styled.View`
+const Container = styled.ScrollView`
   width: 100%;
-  justify-content: center;
-  align-items: center;
 `;
 
 const Bedge = styled.View`
   width: 33%;
-  height: 100px;
-  padding: 10px;
+  flex: 1;
   margin-bottom: 10px;
   justify-content: center;
   align-items: center;
 `;
 
 const BedgeImage = styled.Image`
-  width: 100%;
-  height: 100%;
-  margin-bottom: 5px;
-  object-fit: contain;
+  padding: 0;
 `;
 
 const BedgeName = styled.Text<{ type: string }>`
+  top: -10px;
   font-size: 14px;
   color: ${(props) => (props.type === "active" ? props.theme.textColor : props.theme.subTextColor)};
+  font-family: ${(props) => (props.type === "active" ? "Bold" : "Regular")};
 `;
 
 const Row = styled.View`
