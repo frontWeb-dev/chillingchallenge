@@ -24,15 +24,15 @@ const Card = ({ children, isDone, badge, image, onPress }: CardProps) => {
 
   return (
     <Container activeOpacity={0.8} isDone={isDone} onPress={onPress}>
-      {children}
-      <ImageView>
-        <BgView>
-          <BgImage source={image} resizeMode="cover"></BgImage>
-        </BgView>
-        <Badge>
-          <Text>{badgeText}</Text>
-        </Badge>
-      </ImageView>
+      <Badge>
+        <Text>{badgeText}</Text>
+      </Badge>
+      <Contents>
+        {children}
+        <ImageView>
+          <BgImage source={image} resizeMode="contain"></BgImage>
+        </ImageView>
+      </Contents>
     </Container>
   );
 };
@@ -41,39 +41,35 @@ export default Card;
 
 const Container = styled.TouchableOpacity<{ isDone: boolean }>`
   position: relative;
-  padding: 20px;
   flex: 1;
-  flex-direction: row;
-  border: 1px solid ${(props) => props.theme.borderColor};
+  border: 1px solid ${(props) => props.theme.color.borderColor};
   border-radius: 20px;
   box-shadow: 2px 2px 2px #5d5d5d;
   background-color: ${(props) => (props.isDone ? "#f1f1f1" : "#fff")};
 `;
 
-const ImageView = styled.View`
+const Contents = styled.View`
+  padding: 20px;
   flex: 1;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
+  flex-direction: row;
 `;
 
-const BgView = styled.View`
-  width: 60px;
-  height: 60px;
+const ImageView = styled.View`
+  flex: 0.5;
   justify-content: center;
   align-items: center;
-  border-radius: 100px;
-  background-color: #d6d6d6;
+  padding: 10px;
 `;
 
 const BgImage = styled.Image`
-  left: 20px;
-  width: 90%;
-  height: 40px;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
 `;
 
 const Badge = styled.View`
+  position: absolute;
+  top: 10px;
+  right: 10px;
   width: 48px;
   padding: 4px;
   justify-content: center;
@@ -82,7 +78,8 @@ const Badge = styled.View`
 `;
 
 const Text = styled.Text`
-  color: ${(props) => props.theme.textColor};
-  font-size: 12px;
+  font-size: 13px;
+  line-height: ${(props) => props.theme.font.smaller};
   text-align: center;
+  color: ${(props) => props.theme.color.textColor};
 `;
