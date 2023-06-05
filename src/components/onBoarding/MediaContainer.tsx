@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native";
 import styled from "styled-components/native";
 import LottieView from "lottie-react-native";
 
@@ -7,29 +8,39 @@ interface MediaContainerProps {
 }
 
 const MediaContainer = ({ type }: MediaContainerProps) => {
-  let lottieComponent;
+  let mediaComponent;
 
   switch (type) {
     case 1:
-      lottieComponent = (
-        <LottieView source={require("../../global/lottie/119418-target.json")} autoPlay loop />
+      mediaComponent = (
+        <ImageContainer>
+          <MediaImage source={require("../../assets/onBoardingFirst.png")} />
+        </ImageContainer>
       );
       break;
     case 2:
-      lottieComponent = (
-        <LottieView source={require("../../global/lottie/101350-challenge.json")} autoPlay loop />
+      mediaComponent = (
+        <ImageContainer>
+          <MediaImage source={require("../../assets/onBoardingSecond.png")} />
+        </ImageContainer>
       );
       break;
     case 3:
-      lottieComponent = (
-        <LottieView source={require("../../global/lottie/97007-gold-badge.json")} autoPlay loop />
+      mediaComponent = (
+        <ImageContainer>
+          <MediaImage source={require("../../assets/onBoardingSecond.png")} />
+        </ImageContainer>
       );
       break;
     default:
-      lottieComponent = null;
+      mediaComponent = null;
   }
 
-  return <Wrapper>{lottieComponent}</Wrapper>;
+  return (
+    <Wrapper>
+      {mediaComponent}
+    </Wrapper>
+  );
 };
 
 export default MediaContainer;
@@ -38,4 +49,25 @@ export default MediaContainer;
 const Wrapper = styled.View`
   width: 100%;
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  background-color: ${(props) => props.theme.color.green_100};
+`;
+
+const ImageContainer = styled.View`
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MediaImage = styled.Image`
+  width: 300px;
+  height: 300px;
+  object-fit: scale-down;
 `;

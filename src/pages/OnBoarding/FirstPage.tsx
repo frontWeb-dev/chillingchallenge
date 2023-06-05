@@ -14,16 +14,15 @@ const FirstPage = ({ setPageStatus }: FirstPageProps) => {
 
   return (
     <>
-      <Margin props={50} />
       <MediaContainer
         type={1}
       />
       <Margin props={30} />
       <DescriptionContainer
-        headerText="일일 미션 수행하기"
-        contentText={`사소해 보이는 일들도
-차곡차곡 해내다 보면
-어느새 커다란 행복이 되어 있을 거예요.`
+        headerText="칠링챌링은"
+        contentText={`당신의 삶에 조금은 chill하게
+힐링을 가져다주는,
+그런 챌린지를 함께 해요.`
         }
       />
       <OnBoardingFooter
