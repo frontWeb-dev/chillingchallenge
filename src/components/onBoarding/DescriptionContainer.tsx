@@ -55,7 +55,7 @@ const HeaderText = styled(Animated.Text)`
 `;
 
 const ContentText = styled(Animated.Text)`
-  font-size: 18px;
+  font-size: 16px;
   font-family: "Regular";
   color: ${(props) => props.theme.color.subTextColor};
   text-align: center;
