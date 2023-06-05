@@ -6,29 +6,27 @@ import DescriptionContainer from "../../components/onBoarding/DescriptionContain
 import OnBoardingFooter from "../../components/onBoarding/OnBoardingFooter";
 
 interface ThirdPageProps {
-  setPageStatus: React.Dispatch<React.SetStateAction<string>>;
+  setPageStatus: React.Dispatch<React.SetStateAction<number>>;
+  activePageIndex: number;
+  pageIndex: number;
 };  
 
-const ThirdPage = ({ setPageStatus }: ThirdPageProps) => {
-
+const ThirdPage = ({ setPageStatus, pageIndex, activePageIndex }: ThirdPageProps) => {
 
   return (
     <>
-      <Margin props={50} />
       <MediaContainer
         type={3}
       />
       <Margin props={30} />
       <DescriptionContainer
         headerText="활동배지 모으기"
-        contentText={`미션을 수행할수록
+        contentText={`챌린지를 수행할수록
 모이는 배지들을 보며
 활력을 얻어요.`
         }
-      />
-      <OnBoardingFooter
-        step={3}
-        setPageStatus={setPageStatus}
+        pageIndex={pageIndex}
+        activePageIndex={activePageIndex}
       />
     </>
   );

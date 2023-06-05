@@ -6,10 +6,12 @@ import DescriptionContainer from "../../components/onBoarding/DescriptionContain
 import OnBoardingFooter from "../../components/onBoarding/OnBoardingFooter";
 
 interface SecondPageProps {
-  setPageStatus: React.Dispatch<React.SetStateAction<string>>;
+  setPageStatus: React.Dispatch<React.SetStateAction<number>>;
+  activePageIndex: number;
+  pageIndex: number;
 };  
 
-const SecondPage = ({ setPageStatus }: SecondPageProps) => {
+const SecondPage = ({ setPageStatus, pageIndex, activePageIndex }: SecondPageProps) => {
 
 
   return (
@@ -25,10 +27,8 @@ const SecondPage = ({ setPageStatus }: SecondPageProps) => {
 차곡차곡 해내다 보면
 어느새 커다란 행복이 되어 있을 거예요.`
         }
-      />
-      <OnBoardingFooter
-        step={2}
-        setPageStatus={setPageStatus}
+        pageIndex={pageIndex}
+        activePageIndex={activePageIndex}
       />
     </>
   );

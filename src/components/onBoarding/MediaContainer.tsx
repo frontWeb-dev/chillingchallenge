@@ -54,7 +54,7 @@ const Wrapper = styled.View`
   justify-content: center;
   align-items: center;
   padding-top: 50px;
-  background-color: ${(props) => props.theme.color.green_100};
+  background-color: ${(props) => props.theme.color.white};
 `;
 
 const ImageContainer = styled.View`
