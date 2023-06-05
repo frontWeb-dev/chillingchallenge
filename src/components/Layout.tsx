@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
@@ -18,6 +17,6 @@ const Layout = ({ children }: LayoutProps) => {
 const Inner = styled.View`
   width: 100%;
   flex: 1;
-  background-color: ${(props) => props.theme.mainBgColor};
+  background-color: ${(props) => props.theme.color.mainBgColor};
 `;
 export default Layout;

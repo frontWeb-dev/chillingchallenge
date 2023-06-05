@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/core";
 
-import { Ionicons } from '@expo/vector-icons'; 
+import { Ionicons } from "@expo/vector-icons";
 
 import { UserNavigatorParamList } from "../../navigations/UserNavigator";
 
@@ -17,28 +17,22 @@ const Profile: React.FC<ProfileProps> = ({ username, registerDate, missionNumber
 
   const handleSettingButtonPress = () => {
     navigation.navigate("UserSettingScreen");
-  }
-
+  };
 
   return (
     <>
       <ProfileContainer>
-        <ProfileImage source={{uri: "https://picsum.photos/seed/picsum/65/65"}}/>
+        <ProfileImage
+          resizeMode="cover"
+          source={{ uri: "https://picsum.photos/seed/picsum/65/65" }}
+        />
         <ProfileTextContainer>
-          <DateText>
-            함께한 지 {registerDate}일
-          </DateText>
-          <UsernameText>
-            {username}
-          </UsernameText>
-          <MissionText>
-            {missionNumber}개의 칠링챌링을 완료하셨군요!
-          </MissionText>
+          <DateText>함께한 지 {registerDate}일</DateText>
+          <UsernameText>{username}</UsernameText>
+          <MissionText>{missionNumber}개의 칠링챌링을 완료하셨군요!</MissionText>
         </ProfileTextContainer>
-        <SettingButton
-          onPress={() => handleSettingButtonPress()}
-        >
-          <Ionicons name="settings-sharp" size={25} color="#909090" />
+        <SettingButton activeOpacity={0.8} onPress={() => handleSettingButtonPress()}>
+          <Ionicons name="settings-sharp" size={25} color="#fff" />
         </SettingButton>
       </ProfileContainer>
     </>
@@ -60,7 +54,6 @@ const ProfileContainer = styled.View`
 const ProfileImage = styled.Image`
   width: 65px;
   height: 65px;
-  resize-mode: cover;
   border-radius: 12px;
 `;
 
@@ -74,22 +67,20 @@ const ProfileTextContainer = styled.View`
 const UsernameText = styled.Text`
   font-size: 20px;
   font-family: "Bold";
-  line-height: 28px;
+  line-height: ${(props) => props.theme.font.title};
 `;
 
 const DateText = styled.Text`
   color: #909090;
-  font-size: 12px;
+  font-size: 13px;
   font-family: "Regular";
-  line-height: 14px;
+  line-height: ${(props) => props.theme.font.smaller};
 `;
 
 const MissionText = styled.Text`
   font-size: 14px;
   font-family: "Regular";
-  line-height: 20px;
+  line-height: ${(props) => props.theme.font.small};
 `;
 
-const SettingButton = styled.TouchableOpacity`
-  active-opacity: 0.8;
-`;
+const SettingButton = styled.TouchableOpacity``;

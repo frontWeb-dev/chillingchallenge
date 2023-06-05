@@ -92,8 +92,8 @@ const Uploader = styled.View`
 
 const MissionQuote = styled.Text`
   padding: 0 10px;
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
-  line-height: 20px;
-  color: ${(props) => props.theme.subTextColor};
+  line-height: ${(props) => props.theme.font.normal};
+  color: ${(props) => props.theme.color.subTextColor};
 `;

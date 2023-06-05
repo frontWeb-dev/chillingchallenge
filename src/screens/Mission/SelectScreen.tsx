@@ -147,17 +147,18 @@ const ContentView = styled.View`
 
 const Title = styled.Text`
   font-size: 20px;
-  font-weight: bold;
+  font-family: "Bold";
+  line-height: ${(props) => props.theme.font.title};
 `;
 
 const Comment = styled.Text`
   font-size: 14px;
-  // font-family: "Light";
+  line-height: ${(props) => props.theme.font.small};
 `;
 
 const DDate = styled.Text`
   text-align: center;
 `;
 const Time = styled.Text`
-  font-family: "ExtraBold";
+  font-family: "Bold";
 `;

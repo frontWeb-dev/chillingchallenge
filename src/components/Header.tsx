@@ -43,9 +43,8 @@ export default Header;
 // styled
 const HeaderView = styled.View`
   width: 100%;
-  display: flex;
   flex-direction: row;
-  background-color: ${(props) => props.theme.white};
+  background-color: ${(props) => props.theme.color.white};
   padding: 0px 20px;
   margin-bottom: 15px;
   justify-content: space-between;
@@ -54,13 +53,12 @@ const HeaderView = styled.View`
 
 const Text = styled.Text`
   font-size: 24px;
-  color: ${(props) => props.theme.black};
-  font-family: ExtraBold;
-  line-height: 28px;
+  color: ${(props) => props.theme.color.black};
+  font-family: "Bold";
+  line-height: ${(props) => props.theme.font.title};
 `;
 
 const Button = styled.TouchableOpacity`
-  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -75,4 +73,3 @@ const ButtonImage = styled.Image`
   width: 26px;
   height: 26px;
 `;
-

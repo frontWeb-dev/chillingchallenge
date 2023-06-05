@@ -57,7 +57,7 @@ const MissionQuote = styled.Text`
   font-size: 18px;
   font-family: "Light";
   font-style: italic;
-  color: ${(props) => props.theme.subTextColor};
+  color: ${(props) => props.theme.color.subTextColor};
   text-align: center;
 `;
 
@@ -65,6 +65,6 @@ const Description = styled.Text`
   font-size: 14px;
   font-family: "Regular";
   color: dimgrey;
-  line-height: 24px;
+  line-height: ${(props) => props.theme.font.small};
   text-align: center;
 `;

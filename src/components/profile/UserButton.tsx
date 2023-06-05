@@ -12,6 +12,10 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
   return (
     <>
       <ButtonListContainer>
+        <ButtonContainer onPress={() => setIsSelected(3)} isSelected={isSelected === 3}>
+          <Ionicons name="calendar" size={30} color={isSelected === 3 ? "#000" : "#fff"} />
+          <ButtonText>출석 확인</ButtonText>
+        </ButtonContainer>
         <ButtonContainer
           activeOpacity={0.8}
           onPress={() => setIsSelected(1)}
@@ -19,22 +23,18 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
         >
           <MaterialCommunityIcons
             name="leaf"
-            size={50}
-            color={isSelected === 1 ? "#FFFFFF" : "#47AF51"}
+            size={30}
+            color={isSelected === 1 ? "#000" : "#fff"}
           />
           <ButtonText>배지 보기</ButtonText>
         </ButtonContainer>
         <ButtonContainer onPress={() => setIsSelected(2)} isSelected={isSelected === 2}>
           <MaterialCommunityIcons
             name="clipboard-check-outline"
-            size={50}
-            color={isSelected === 2 ? "#FFFFFF" : "#47AF51"}
+            size={30}
+            color={isSelected === 2 ? "#000" : "#fff"}
           />
           <ButtonText>나의 챌링</ButtonText>
-        </ButtonContainer>
-        <ButtonContainer onPress={() => setIsSelected(3)} isSelected={isSelected === 3}>
-          <Ionicons name="calendar" size={50} color={isSelected === 3 ? "#FFFFFF" : "#47AF51"} />
-          <ButtonText>출석 확인</ButtonText>
         </ButtonContainer>
       </ButtonListContainer>
     </>
@@ -51,17 +51,17 @@ const ButtonListContainer = styled.View`
   align-items: center;
 `;
 
-const ButtonContainer = styled.TouchableOpacity<{isSelected:boolean}>`
+const ButtonContainer = styled.TouchableOpacity<{ isSelected: boolean }>`
   justify-content: center;
   align-items: center;
   padding: 5px;
   width: 33.3333%;
-  height: 95px;
+  height: 50px;
   gap: 5px;
   ${(props) =>
     props.isSelected &&
     css`
-      background-color: #6ebe75;
+      background-color: #fff;
     `}
   border-right-width: 0.5;
 `;

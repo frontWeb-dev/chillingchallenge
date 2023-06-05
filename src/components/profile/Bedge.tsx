@@ -59,7 +59,8 @@ const BedgeImage = styled.Image`
 const BedgeName = styled.Text<{ type: string }>`
   top: -10px;
   font-size: 14px;
-  color: ${(props) => (props.type === "active" ? props.theme.textColor : props.theme.subTextColor)};
+  color: ${(props) =>
+    props.type === "active" ? props.theme.color.textColor : props.theme.color.subTextColor};
   font-family: ${(props) => (props.type === "active" ? "Bold" : "Regular")};
 `;
 

@@ -32,7 +32,7 @@ const TextForm = styled.View`
   margin-bottom: 20px;
   flex: 1;
   justify-content: space-between;
-  border: 1px solid ${(props) => props.theme.borderColor};
+  border: 1px solid ${(props) => props.theme.color.borderColor};
   border-radius: 20px;
 `;
 

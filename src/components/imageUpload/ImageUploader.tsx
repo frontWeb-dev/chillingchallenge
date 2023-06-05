@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled, {css} from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import * as ImagePicker from "expo-image-picker";
 
 interface ImageUploaderProps {
@@ -69,7 +69,7 @@ const PreviewImage = styled.Image`
   height: ${(props: { uploaderType: string }) =>
     props.uploaderType === "PROFILE" ? "150px" : "100%"};
   object-fit: cover;
-  border: 1px solid ${(props) => props.theme.borderColor};
+  border: 1px solid ${(props) => props.theme.color.borderColor};
   border-radius: ${(props: { uploaderType: string }) =>
     props.uploaderType === "PROFILE" ? "150px" : "8px"};
 `;
