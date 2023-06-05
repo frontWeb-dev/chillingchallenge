@@ -1,11 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components/native";
 
-<<<<<<< Updated upstream
-import { MaterialCommunityIcons, Ionicons, Entypo, } from '@expo/vector-icons';
-=======
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
->>>>>>> Stashed changes
 
 interface UserButtonProps {
   isSelected: number;
@@ -55,7 +51,7 @@ const ButtonListContainer = styled.View`
   align-items: center;
 `;
 
-const ButtonContainer = styled.TouchableOpacity<{isSelected:boolean, lastChild: boolean}>`
+const ButtonContainer = styled.TouchableOpacity<{isSelected:boolean}>`
   justify-content: center;
   align-items: center;
   padding: 5px;
@@ -68,12 +64,6 @@ const ButtonContainer = styled.TouchableOpacity<{isSelected:boolean, lastChild: 
       background-color: #6ebe75;
     `}
   border-right-width: 0.5;
-  border-right-color: #909090;
-  ${(props) =>
-    props.lastChild &&
-    css`
-      border-right-width: 0;
-  `}
 `;
 
 const ButtonText = styled.Text`

@@ -13,7 +13,7 @@ const TabNavigator: React.FC = () => {
   return (
     <TabBar.Navigator screenOptions={{ tabBarStyle: { padding: 10 } }}>
       <TabBar.Screen
-        name="미션 선택"
+        name="오늘의 챌링"
         component={MissionNavigator}
         options={{
           headerShown: false,
@@ -29,7 +29,7 @@ const TabNavigator: React.FC = () => {
         }}
       />
       <TabBar.Screen
-        name="피드"
+        name="나의 칠링"
         component={FeedScreen}
         options={{
           headerShown: false,
@@ -45,7 +45,7 @@ const TabNavigator: React.FC = () => {
         }}
       />
       <TabBar.Screen
-        name="프로필"
+        name="마이 페이지"
         component={UserNavigator}
         options={{
           headerShown: false,

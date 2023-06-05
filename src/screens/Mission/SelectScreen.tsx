@@ -87,7 +87,7 @@ const SelectScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text="오늘의 칠링챌링" noBack={true} />
+      <Header text="오늘의 챌링" noBack={true} />
       <Container>
         <CardContainer>
           {missions.map((el) => {

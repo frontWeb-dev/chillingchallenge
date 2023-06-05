@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import Margin from "./Margin";
 
 interface HeaderProps {
   text: string;
@@ -18,42 +19,58 @@ const Header = ({ text, noBack }: HeaderProps) => {
   };
 
   return (
-    <HeaderView>
+    <>
+      <Margin props={30} />
       {noBack ? (
-        <Container />
+        <HeaderView>
+          <Text>{text}</Text>
+        </HeaderView>
       ) : (
-        <Button activeOpacity={0.8} onPress={handleBackButton}>
-          <Ionicons name="ios-arrow-back" size={26} color="white" />
-        </Button>
+        <HeaderView>
+          <Button activeOpacity={0.8} onPress={handleBackButton}>
+            <ButtonImage source={require("../assets/BackButton.png")} />
+          </Button>
+          <Text>{text}</Text>
+          <Container />
+        </HeaderView>
       )}
-      <Text>{text}</Text>
-      <Container />
-    </HeaderView>
+    </>
   );
 };
+
+export default Header;
 
 // styled
 const HeaderView = styled.View`
   width: 100%;
   display: flex;
   flex-direction: row;
-  background-color: ${(props) => props.theme.green_200};
-  padding: 15px 20px;
+  background-color: ${(props) => props.theme.white};
+  padding: 5px 20px;
   justify-content: space-between;
   align-items: center;
 `;
 
 const Text = styled.Text`
   font-size: 24px;
-  color: ${(props) => props.theme.textInvertColor};
+  color: ${(props) => props.theme.black};
   font-family: ExtraBold;
 `;
 
-const Button = styled.TouchableOpacity``;
+const Button = styled.TouchableOpacity`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Container = styled.View`
   width: 26px;
   height: 26px;
 `;
 
-export default Header;
+const ButtonImage = styled.Image`
+  width: 26px;
+  height: 26px;
+`;
+
