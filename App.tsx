@@ -21,11 +21,11 @@ export default function App() {
   useEffect(() => {
     const loadFonts = async () => {
       await Font.loadAsync({
-        Light: require("./src/global/fonts/NanumSquareL.ttf"),
-        Regular: require("./src/global/fonts/NanumSquareR.ttf"),
-        Medium: require("./src/global/fonts/NanumSquare.ttf"),
-        Bold: require("./src/global/fonts/NanumSquareB.ttf"),
-        ExtraBold: require("./src/global/fonts/NanumSquareEB.ttf"),
+        Light: require("./src/global/fonts/NotoSansKR-Light.otf"),
+        Regular: require("./src/global/fonts/NotoSansKR-Regular.otf"),
+        Medium: require("./src/global/fonts/NotoSansKR-Medium.otf"),
+        Bold: require("./src/global/fonts/NotoSansKR-Bold.otf"),
+        ExtraBold: require("./src/global/fonts/NotoSansKR-Black.otf"),
       });
       setFontsLoaded(true);
     };
