@@ -7,6 +7,7 @@ import Margin from "../../components/Margin";
 import Profile from "../../components/profile/Profile";
 import UserButton from "../../components/profile/UserButton";
 import Calendar from "../../components/profile/Calendar";
+import Bedge from "../../components/profile/Bedge";
 
 import { useCalendar } from "../../hooks/useCalendar";
 import { getAttendance } from "../../utils/Attendance";
@@ -15,7 +16,7 @@ const UserScreen: React.FC = () => {
   // state
   const [isSelected, setIsSelected] = useState(1); // 카테고리 선택 관련
   const [isAttended, setIsAttended] = useState(["2023-05-15", "2023-05-16"]); // 출석 관련
-  
+
   // 달력 관련 hooks
   const { selectedDate, handleSelectDate, handlePrevMonth, handleNextMonth } = useCalendar();
 
@@ -27,7 +28,7 @@ const UserScreen: React.FC = () => {
     };
     fetchAttendance();
   }, [isAttended]);
-  
+
   return (
     <Layout>
       <Header text="마이 페이지" noBack={true} />
@@ -36,7 +37,9 @@ const UserScreen: React.FC = () => {
         <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />
         <Margin props={30} />
         <UserButton isSelected={isSelected} setIsSelected={setIsSelected} />
-        <Margin props={30} />
+      </Container>
+      <TabContainer>
+        {isSelected === 1 && <Bedge />}
         {isSelected === 3 && (
           <Calendar
             selectedDate={selectedDate}
@@ -46,7 +49,7 @@ const UserScreen: React.FC = () => {
             isAttended={isAttended}
           />
         )}
-      </Container>
+      </TabContainer>
     </Layout>
   );
 };
@@ -55,5 +58,9 @@ export default UserScreen;
 
 // styled
 const Container = styled.View`
-  padding: 0 15px;
+  padding: 30px 15px 0 15px;
+  background-color: #6ebe75;
+`;
+const TabContainer = styled.View`
+  padding: 30px 15px;
 `;

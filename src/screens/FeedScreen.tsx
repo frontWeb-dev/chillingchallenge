@@ -84,7 +84,7 @@ const Title = styled.Text`
 
 const Date = styled.Text`
   font-size: 14px;
-  color: ${(props) => props.theme.subTextColor};
+  color: ${(props) => props.theme.color.subTextColor};
 `;
 
 const Image = styled.Image`

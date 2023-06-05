@@ -44,14 +44,14 @@ const Wrapper = styled.View`
 
 const HappyDesc = styled.Text`
   font-size: 16px;
-  font-family: "Medium";
+  font-family: "Regular";
   text-align: center;
-  line-height: 28px;
+  line-height: ${(props) => props.theme.font.title};
 `;
 
 const HappyForm = styled.View`
   width: 100%;
-  border: 1px solid ${(props) => props.theme.borderColor};
+  border: 1px solid ${(props) => props.theme.color.borderColor};
   padding: 20px;
   border-radius: 20px;
 `;
