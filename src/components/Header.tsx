@@ -46,7 +46,8 @@ const HeaderView = styled.View`
   display: flex;
   flex-direction: row;
   background-color: ${(props) => props.theme.white};
-  padding: 5px 20px;
+  padding: 0px 20px;
+  margin-bottom: 15px;
   justify-content: space-between;
   align-items: center;
 `;
@@ -55,6 +56,7 @@ const Text = styled.Text`
   font-size: 24px;
   color: ${(props) => props.theme.black};
   font-family: ExtraBold;
+  line-height: 28px;
 `;
 
 const Button = styled.TouchableOpacity`

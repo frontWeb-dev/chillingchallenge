@@ -74,6 +74,7 @@ const MissionScreen: React.FC = () => {
       <Header text={title.replace("\n", "")} />
       <Margin props={30} />
       {pageComponent}
+      <Margin props={30} />
     </Layout>
   );
 };

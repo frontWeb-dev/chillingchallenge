@@ -69,23 +69,25 @@ const ProfileTextContainer = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 6.5px;
 `;
 
 const UsernameText = styled.Text`
   font-size: 20px;
-  font-family: "ExtraBold";
+  font-family: "Bold";
+  line-height: 28px;
 `;
 
 const DateText = styled.Text`
   color: #909090;
-  font-size: 10px;
+  font-size: 12px;
   font-family: "Regular";
+  line-height: 14px;
 `;
 
 const MissionText = styled.Text`
-  font-size: 12px;
+  font-size: 14px;
   font-family: "Regular";
+  line-height: 20px;
 `;
 
 const SettingButton = styled.TouchableOpacity`
