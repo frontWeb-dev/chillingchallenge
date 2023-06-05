@@ -27,7 +27,7 @@ const StartPage = ({ setMissionStatus, comment, desc, id }: StartPageProps) => {
           <MissionQuote>"{comment}"</MissionQuote>
           <Description>{desc}</Description>
         </ContentContainer>
-        <LongButton text="미션 시작하기" onSubmit={handleStartMission} />
+        <LongButton text="시작하기" onSubmit={handleStartMission} />
       </Wrapper>
     </>
   );

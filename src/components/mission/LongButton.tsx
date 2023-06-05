@@ -23,14 +23,16 @@ export default LongButton;
 
 const ButtonContainer = styled.TouchableOpacity`
   width: 100%;
-  border-radius: 12px;
-  background-color: black;
-  padding: 10px 0;
+  border-radius: 18px;
+  background-color: ${(props) => props.theme.green_200};
+  padding: 14px 0;
 `;
 
 const ButtonText = styled.Text`
   color: ${(props) => props.theme.textInvertColor};
-  font-size: 18px;
-  font-family: "Bold";
+  font-size: 16px;
+  line-height: 20px;
+  font-family: "ExtraBold";
   text-align: center;
+  letter-spacing: 1.5px;
 `;
