@@ -144,8 +144,8 @@ const DayButton = styled.TouchableOpacity<{
   isSelected: boolean;
   isAttendedDay: boolean;
 }>`
-  width: 30;
-  height: 30;
+  width: 30px;
+  height: 30px;
   justify-content: center;
   align-items: center;
   border-radius: 10px;
