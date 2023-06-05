@@ -1,24 +1,45 @@
 export const lightTheme = {
-  mainBgColor: "#fff",
-  textColor: "#000",
-  subTextColor: "gray",
-  textInvertColor: "#fff",
-  green_100: "#9fdfa4",
-  green_200: "#47af51",
-  borderColor: "#ccc",
-  black: "#323232",
-  white: "#ffffff",
+  color: {
+    mainBgColor: "#fff",
+    textColor: "#000",
+    subTextColor: "gray",
+    textInvertColor: "#fff",
+    green_100: "#9fdfa4",
+    green_200: "#47af51",
+    borderColor: "#ccc",
+    black: "#323232",
+    white: "#ffffff",
+  },
+
+  font: {
+    title: "28px", // 24px
+    subtitle: "24px", // 20px
+    normal: "18px", // 15px
+    small: "16px", // 14px
+    smaller: "15px", // 13px
+  },
 };
+
 export const darkTheme = {
-  mainBgColor: "#000",
-  textColor: "fff",
-  subTextColor: "f1f1f1",
-  textInvertColor: "#404040",
-  green_100: "#9fdfa4",
-  green_200: "#47af51",
-  borderColor: "#ccc",
-  black: "#323232",
-  white: "#ffffff",
+  color: {
+    mainBgColor: "#000",
+    textColor: "fff",
+    subTextColor: "f1f1f1",
+    textInvertColor: "#404040",
+    green_100: "#9fdfa4",
+    green_200: "#47af51",
+    borderColor: "#ccc",
+    black: "#323232",
+    white: "#ffffff",
+  },
+
+  font: {
+    title: "28px",
+    subtitle: "24px",
+    normal: "18px",
+    small: "16px",
+    smaller: "15px",
+  },
 };
 
 export const theme = {
