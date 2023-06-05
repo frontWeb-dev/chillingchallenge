@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "#47af51" }}>
+    <SafeAreaView edges={["top"]} style={{ flex: 1, backgroundColor: "#fff" }}>
       <Inner>{children}</Inner>
     </SafeAreaView>
   );

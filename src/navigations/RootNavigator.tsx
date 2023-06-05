@@ -28,7 +28,7 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 
 const RootNavigator: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="MainScreen">
+    <Stack.Navigator initialRouteName="TabNavigator">
       <Stack.Screen
         name="OnBoardingScreen"
         component={OnBoardingScreen}

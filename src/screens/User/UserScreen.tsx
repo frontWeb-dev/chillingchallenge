@@ -30,7 +30,7 @@ const UserScreen: React.FC = () => {
   
   return (
     <Layout>
-      <Header text="나의 칠링챌링" noBack={true} />
+      <Header text="마이 페이지" noBack={true} />
       <Margin props={16} />
       <Container>
         <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />

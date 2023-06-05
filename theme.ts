@@ -6,6 +6,8 @@ export const lightTheme = {
   green_100: "#9fdfa4",
   green_200: "#47af51",
   borderColor: "#ccc",
+  black: "#323232",
+  white: "#ffffff",
 };
 export const darkTheme = {
   mainBgColor: "#000",
@@ -15,6 +17,8 @@ export const darkTheme = {
   green_100: "#9fdfa4",
   green_200: "#47af51",
   borderColor: "#ccc",
+  black: "#323232",
+  white: "#ffffff",
 };
 
 export const theme = {

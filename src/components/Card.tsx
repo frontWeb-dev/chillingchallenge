@@ -62,7 +62,7 @@ const BgView = styled.View`
   height: 60px;
   justify-content: center;
   align-items: center;
-  border-radius: 100%;
+  border-radius: 100px;
   background-color: #d6d6d6;
 `;
 
