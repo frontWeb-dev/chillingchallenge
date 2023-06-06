@@ -28,7 +28,14 @@ const MediaContainer = ({ type }: MediaContainerProps) => {
     case 3:
       mediaComponent = (
         <ImageContainer>
-          <MediaImage source={require("../../assets/onBoardingSecond.png")} />
+          <MediaImage source={require("../../assets/onBoardingThird.png")} />
+        </ImageContainer>
+      );
+      break;
+    case 4:
+      mediaComponent = (
+        <ImageContainer>
+          <MediaImage source={require("../../assets/onBoardingFourth.png")} />
         </ImageContainer>
       );
       break;
