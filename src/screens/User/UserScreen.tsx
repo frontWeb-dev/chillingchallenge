@@ -30,15 +30,14 @@ const UserScreen: React.FC = () => {
   }, [isAttended]);
 
   return (
-    <Layout>
-      <Header text="마이 페이지" noBack={true} />
-      <Margin props={16} />
+    <Layout color="#6ebe75">
+      <Header text="마이 페이지" noBack={true} color="#6ebe75" />
       <Container>
         <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />
         <Margin props={30} />
-        <UserButton isSelected={isSelected} setIsSelected={setIsSelected} />
       </Container>
       <TabContainer>
+        <UserButton isSelected={isSelected} setIsSelected={setIsSelected} />
         {isSelected === 1 && <Bedge />}
         {isSelected === 3 && (
           <Calendar
@@ -58,9 +57,14 @@ export default UserScreen;
 
 // styled
 const Container = styled.View`
-  padding: 30px 15px 0 15px;
+  padding: 10px 15px 0 15px;
   background-color: #6ebe75;
 `;
 const TabContainer = styled.View`
-  padding: 30px 15px;
+  flex: 1;
+  gap: 30px;
+  padding: 10px 15px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: ${(props) => props.theme.color.white};
 `;

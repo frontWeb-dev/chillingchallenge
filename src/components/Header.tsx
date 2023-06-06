@@ -6,10 +6,11 @@ import Margin from "./Margin";
 
 interface HeaderProps {
   text: string;
+  color?: string;
   noBack?: boolean;
 }
 
-const Header = ({ text, noBack }: HeaderProps) => {
+const Header = ({ text, color, noBack }: HeaderProps) => {
   const navigation = useNavigation();
 
   const handleBackButton = () => {
@@ -22,11 +23,11 @@ const Header = ({ text, noBack }: HeaderProps) => {
     <>
       <Margin props={30} />
       {noBack ? (
-        <HeaderView>
-          <Text>{text}</Text>
+        <HeaderView color={color}>
+          <Text color={color}>{text}</Text>
         </HeaderView>
       ) : (
-        <HeaderView>
+        <HeaderView color={color}>
           <Button activeOpacity={0.8} onPress={handleBackButton}>
             <ButtonImage source={require("../assets/BackButton.png")} />
           </Button>
@@ -41,19 +42,19 @@ const Header = ({ text, noBack }: HeaderProps) => {
 export default Header;
 
 // styled
-const HeaderView = styled.View`
+const HeaderView = styled.View<{ color?: string }>`
   width: 100%;
   flex-direction: row;
-  background-color: ${(props) => props.theme.color.white};
+  background-color: ${(props) => props.color || props.theme.color.white};
   padding: 0px 20px;
   margin-bottom: 15px;
   justify-content: space-between;
   align-items: center;
 `;
 
-const Text = styled.Text`
+const Text = styled.Text<{ color?: string }>`
   font-size: 24px;
-  color: ${(props) => props.theme.color.black};
+  color: ${(props) => (props.color ? props.theme.color.white : props.theme.color.black)};
   font-family: "Bold";
   line-height: ${(props) => props.theme.font.title};
 `;

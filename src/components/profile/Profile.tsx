@@ -48,7 +48,7 @@ const ProfileContainer = styled.View`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 20px;
+  gap: 10px;
 `;
 
 const ProfileImage = styled.Image`
@@ -68,19 +68,22 @@ const UsernameText = styled.Text`
   font-size: 20px;
   font-family: "Bold";
   line-height: ${(props) => props.theme.font.title};
+  color: ${(props) => props.theme.color.white};
 `;
 
 const DateText = styled.Text`
-  color: #909090;
+  color: ${(props) => props.theme.color.white};
   font-size: 13px;
   font-family: "Regular";
   line-height: ${(props) => props.theme.font.smaller};
 `;
 
 const MissionText = styled.Text`
+  margin-top: 10px;
   font-size: 14px;
   font-family: "Regular";
   line-height: ${(props) => props.theme.font.small};
+  color: ${(props) => props.theme.color.white};
 `;
 
 const SettingButton = styled.TouchableOpacity``;
