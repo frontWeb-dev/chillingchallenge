@@ -2,10 +2,11 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5, Ionicons, FontAwesome } from "@expo/vector-icons";
 
-import FeedScreen from "../screens/FeedScreen";
+import FeedScreen from "../screens/Feed/FeedScreen";
 import UserNavigator from "./UserNavigator";
 import MissionNavigator from "./MissionNavigator";
 import { useColorScheme } from "react-native";
+import FeedNavigator from "./FeedNavigator";
 
 const TabBar = createBottomTabNavigator();
 
@@ -30,7 +31,7 @@ const TabNavigator: React.FC = () => {
       />
       <TabBar.Screen
         name="나의 칠링"
-        component={FeedScreen}
+        component={FeedNavigator}
         options={{
           headerShown: false,
           tabBarLabelStyle: {
