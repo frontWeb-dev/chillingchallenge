@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 
 import HappyStar from "./HappyStar";
@@ -11,14 +11,8 @@ const Happiness: React.FC = () => {
   return (
     <>
       <Wrapper>
-        <HappyText
-          happyText={happyText}
-          setHappyText={setHappyText}
-        />
-        <HappyStar
-          happyPoint={happyPoint}
-          setHappyPoint={setHappyPoint}
-        />
+        <HappyText happyText={happyText} setHappyText={setHappyText} />
+        <HappyStar happyPoint={happyPoint} setHappyPoint={setHappyPoint} />
       </Wrapper>
     </>
   );
@@ -32,7 +26,6 @@ const Wrapper = styled.View`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   gap: 15px;
 `;

@@ -51,9 +51,10 @@ const HappyDesc = styled.Text`
 
 const HappyForm = styled.View`
   width: 100%;
+  height: 180px;
   border: 1px solid ${(props) => props.theme.color.borderColor};
   padding: 20px;
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 
 const HappyTextInput = styled.TextInput``;

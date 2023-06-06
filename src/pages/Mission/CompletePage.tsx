@@ -1,5 +1,5 @@
 import React from "react";
-import dayjs from 'dayjs';
+import dayjs from "dayjs";
 import { ScrollView } from "react-native";
 import styled from "styled-components/native";
 
@@ -20,7 +20,7 @@ const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
 
   const handleUploadButton = () => {
     const today = dayjs();
-    const formattedDate = today.format('YYYY-MM-DD');
+    const formattedDate = today.format("YYYY-MM-DD");
     setAttendance(formattedDate);
     navigation.navigate("SelectScreen");
   };
@@ -29,12 +29,8 @@ const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
     <>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Wrapper>
-          <MissionQuote>미션 완료</MissionQuote>
-          <Happiness/>
-          <LongButton
-            text="업로드하기"
-            onSubmit={() => handleUploadButton()}
-          />
+          <Happiness />
+          <LongButton text="업로드하기" onSubmit={() => handleUploadButton()} />
         </Wrapper>
       </ScrollView>
     </>
@@ -47,14 +43,7 @@ export default CompletePage;
 const Wrapper = styled.View`
   width: 100%;
   flex: 1;
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-`;
-
-const MissionQuote = styled.Text`
-  font-size: 40px;
-  font-family: "ExtraBold";
 `;
