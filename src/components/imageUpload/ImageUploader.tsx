@@ -38,7 +38,9 @@ const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) =
     <UploaderContainer>
       <PreviewImageContainer activeOpacity={0.8} onPress={() => handleSelectImage()}>
         {isImageUploaded === false ? <></> : <UploadText>📷 사진 변경하기</UploadText>}
-        <PreviewImage source={{ uri: imageUri! }} uploaderType={uploaderType} />
+        <PreviewImageView uploaderType={uploaderType}>
+          <PreviewImage source={{ uri: imageUri! }} />
+        </PreviewImageView>
       </PreviewImageContainer>
     </UploaderContainer>
   );
@@ -63,15 +65,21 @@ const PreviewImageContainer = styled.TouchableOpacity`
   gap: 20px;
 `;
 
-const PreviewImage = styled.Image`
+const PreviewImageView = styled.View<{ uploaderType: string }>`
   width: ${(props: { uploaderType: string }) =>
     props.uploaderType === "PROFILE" ? "150px" : "100%"};
   height: ${(props: { uploaderType: string }) =>
     props.uploaderType === "PROFILE" ? "150px" : "100%"};
-  object-fit: cover;
   border: 1px solid ${(props) => props.theme.color.borderColor};
   border-radius: ${(props: { uploaderType: string }) =>
     props.uploaderType === "PROFILE" ? "150px" : "8px"};
+  overflow: hidden;
+`;
+
+const PreviewImage = styled.Image`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const UploadText = styled.Text`
