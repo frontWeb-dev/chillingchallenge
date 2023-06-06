@@ -1,4 +1,16 @@
-export const missions = [
+import { ImageURISource } from "react-native";
+
+export interface MissionData {
+  id: number;
+  title: string;
+  comment: string;
+  method: string | string[];
+  desc: string;
+  bgImage: ImageURISource;
+  type: number;
+}
+
+export const missions: MissionData[] = [
   {
     id: 1,
     title: "책 읽기",
@@ -18,7 +30,6 @@ export const missions = [
       "편지에 많은 내용을 담지 않아도 괜찮아요. \n 나에게만 전달하고 싶은 진솔한 이야기를 적어요!",
     bgImage: require("../assets/letter.png"),
     type: 2,
-    placeholder: "Dear. Me",
   },
   {
     id: 3,
