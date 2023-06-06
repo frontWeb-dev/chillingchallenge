@@ -15,13 +15,21 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCalendarsUsageDescription": "The app needs to access your calendar.",
+        "NSRemindersUsageDescription": "Allow $(PRODUCT_NAME) to access your reminders"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.READ_CALENDAR",
+        "android.permission.WRITE_CALENDAR"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,6 +42,22 @@
         }
       ]
     ],
-    "packagerOpts": { "config": "metro.config.js", "sourceExts": ["js", "jsx", "svg"] }
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": [
+        "js",
+        "jsx",
+        "svg"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f994bf6e-68e3-4814-a9a3-3bb965ebe373"
+      }
+    },
+    "owner": "kimnerd",
+    "notification": {
+      "icon": "./path/to/icon.png"
+    }
   }
 }
