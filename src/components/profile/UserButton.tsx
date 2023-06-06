@@ -13,7 +13,7 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
     <>
       <ButtonListContainer>
         <ButtonContainer onPress={() => setIsSelected(3)} isSelected={isSelected === 3}>
-          <Ionicons name="calendar" size={30} color={isSelected === 3 ? "#000" : "#fff"} />
+          <Ionicons name="calendar" size={30} color={isSelected === 3 ? "#6ebe75" : "#c2c2c2"} />
           <ButtonText>출석 확인</ButtonText>
         </ButtonContainer>
         <ButtonContainer
@@ -24,7 +24,7 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
           <MaterialCommunityIcons
             name="leaf"
             size={30}
-            color={isSelected === 1 ? "#000" : "#fff"}
+            color={isSelected === 1 ? "#6ebe75" : "#c2c2c2"}
           />
           <ButtonText>배지 보기</ButtonText>
         </ButtonContainer>
@@ -32,7 +32,7 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
           <MaterialCommunityIcons
             name="clipboard-check-outline"
             size={30}
-            color={isSelected === 2 ? "#000" : "#fff"}
+            color={isSelected === 2 ? "#6ebe75" : "#c2c2c2"}
           />
           <ButtonText>나의 챌링</ButtonText>
         </ButtonContainer>
@@ -52,18 +52,16 @@ const ButtonListContainer = styled.View`
 `;
 
 const ButtonContainer = styled.TouchableOpacity<{ isSelected: boolean }>`
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   padding: 5px;
-  width: 33.3333%;
+  width: 30%;
   height: 50px;
   gap: 5px;
-  ${(props) =>
-    props.isSelected &&
-    css`
-      background-color: #fff;
-    `}
-  border-right-width: 0.5;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: ${(props) => (props.isSelected ? "#6ebe75" : "#fff")};
 `;
 
 const ButtonText = styled.Text`
