@@ -4,12 +4,17 @@ import styled from "styled-components/native";
 import MediaContainer from "../../components/onBoarding/MediaContainer";
 import DescriptionContainer from "../../components/onBoarding/DescriptionContainer";
 
-const StartPage = () => {
+interface StartPageProps {
+  activePageIndex: number;
+  pageIndex: number;
+};  
+
+const StartPage = ({ pageIndex, activePageIndex }: StartPageProps) => {
 
   return (
     <PageContainer>
       <MediaContainer
-        type={1}
+        type={4}
       />
       <DescriptionContainer
         headerText="준비되셨나요?"
@@ -17,6 +22,8 @@ const StartPage = () => {
 지친 나의 마음 돌아보기,
 칠링챌링과 함께 해요.`
         }
+        activePageIndex={activePageIndex}
+        pageIndex={pageIndex}
       />
     </PageContainer>
   );

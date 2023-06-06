@@ -46,7 +46,7 @@ const OnBoardingScreen: React.FC = () => {
           <ThirdPage setPageStatus={setPageStatus} activePageIndex={activePageIndex} pageIndex={2}/>
         </PageWrapper>
         <PageWrapper key="4">
-          <StartPage />
+          <StartPage pageIndex={3} activePageIndex={activePageIndex}/>
         </PageWrapper>
       </PagerView>
       { showFooter && pageStatus !== 4 ? (
