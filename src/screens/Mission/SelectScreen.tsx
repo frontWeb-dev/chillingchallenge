@@ -1,25 +1,14 @@
 import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components/native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
-import { ImageURISource } from "react-native";
 
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
-import { missions } from "../../mocks/missions";
+import { MissionData, missions } from "../../mocks/missions";
 import { getMissionState } from "../../utils/MissionState";
 
 import Layout from "../../components/Layout";
 import Header from "../../components/Header";
 import Card from "../../components/Card";
-
-export interface MissionData {
-  id: number;
-  title: string;
-  comment: string;
-  method: string | string[];
-  desc: string;
-  bgImage: ImageURISource;
-  type: number;
-}
 
 interface Time {
   hours: number;
@@ -87,7 +76,7 @@ const SelectScreen: React.FC = () => {
 
   return (
     <Layout>
-      <Header text="오늘의 챌링" noBack={true} />
+      <Header text="오늘의 챌링" />
       <Container>
         <CardContainer>
           {missions.map((el) => {
