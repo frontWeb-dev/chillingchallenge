@@ -101,12 +101,12 @@ const HeaderContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10;
+  margin-bottom: 10px;
   padding: 0 20px;
 `;
 
 const HeaderText = styled.Text`
-  font-size: 18;
+  font-size: 18px;
   font-family: "ExtraBold";
 `;
 
@@ -115,7 +115,7 @@ const MoveButton = styled.TouchableOpacity`
 `;
 
 const MoveButtonText = styled.Text`
-  font-size: 18;
+  font-size: 18px;
   font-family: "ExtraBold";
 `;
 

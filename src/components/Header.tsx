@@ -10,7 +10,7 @@ interface HeaderProps {
   noBack?: boolean;
 }
 
-const Header = ({ text, color, noBack }: HeaderProps) => {
+const Header = ({ text, color, noBack = false }: HeaderProps) => {
   const navigation = useNavigation();
 
   const handleBackButton = () => {
@@ -22,19 +22,15 @@ const Header = ({ text, color, noBack }: HeaderProps) => {
   return (
     <>
       <Margin props={30} />
-      {noBack ? (
-        <HeaderView color={color}>
-          <Text color={color}>{text}</Text>
-        </HeaderView>
-      ) : (
-        <HeaderView color={color}>
+      <HeaderView color={color}>
+        {noBack && (
           <Button activeOpacity={0.8} onPress={handleBackButton}>
             <ButtonImage source={require("../assets/BackButton.png")} />
           </Button>
-          <Text>{text}</Text>
-          <Container />
-        </HeaderView>
-      )}
+        )}
+        <Text>{text}</Text>
+        <Container />
+      </HeaderView>
     </>
   );
 };

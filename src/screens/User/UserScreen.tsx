@@ -30,8 +30,8 @@ const UserScreen: React.FC = () => {
   }, [isAttended]);
 
   return (
-    <Layout color="#6ebe75">
-      <Header text="마이 페이지" noBack={true} color="#6ebe75" />
+    <Layout color="#10b767">
+      <Header text="마이 페이지" color="#10b767" />
       <Container>
         <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />
         <Margin props={30} />
@@ -58,7 +58,7 @@ export default UserScreen;
 // styled
 const Container = styled.View`
   padding: 10px 15px 0 15px;
-  background-color: #6ebe75;
+  background-color: #10b767;
 `;
 const TabContainer = styled.View`
   flex: 1;
