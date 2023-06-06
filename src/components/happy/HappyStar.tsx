@@ -19,37 +19,37 @@ const HappyStar = ({ happyPoint, setHappyPoint }: HappyStarProps) => {
       <ButtonWrapper>
         <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(1)}>
           {happyPoint >= 1 ? (
-            <AntDesign name="star" size={30} color="yellow" />
+            <AntDesign name="star" size={30} color="gold" />
           ) : (
-            <AntDesign name="staro" size={30} color="yellow" />
+            <AntDesign name="staro" size={30} color="gray" />
           )}
         </StarContainer>
         <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(2)}>
           {happyPoint >= 2 ? (
-            <AntDesign name="star" size={30} color="yellow" />
+            <AntDesign name="star" size={30} color="gold" />
           ) : (
-            <AntDesign name="staro" size={30} color="yellow" />
+            <AntDesign name="staro" size={30} color="gray" />
           )}
         </StarContainer>
         <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(3)}>
           {happyPoint >= 3 ? (
-            <AntDesign name="star" size={30} color="yellow" />
+            <AntDesign name="star" size={30} color="gold" />
           ) : (
-            <AntDesign name="staro" size={30} color="yellow" />
+            <AntDesign name="staro" size={30} color="gray" />
           )}
         </StarContainer>
         <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(4)}>
           {happyPoint >= 4 ? (
-            <AntDesign name="star" size={30} color="yellow" />
+            <AntDesign name="star" size={30} color="gold" />
           ) : (
-            <AntDesign name="staro" size={30} color="yellow" />
+            <AntDesign name="staro" size={30} color="gray" />
           )}
         </StarContainer>
         <StarContainer activeOpacity={0.8} onPress={() => handleStarButton(5)}>
           {happyPoint >= 5 ? (
-            <AntDesign name="star" size={30} color="yellow" />
+            <AntDesign name="star" size={30} color="gold" />
           ) : (
-            <AntDesign name="staro" size={30} color="yellow" />
+            <AntDesign name="staro" size={30} color="gray" />
           )}
         </StarContainer>
       </ButtonWrapper>
@@ -67,8 +67,6 @@ const ButtonWrapper = styled.View`
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
-  border: 1px solid lightgrey;
-  border-radius: 12px;
 `;
 
 const StarContainer = styled.TouchableOpacity`
