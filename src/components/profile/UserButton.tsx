@@ -30,11 +30,11 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
         </ButtonContainer>
         <ButtonContainer onPress={() => setIsSelected(2)} isSelected={isSelected === 2}>
           <MaterialCommunityIcons
-            name="clipboard-check-outline"
+            name="tree"
             size={30}
             color={isSelected === 2 ? "#6ebe75" : "#c2c2c2"}
           />
-          <ButtonText>나의 챌링</ButtonText>
+          <ButtonText>나무 보기</ButtonText>
         </ButtonContainer>
       </ButtonListContainer>
     </>

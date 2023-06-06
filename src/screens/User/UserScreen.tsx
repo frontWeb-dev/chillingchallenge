@@ -8,6 +8,7 @@ import Profile from "../../components/profile/Profile";
 import UserButton from "../../components/profile/UserButton";
 import Calendar from "../../components/profile/Calendar";
 import Bedge from "../../components/profile/Bedge";
+import Tree from "../../components/profile/Tree";
 
 import { useCalendar } from "../../hooks/useCalendar";
 import { getAttendance } from "../../utils/Attendance";
@@ -39,6 +40,7 @@ const UserScreen: React.FC = () => {
       <TabContainer>
         <UserButton isSelected={isSelected} setIsSelected={setIsSelected} />
         {isSelected === 1 && <Bedge />}
+        {isSelected === 2 && <Tree badgeNumber={3} />}
         {isSelected === 3 && (
           <Calendar
             selectedDate={selectedDate}
