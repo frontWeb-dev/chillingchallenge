@@ -146,14 +146,14 @@ const ContentView = styled.View`
 `;
 
 const Title = styled.Text`
-  font-size: 20px;
+  font-size: 18px;
   font-family: "Bold";
   line-height: ${(props) => props.theme.font.title};
 `;
 
 const Comment = styled.Text`
-  font-size: 14px;
-  line-height: ${(props) => props.theme.font.small};
+  font-size: 13px;
+  line-height: ${(props) => props.theme.font.smaller};
 `;
 
 const DDate = styled.Text`

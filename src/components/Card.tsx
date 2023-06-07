@@ -23,10 +23,24 @@ const Card = ({ children, isDone, badge, image, onPress }: CardProps) => {
   }, [badge]);
 
   return (
-    <Container activeOpacity={0.8} isDone={isDone} onPress={onPress}>
-      <Badge>
+    <Container 
+      activeOpacity={0.8} 
+      isDone={isDone} 
+      onPress={onPress}
+      style={{
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+      }}
+    >
+      {/* <Badge>
         <Text>{badgeText}</Text>
-      </Badge>
+      </Badge> */}
       <Contents>
         {children}
         <ImageView>
@@ -42,10 +56,9 @@ export default Card;
 const Container = styled.TouchableOpacity<{ isDone: boolean }>`
   position: relative;
   flex: 1;
-  border: 1px solid ${(props) => props.theme.color.borderColor};
   border-radius: 20px;
   box-shadow: 2px 2px 2px #5d5d5d;
-  background-color: ${(props) => (props.isDone ? "#f1f1f1" : "#fff")};
+  background-color: ${(props) => (props.isDone ? "#f5f5f8" : "#f5f5f8")};
 `;
 
 const Contents = styled.View`
@@ -62,8 +75,8 @@ const ImageView = styled.View`
 `;
 
 const BgImage = styled.Image`
-  width: 100%;
-  height: 100%;
+  width: 100px;
+  height: 100px;
 `;
 
 const Badge = styled.View`

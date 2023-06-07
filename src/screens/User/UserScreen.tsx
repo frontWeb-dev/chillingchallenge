@@ -40,7 +40,7 @@ const UserScreen: React.FC = () => {
       <TabContainer>
         <UserButton isSelected={isSelected} setIsSelected={setIsSelected} />
         {isSelected === 1 && <Bedge />}
-        {isSelected === 2 && <Tree badgeNumber={3} />}
+        {isSelected === 2 && <Tree badgeNumber={9} />}
         {isSelected === 3 && (
           <Calendar
             selectedDate={selectedDate}
