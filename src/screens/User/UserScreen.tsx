@@ -32,7 +32,7 @@ const UserScreen: React.FC = () => {
 
   return (
     <Layout color="#10b767">
-      <Header text="마이 페이지" color="#10b767" />
+      <Header text="마이페이지" color="#10b767"/>
       <Container>
         <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />
         <Margin props={30} />

@@ -57,7 +57,7 @@
     },
     "owner": "kimnerd",
     "notification": {
-      "icon": "./path/to/icon.png"
+      "icon": "./assets/icon.png"
     }
   }
 }

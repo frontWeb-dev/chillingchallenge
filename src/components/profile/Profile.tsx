@@ -27,9 +27,8 @@ const Profile: React.FC<ProfileProps> = ({ username, registerDate, missionNumber
           source={{ uri: "https://picsum.photos/seed/picsum/65/65" }}
         />
         <ProfileTextContainer>
-          <DateText>함께한 지 {registerDate}일</DateText>
           <UsernameText>{username}</UsernameText>
-          <MissionText>{missionNumber}개의 칠링챌링을 완료하셨군요!</MissionText>
+          <DateText>칠링챌링과 함께한 지 {registerDate}일째</DateText>
         </ProfileTextContainer>
         <SettingButton activeOpacity={0.8} onPress={() => handleSettingButtonPress()}>
           <Ionicons name="settings-sharp" size={25} color="#fff" />
@@ -62,6 +61,7 @@ const ProfileTextContainer = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 10px;
 `;
 
 const UsernameText = styled.Text`

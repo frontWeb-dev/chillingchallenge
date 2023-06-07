@@ -28,7 +28,7 @@ const Header = ({ text, color, noBack = false }: HeaderProps) => {
             <ButtonImage source={require("../assets/BackButton.png")} />
           </Button>
         )}
-        <Text>{text}</Text>
+        <Text color={color}>{text}</Text>
         <Container />
       </HeaderView>
     </>
