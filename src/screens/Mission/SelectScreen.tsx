@@ -20,9 +20,11 @@ type MissionState = {
 };
 
 const SelectScreen: React.FC = () => {
-  const [remainingTime, setRemainingTime] = useState<Time | null>(null);
-  const [missionState, setMissionState] = useState<MissionState>({});
+  const [missionState, setMissionState] = useState<MissionState>({});   // state: 미션 완료 여부
+  const [remainingTime, setRemainingTime] = useState<Time | null>(null); // state: 남은 시간
+  const navigation = useNavigation<MissionNavigatorParamList>(); // navigation: 스크린 네비게이션 함수
 
+  // 미션 상태 실시간 반영, 스크린이 포커스될 때 새롭게 반영
   useFocusEffect(
     React.useCallback(() => {
       const fetchMissionState = async () => {
@@ -37,13 +39,13 @@ const SelectScreen: React.FC = () => {
     }, [])
   );
 
-  const navigation = useNavigation<MissionNavigatorParamList>();
-
+  // onPress: 미션 선택 함수
   const onPress = (badge: number, el: MissionData) => {
     if (badge === 3) return;
     navigation.navigate("MissionScreen", { data: el });
   };
 
+  // 남은 시간 업데이트 함수
   const updateRemainingTime = useCallback(() => {
     const currentTime = new Date();
     const nextDay10AM = new Date(
@@ -62,6 +64,7 @@ const SelectScreen: React.FC = () => {
     setRemainingTime({ hours, minutes });
   }, []);
 
+  // 남은 시간 실시간 반영
   useEffect(() => {
     updateRemainingTime();
 
