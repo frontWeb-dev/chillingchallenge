@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components/native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
+import { loadRandomMissions } from "../../utils/RandomizeMissions";
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
 import { MissionData, missions } from "../../mocks/missions";
 import { getMissionState } from "../../utils/MissionState";
@@ -20,9 +21,23 @@ type MissionState = {
 };
 
 const SelectScreen: React.FC = () => {
+  const [todayMission, setTodayMission] = useState<MissionData[]>([]); // state: 랜덤화된 미션 객체를 담을 상태
   const [missionState, setMissionState] = useState<MissionState>({});   // state: 미션 완료 여부
   const [remainingTime, setRemainingTime] = useState<Time | null>(null); // state: 남은 시간
   const navigation = useNavigation<MissionNavigatorParamList>(); // navigation: 스크린 네비게이션 함수
+
+  // 랜덤화된 미션 불러오기
+  useEffect(() => {
+    const loadMissions = async () => {
+      const data: string | undefined = await loadRandomMissions();
+      if (data) {
+        const temp = JSON.parse(data);
+        setTodayMission(temp);
+        console.log(todayMission);
+      }
+    };
+    loadMissions();
+  }, []);
 
   // 미션 상태 실시간 반영, 스크린이 포커스될 때 새롭게 반영
   useFocusEffect(
@@ -81,26 +96,28 @@ const SelectScreen: React.FC = () => {
     <Layout>
       <Header text="오늘의 챌링" />
       <Container>
-        <CardContainer>
-          {missions.map((el) => {
-            const missionStateValue = parseInt(missionState[el.id]);
-            const badge = missionStateValue !== undefined ? missionStateValue : 1;
-            return (
-              <Card
-                key={el.id}
-                isDone={badge === 3}
-                badge={badge}
-                image={el.bgImage}
-                onPress={() => onPress(badge, el)}
-              >
-                <ContentView>
-                  <Title>{el.title}</Title>
-                  <Comment>{el.comment}</Comment>
-                </ContentView>
-              </Card>
-            );
-          })}
-        </CardContainer>
+        {todayMission && 
+          <CardContainer>
+            {todayMission.map((el) => {
+              const missionStateValue = parseInt(missionState[el.id]);
+              const badge = missionStateValue !== undefined ? missionStateValue : 1;
+              return (
+                <Card
+                  key={el.id}
+                  isDone={badge === 3}
+                  badge={badge}
+                  image={el.bgImage}
+                  onPress={() => onPress(badge, el)}
+                >
+                  <ContentView>
+                    <Title>{el.title}</Title>
+                    <Comment>{el.comment}</Comment>
+                  </ContentView>
+                </Card>
+              );
+            })}
+          </CardContainer>
+        }
         {remainingTime ? (
           <DDate>
             미션 업데이트까지{" "}
