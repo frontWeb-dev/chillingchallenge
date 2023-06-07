@@ -5,7 +5,7 @@ import * as Notifications from "expo-notifications";
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: false,
   }),
 });
@@ -15,8 +15,8 @@ async function sendPushNotification(expoPushToken: any) {
   const message = {
     to: expoPushToken,
     sound: 'default',
-    title: 'Original Title',
-    body: 'And here is the body!',
+    title: '🍀 칠링챌링',
+    body: '오늘 칠링챌링에서는 어떤 도전이 당신을 기다리고 있을까요?',
     data: { someData: 'goes here' },
   };
 
