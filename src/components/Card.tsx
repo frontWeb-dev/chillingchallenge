@@ -1,3 +1,4 @@
+import bedges from "mocks/bedges";
 import React, { useState, useEffect } from "react";
 import { ImageURISource } from "react-native";
 import styled from "styled-components/native";
@@ -23,9 +24,9 @@ const Card = ({ children, isDone, badge, image, onPress }: CardProps) => {
   }, [badge]);
 
   return (
-    <Container 
-      activeOpacity={0.8} 
-      isDone={isDone} 
+    <Container
+      activeOpacity={0.8}
+      isDone={isDone}
       onPress={onPress}
       style={{
         shadowColor: "#000",
@@ -38,9 +39,11 @@ const Card = ({ children, isDone, badge, image, onPress }: CardProps) => {
         elevation: 5,
       }}
     >
-      {/* <Badge>
-        <Text>{badgeText}</Text>
-      </Badge> */}
+      {badgeText !== "" && (
+        <Badge>
+          <Text>{badgeText}</Text>
+        </Badge>
+      )}
       <Contents>
         {children}
         <ImageView>
