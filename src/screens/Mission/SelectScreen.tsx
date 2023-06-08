@@ -4,7 +4,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { loadRandomMissions } from "../../utils/RandomizeMissions";
 import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
-import { MissionData, missions } from "../../mocks/missions";
+import { MissionData } from "../../mocks/missions";
 import { getMissionState } from "../../utils/MissionState";
 
 import Layout from "../../components/Layout";
@@ -22,7 +22,7 @@ type MissionState = {
 
 const SelectScreen: React.FC = () => {
   const [todayMission, setTodayMission] = useState<MissionData[]>([]); // state: 랜덤화된 미션 객체를 담을 상태
-  const [missionState, setMissionState] = useState<MissionState>({});   // state: 미션 완료 여부
+  const [missionState, setMissionState] = useState<MissionState>({}); // state: 미션 완료 여부
   const [remainingTime, setRemainingTime] = useState<Time | null>(null); // state: 남은 시간
   const navigation = useNavigation<MissionNavigatorParamList>(); // navigation: 스크린 네비게이션 함수
 
@@ -96,7 +96,7 @@ const SelectScreen: React.FC = () => {
     <Layout>
       <Header text="오늘의 챌링" />
       <Container>
-        {todayMission && 
+        {todayMission && (
           <CardContainer>
             {todayMission.map((el) => {
               const missionStateValue = parseInt(missionState[el.id]);
@@ -117,7 +117,7 @@ const SelectScreen: React.FC = () => {
               );
             })}
           </CardContainer>
-        }
+        )}
         {remainingTime ? (
           <DDate>
             미션 업데이트까지{" "}
