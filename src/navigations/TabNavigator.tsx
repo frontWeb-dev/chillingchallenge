@@ -2,11 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5, Ionicons, FontAwesome } from "@expo/vector-icons";
 
-import FeedScreen from "../screens/Feed/FeedScreen";
-import UserNavigator from "./UserNavigator";
 import MissionNavigator from "./MissionNavigator";
-import { useColorScheme } from "react-native";
 import FeedNavigator from "./FeedNavigator";
+import UserNavigator from "./UserNavigator";
 
 const TabBar = createBottomTabNavigator();
 
@@ -19,13 +17,13 @@ const TabNavigator: React.FC = () => {
         options={{
           headerShown: false,
           tabBarLabelStyle: {
-            color: "#47af51",
+            color: "#10b767",
           },
           tabBarIcon: ({ focused }) =>
             !focused ? (
-              <FontAwesome5 name="running" size={24} color="#9fdfa4" />
+              <FontAwesome5 name="running" size={24} color="#cbe7d9" />
             ) : (
-              <FontAwesome5 name="running" size={24} color="#47af51" />
+              <FontAwesome5 name="running" size={24} color="#10b767" />
             ),
         }}
       />
@@ -35,29 +33,29 @@ const TabNavigator: React.FC = () => {
         options={{
           headerShown: false,
           tabBarLabelStyle: {
-            color: "#47af51",
+            color: "#10b767",
           },
           tabBarIcon: ({ focused }) =>
             !focused ? (
-              <Ionicons name="people" size={24} color="#9fdfa4" />
+              <Ionicons name="people" size={24} color="#cbe7d9" />
             ) : (
-              <Ionicons name="people" size={24} color="#47af51" />
+              <Ionicons name="people" size={24} color="#10b767" />
             ),
         }}
       />
       <TabBar.Screen
-        name="마이 페이지"
+        name="마이페이지"
         component={UserNavigator}
         options={{
           headerShown: false,
           tabBarLabelStyle: {
-            color: "#47af51",
+            color: "#10b767",
           },
           tabBarIcon: ({ focused }) =>
             !focused ? (
-              <FontAwesome name="user-circle" size={24} color="#9fdfa4" />
+              <FontAwesome name="user-circle" size={24} color="#cbe7d9" />
             ) : (
-              <FontAwesome name="user-circle" size={24} color="#47af51" />
+              <FontAwesome name="user-circle" size={24} color="#10b767" />
             ),
         }}
       />
