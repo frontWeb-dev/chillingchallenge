@@ -1,9 +1,10 @@
-import { RouteProp, useRoute } from "@react-navigation/native";
 import React from "react";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { DetailParamsList } from "./FeedScreen";
-import Layout from "../../components/Layout";
-import Header from "../../components/Header";
+
+import Layout from "@components/Layout";
+import Header from "@components/Header";
 
 const FeedDetailScreen = () => {
   const { params } = useRoute<RouteProp<DetailParamsList, "FeedDetailScreen">>();

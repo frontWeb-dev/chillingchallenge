@@ -4,19 +4,17 @@ import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import * as Notifications from "expo-notifications";
 
-import { RootNavigatorParamList } from "../navigations/RootNavigator";
-import {
-  registerForPushNotificationsAsync,
-  sendPushNotification,
-} from "../utils/PushNotifications";
-
-import Layout from "../components/Layout";
+import Layout from "@components/Layout";
+import { RootNavigatorParamList } from "@navigations/RootNavigator";
+import { registerForPushNotificationsAsync, sendPushNotification } from "@utils/PushNotifications";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SplashScreen = () => {
   const navigation = useNavigation<RootNavigatorParamList>(); // navigation: 스크린 네비게이션
 
   // 스플래시 화면이 켜지고 시간이 지나면 없어지기
   useEffect(() => {
+    // AsyncStorage.clear();
     setTimeout(() => {
       navigation.navigate("TabNavigator");
     }, 3000);

@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useColorScheme } from "react-native";
 import { NavigationContainer } from "@react-navigation/native"; // StyledComponents - ThemeProvider
 import { SafeAreaProvider } from "react-native-safe-area-context"; // SafeArea
+import { ThemeProvider } from "styled-components/native";
 import * as SplashScreen from "expo-splash-screen"; // SplashScreen
 import * as Font from "expo-font"; // Font
-
 import { darkTheme, lightTheme } from "./theme";
-import { RootNavigator } from "./src/navigations/RootNavigator";
-import { ThemeProvider } from "styled-components/native";
-import { useColorScheme } from "react-native";
+
+import { RootNavigator } from "@navigations/RootNavigator";
 
 // SplashScreen 자동 숨김 방지
 SplashScreen.preventAutoHideAsync();

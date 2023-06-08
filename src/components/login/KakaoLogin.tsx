@@ -1,7 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import React, { useRef } from "react";
-import qs from "qs";
 import { WebView } from "react-native-webview";
 import styled from "styled-components/native";
 

@@ -1,7 +1,5 @@
 import React from "react";
-import { Image } from "react-native";
 import styled from "styled-components/native";
-import LottieView from "lottie-react-native";
 
 interface MediaContainerProps {
   type: number;
@@ -43,11 +41,7 @@ const MediaContainer = ({ type }: MediaContainerProps) => {
       mediaComponent = null;
   }
 
-  return (
-    <Wrapper>
-      {mediaComponent}
-    </Wrapper>
-  );
+  return <Wrapper>{mediaComponent}</Wrapper>;
 };
 
 export default MediaContainer;

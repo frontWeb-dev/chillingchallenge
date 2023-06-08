@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 
-import LongButton from "../../components/mission/LongButton";
-import ImageUploader from "../../components/imageUpload/ImageUploader";
-import TextUploader from "../../components/TextUpload/TextUploader";
-import { useLongTextStore, useShortTextStore } from "../../store/store";
+import { useLongTextStore, useShortTextStore } from "@store/store";
+import ImageUploader from "@components/imageUpload/ImageUploader";
+import TextUploader from "@components/TextUpload/TextUploader";
+import LongButton from "@components/mission/LongButton";
 
 interface InProgressPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;

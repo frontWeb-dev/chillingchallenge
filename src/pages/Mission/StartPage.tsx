@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components/native";
 
-import LongButton from "../../components/mission/LongButton";
-import Margin from "../../components/Margin";
-
-import { setMissionState } from "../../utils/MissionState";
+import LongButton from "@components/mission/LongButton";
+import { setMissionState } from "@utils/MissionState";
 
 interface StartPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;

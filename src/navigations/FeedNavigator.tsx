@@ -1,7 +1,8 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import FeedScreen from "../screens/Feed/FeedScreen";
-import FeedDetailScreen from "../screens/Feed/FeedDetailScreen";
+
+import FeedScreen from "@screens/Feed/FeedScreen";
+import FeedDetailScreen from "@screens/Feed/FeedDetailScreen";
 
 export type UserNavigatorParamList = {
   [x: string]: any;

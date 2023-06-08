@@ -1,13 +1,13 @@
 import React from "react";
 import dayjs from "dayjs";
 import { ScrollView } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 
-import LongButton from "../../components/mission/LongButton";
-import { useNavigation } from "@react-navigation/native";
-import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
-import Happiness from "../../components/happy/Happiness";
-import { setAttendance } from "../../utils/Attendance";
+import { MissionNavigatorParamList } from "@navigations/MissionNavigator";
+import { setAttendance } from "@utils/Attendance";
+import Happiness from "@components/happy/Happiness";
+import LongButton from "@components/mission/LongButton";
 
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;

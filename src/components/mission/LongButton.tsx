@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components/native";
-import { useNavigation } from "@react-navigation/native";
-
-import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
 
 interface LongButtonProps {
   text: string;

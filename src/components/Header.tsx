@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
-import { Ionicons } from "@expo/vector-icons";
 import Margin from "./Margin";
 
 interface HeaderProps {

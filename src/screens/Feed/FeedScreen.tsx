@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Text } from "react-native";
-import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-
-import styled from "styled-components/native";
-import { FeedData, feeds } from "../../mocks/feeds";
-import { MissionData, missions } from "../../mocks/missions";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
+import styled from "styled-components/native";
+
+import { FeedData, feeds } from "@mocks/feeds";
+import { MissionData, editedMissions } from "@mocks/missions";
+import Layout from "@components/Layout";
+import Header from "@components/Header";
 
 export type DetailParamsList = {
   FeedDetailScreen: { data: FeedData; missionData: MissionData };
@@ -34,7 +34,7 @@ const FeedScreen: React.FC = () => {
   };
 
   const renderItem = ({ item }: any) => {
-    const mission = missions.find((m) => m.id === item.missionId);
+    const mission = editedMissions.find((m) => m.id === item.missionId);
 
     return (
       <Feed onPress={() => feedPress(item, mission!)}>
@@ -43,7 +43,11 @@ const FeedScreen: React.FC = () => {
           <Date>2023-05-30</Date>
         </TitleView>
         <ContentsView>
-          <Image source={mission?.bgImage!} />
+          {mission?.type === 1 ? (
+            <Image source={{ uri: item.missionContents[0] }} />
+          ) : (
+            <Text>{item.missionContents.slice(0, -1).join(" ")}</Text>
+          )}
         </ContentsView>
         <Text>{item.missionContents[item.missionContents.length - 1]}</Text>
       </Feed>
@@ -111,10 +115,12 @@ const Date = styled.Text`
 `;
 
 const ContentsView = styled.View`
+  max-height: 450px;
   padding: 20px;
   margin-bottom: 20px;
   background-color: #fff;
   border-radius: 10px;
+  overflow: hidden;
 `;
 
 const Image = styled.Image`

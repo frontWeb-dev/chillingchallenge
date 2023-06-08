@@ -1,10 +1,11 @@
 import React from "react";
-import { View, Text, Button, TouchableOpacity, Platform } from "react-native";
+import { View, Button, Platform } from "react-native";
 
-import Layout from "../components/Layout";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/core";
 import { NavigationProp } from "@react-navigation/native";
+
+import Layout from "@components/Layout";
 
 export type RootStackParamList = {
   KakaoLogin: { screen: string } | undefined;
