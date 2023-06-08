@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
-
-import { RootNavigatorParamList } from "../../navigations/RootNavigator";
+import { RootNavigatorParamList } from "@navigations/RootNavigator";
 
 const LongButton = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<RootNavigatorParamList>();
 
   const handlePress = () => {
     navigation.navigate("TabNavigator");
@@ -13,12 +12,8 @@ const LongButton = () => {
 
   return (
     <>
-      <Button
-        onPress={handlePress}
-      >
-        <ButtonText>
-          시작하기
-        </ButtonText>
+      <Button onPress={handlePress}>
+        <ButtonText>시작하기</ButtonText>
       </Button>
     </>
   );

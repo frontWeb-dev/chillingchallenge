@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 import { Ionicons } from "@expo/vector-icons";
-
-import { RootNavigatorParamList } from "../../navigations/RootNavigator";
+import { RootNavigatorParamList } from "@navigations/RootNavigator";
 
 interface OnBoardingFooterProps {
   step: number;
   setPageStatus: React.Dispatch<React.SetStateAction<number>>;
-  handleStepPress: (step: number) => void; 
+  handleStepPress: (step: number) => void;
 }
 
 const OnBoardingFooter = ({ step, setPageStatus, handleStepPress }: OnBoardingFooterProps) => {
@@ -46,10 +45,10 @@ const OnBoardingFooter = ({ step, setPageStatus, handleStepPress }: OnBoardingFo
     if (isButtonEnabled) {
       switch (step) {
         case 1:
-          handleStepPress(2); 
+          handleStepPress(2);
           break;
         case 2:
-          handleStepPress(3); 
+          handleStepPress(3);
           break;
         case 3:
           handleStepPress(4);
@@ -71,13 +70,8 @@ const OnBoardingFooter = ({ step, setPageStatus, handleStepPress }: OnBoardingFo
           <ProgressCircle isActive={step >= 2} />
           <ProgressCircle isActive={step >= 3} />
         </ProgressContainer>
-        <NextButton
-          onPress={handleNextButton}
-          disabled={!isButtonEnabled}
-        >
-          <NextButtonCircle
-            isEnabled={isButtonEnabled}
-          >
+        <NextButton onPress={handleNextButton} disabled={!isButtonEnabled}>
+          <NextButtonCircle isEnabled={isButtonEnabled}>
             <Ionicons name="chevron-forward" size={24} color="#fff" />
           </NextButtonCircle>
         </NextButton>
@@ -123,7 +117,8 @@ const ProgressCircle = styled.View<{ isActive: boolean }>`
   width: 11px;
   height: 11px;
   border-radius: 11px;
-  background-color: ${(props) => (props.isActive ? props.theme.color.green_200 : props.theme.color.green_100)};
+  background-color: ${(props) =>
+    props.isActive ? props.theme.color.green_200 : props.theme.color.green_100};
 `;
 
 const NextButton = styled.TouchableOpacity`
@@ -141,5 +136,6 @@ const NextButtonCircle = styled.View<{ isEnabled: boolean }>`
   justify-content: center;
   align-items: center;
   border-radius: 24px;
-  background-color: ${(props) => (props.isEnabled ? props.theme.color.green_200 : props.theme.color.green_100)};
+  background-color: ${(props) =>
+    props.isEnabled ? props.theme.color.green_200 : props.theme.color.green_100};
 `;

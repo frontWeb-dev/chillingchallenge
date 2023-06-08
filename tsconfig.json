@@ -11,7 +11,18 @@
     "strict": true,
     "target": "esnext",
     "baseUrl": "./src",
-
+    "paths": {
+      "@assets/*": ["assets/*"],
+      "@components/*": ["components/*"],
+      "@global/*": ["global/*"],
+      "@hooks/*": ["hooks/*"],
+      "@mocks/*": ["mocks/*"],
+      "@navigations/*": ["navigations/*"],
+      "@pages/*": ["pages/*"],
+      "@screens/*": ["screens/*"],
+      "@store/*": ["store/*"],
+      "@utils/*": ["utils/*"]
+    },
     "types": ["styled-components-react-native"]
   },
   "exclude": [

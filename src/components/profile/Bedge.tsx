@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import bedges from "../../mocks/bedges";
+import bedges from "@mocks/bedges";
 
 const UserBedgeScreen = () => {
   const renderCell = (index: number) => {

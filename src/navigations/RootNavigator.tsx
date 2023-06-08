@@ -2,12 +2,12 @@ import React from "react";
 import { LinkingOptions } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import OnBoardingScreen from "../screens/OnBoarding";
-import MainScreen from "../screens/MainScreen";
-import KakaoLogin from "../components/login/KakaoLogin";
+import SplashScreen from "@screens/SplashScreen";
+import AfterLoginSplashScreen from "@screens/AfterLoginSplashScreen";
+import OnBoardingScreen from "@screens/OnBoarding";
+import MainScreen from "@screens/MainScreen";
 import TabNavigator from "./TabNavigator";
-import SplashScreen from "../screens/SplashScreen";
-import AfterLoginSplashScreen from "../screens/AfterLoginSplashScreen";
+import KakaoLogin from "@components/login/KakaoLogin";
 
 export type RootNavigatorParamList = {
   [x: string]: any;
@@ -33,35 +33,20 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 const RootNavigator: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="SplashScreen">
-      <Stack.Screen
-        name="SplashScreen"
-        component={SplashScreen}
-        options={{ headerShown: false}}
-      />
+      <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
       <Stack.Screen
         name="AfterLoginSplashScreen"
         component={AfterLoginSplashScreen}
-        options={{ headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="OnBoardingScreen"
         component={OnBoardingScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen 
-        name="MainScreen" 
-        component={MainScreen} 
-        options={{ headerShown: false }} 
-      />
-      <Stack.Screen 
-        name="TabNavigator" 
-        component={TabNavigator} 
-        options={{ headerShown: false }} 
-      />
-      <Stack.Screen 
-        name="KakaoLogin" 
-        component={KakaoLogin} 
-      />
+      <Stack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="KakaoLogin" component={KakaoLogin} />
     </Stack.Navigator>
   );
 };

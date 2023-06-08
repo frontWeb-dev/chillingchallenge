@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 
-import { loadRandomMissions } from "../utils/RandomizeMissions";
+import { loadRandomMissions } from "@utils/RandomizeMissions";
+import { RootNavigatorParamList } from "@navigations/RootNavigator";
 
 const AfterLoginSplashScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<RootNavigatorParamList>();
   const [todayMission, setTodayMission] = useState([]);
 
   useEffect(() => {
@@ -26,9 +27,7 @@ const AfterLoginSplashScreen = () => {
   return (
     <>
       <PageWrapper>
-        <TempText>
-          하이
-        </TempText>
+        <TempText>하이</TempText>
       </PageWrapper>
     </>
   );

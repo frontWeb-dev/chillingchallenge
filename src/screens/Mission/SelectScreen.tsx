@@ -2,14 +2,14 @@ import React, { useState, useCallback, useEffect } from "react";
 import styled from "styled-components/native";
 import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
-import { loadRandomMissions } from "../../utils/RandomizeMissions";
-import { MissionNavigatorParamList } from "../../navigations/MissionNavigator";
-import { MissionData } from "../../mocks/missions";
-import { getMissionState } from "../../utils/MissionState";
+import { MissionData } from "@mocks/missions";
+import { MissionNavigatorParamList } from "@navigations/MissionNavigator";
+import { loadRandomMissions } from "@utils/RandomizeMissions";
+import { getMissionState } from "@utils/MissionState";
 
-import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Card from "../../components/Card";
+import Layout from "@components/Layout";
+import Header from "@components/Header";
+import Card from "@components/Card";
 
 interface Time {
   hours: number;

@@ -1,4 +1,3 @@
-import bedges from "mocks/bedges";
 import React, { useState, useEffect } from "react";
 import { ImageURISource } from "react-native";
 import styled from "styled-components/native";

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
-
-import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Margin from "../../components/Margin";
-import StartPage from "../../pages/Mission/StartPage";
-import InProgressPage from "../../pages/Mission/InProgressPage";
-import CompletePage from "../../pages/Mission/CompletePage";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { MissionData } from "./SelectScreen";
-import { ImageURISource } from "react-native/types";
+
+import { MissionData } from "@mocks/missions";
+import { ImageURISource } from "react-native";
+
+import StartPage from "@pages/Mission/StartPage";
+import InProgressPage from "@pages/Mission/InProgressPage";
+import CompletePage from "@pages/Mission/CompletePage";
+
+import Layout from "@components/Layout";
+import Header from "@components/Header";
+import Margin from "@components/Margin";
 
 type RootStackParamList = {
   MissionScreen: { data: MissionData };

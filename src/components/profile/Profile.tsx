@@ -3,8 +3,7 @@ import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/core";
 
 import { Ionicons } from "@expo/vector-icons";
-
-import { UserNavigatorParamList } from "../../navigations/UserNavigator";
+import { UserNavigatorParamList } from "@navigations/UserNavigator";
 
 interface ProfileProps {
   username: string;

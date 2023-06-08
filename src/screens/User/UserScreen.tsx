@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 
-import Layout from "../../components/Layout";
-import Header from "../../components/Header";
-import Margin from "../../components/Margin";
-import Profile from "../../components/profile/Profile";
-import UserButton from "../../components/profile/UserButton";
-import Calendar from "../../components/profile/Calendar";
-import Bedge from "../../components/profile/Bedge";
-import Tree from "../../components/profile/Tree";
+import { useCalendar } from "@hooks/useCalendar";
+import bedges from "@mocks/bedges";
+import { getAttendance } from "@utils/Attendance";
 
-import { useCalendar } from "../../hooks/useCalendar";
-import { getAttendance } from "../../utils/Attendance";
-import bedges from "../../mocks/bedges";
+import Layout from "@components/Layout";
+import Header from "@components/Header";
+import Profile from "@components/profile/Profile";
+import Margin from "@components/Margin";
+import UserButton from "@components/profile/UserButton";
+import Calendar from "@components/profile/Calendar";
+import Bedge from "@components/profile/Bedge";
+import Tree from "@components/profile/Tree";
 
 const UserScreen: React.FC = () => {
   // state
@@ -38,7 +38,7 @@ const UserScreen: React.FC = () => {
 
   return (
     <Layout color="#10b767">
-      <Header text="마이페이지" color="#10b767"/>
+      <Header text="마이페이지" color="#10b767" />
       <Container>
         <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />
         <Margin props={30} />
