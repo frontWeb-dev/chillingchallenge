@@ -29,10 +29,10 @@ const SelectScreen: React.FC = () => {
   // 랜덤화된 미션 불러오기
   useEffect(() => {
     const loadMissions = async () => {
-      const data: string | undefined = await loadRandomMissions();
+      const data = await loadRandomMissions();
+      console.log(data);
       if (data) {
-        const temp = JSON.parse(data);
-        setTodayMission(temp);
+        setTodayMission([...data]);
         console.log(todayMission);
       }
     };
