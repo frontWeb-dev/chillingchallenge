@@ -56,7 +56,7 @@ const SelectScreen: React.FC = () => {
 
   // onPress: 미션 선택 함수
   const onPress = (badge: number, el: MissionData) => {
-    if (badge === 3) return;
+    if (badge === 2) return;
     navigation.navigate("MissionScreen", { data: el });
   };
 
@@ -104,14 +104,13 @@ const SelectScreen: React.FC = () => {
               return (
                 <Card
                   key={el.id}
-                  isDone={badge === 3}
-                  badge={badge}
+                  isDone={badge === 2}
                   image={el.bgImage}
                   onPress={() => onPress(badge, el)}
                 >
-                  <ContentView>
-                    <Title>{el.title}</Title>
-                    <Comment>{el.comment}</Comment>
+                  <ContentView isDone={badge === 2}>
+                    <Title isDone={badge === 2}>{el.title}</Title>
+                    <Comment isDone={badge === 2}>{el.comment}</Comment>
                   </ContentView>
                 </Card>
               );
@@ -147,22 +146,24 @@ const CardContainer = styled.View`
   gap: 20px;
 `;
 
-const ContentView = styled.View`
+const ContentView = styled.View<{ isDone: boolean }>`
   flex: 2;
   margin-right: 10px;
   justify-content: center;
   gap: 20px;
 `;
 
-const Title = styled.Text`
+const Title = styled.Text<{ isDone: boolean }>`
   font-size: 18px;
   font-family: "Bold";
   line-height: ${(props) => props.theme.font.title};
+  color: ${(props) => (props.isDone ? "rgba(0, 0, 0, 0.2)" : props.theme.color.textColor)};
 `;
 
-const Comment = styled.Text`
+const Comment = styled.Text<{ isDone: boolean }>`
   font-size: 13px;
   line-height: ${(props) => props.theme.font.smaller};
+  color: ${(props) => (props.isDone ? "rgba(0, 0, 0, 0.2)" : props.theme.color.textColor)};
 `;
 
 const DDate = styled.Text`
