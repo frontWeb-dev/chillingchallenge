@@ -5,22 +5,17 @@ import styled from "styled-components/native";
 interface CardProps {
   children: React.ReactNode;
   isDone: boolean;
-  badge: number;
   image: ImageURISource;
   onPress: () => void;
 }
-const Card = ({ children, isDone, badge, image, onPress }: CardProps) => {
-  const [badgeText, setBadgeText] = useState("");
+const Card = ({ children, isDone, image, onPress }: CardProps) => {
+  const [icon, setIcon] = useState<ImageURISource>(image);
 
   useEffect(() => {
-    if (badge === 3) {
-      setBadgeText("진행 완료");
-    } else if (badge === 2) {
-      setBadgeText("진행 중");
-    } else {
-      setBadgeText("");
+    if (isDone) {
+      setIcon(require("@assets/illustrations/logo_0.png"));
     }
-  }, [badge]);
+  }, [isDone]);
 
   return (
     <Container
@@ -38,15 +33,10 @@ const Card = ({ children, isDone, badge, image, onPress }: CardProps) => {
         elevation: 5,
       }}
     >
-      {badgeText !== "" && (
-        <Badge>
-          <Text>{badgeText}</Text>
-        </Badge>
-      )}
       <Contents>
         {children}
         <ImageView>
-          <BgImage source={image} resizeMode="contain"></BgImage>
+          <BgImage source={icon} resizeMode="contain"></BgImage>
         </ImageView>
       </Contents>
     </Container>
@@ -79,22 +69,4 @@ const ImageView = styled.View`
 const BgImage = styled.Image`
   width: 100px;
   height: 100px;
-`;
-
-const Badge = styled.View`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 48px;
-  padding: 4px;
-  justify-content: center;
-  background-color: #d6d6d6;
-  border-radius: 5px;
-`;
-
-const Text = styled.Text`
-  font-size: 13px;
-  line-height: ${(props) => props.theme.font.smaller};
-  text-align: center;
-  color: ${(props) => props.theme.color.textColor};
 `;

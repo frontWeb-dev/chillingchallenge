@@ -8,6 +8,7 @@ import { MissionNavigatorParamList } from "@navigations/MissionNavigator";
 import { setAttendance } from "@utils/Attendance";
 import Happiness from "@components/happy/Happiness";
 import LongButton from "@components/mission/LongButton";
+import { setMissionState } from "@utils/MissionState";
 
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -15,16 +16,18 @@ interface CompletePageProps {
   type: number;
 }
 
-const CompletePage = ({ setMissionStatus }: CompletePageProps) => {
+const CompletePage = ({ id }: CompletePageProps) => {
   const navigation = useNavigation<MissionNavigatorParamList>();
 
   const handleUploadButton = () => {
     const today = dayjs();
     const formattedDate = today.format("YYYY-MM-DD");
     setAttendance(formattedDate);
+    setMissionState(id, 2);
     navigation.navigate("SelectScreen");
   };
 
+  console.log(id);
   return (
     <>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
