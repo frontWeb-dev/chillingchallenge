@@ -19,15 +19,14 @@ interface CompletePageProps {
 const CompletePage = ({ id }: CompletePageProps) => {
   const navigation = useNavigation<MissionNavigatorParamList>();
 
-  const handleUploadButton = () => {
+  const handleUploadButton = async () => {
     const today = dayjs();
     const formattedDate = today.format("YYYY-MM-DD");
     setAttendance(formattedDate);
-    setMissionState(id, 2);
+    await setMissionState(id, 3);
     navigation.navigate("SelectScreen");
   };
 
-  console.log(id);
   return (
     <>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>

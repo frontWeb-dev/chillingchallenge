@@ -30,10 +30,8 @@ const SelectScreen: React.FC = () => {
   useEffect(() => {
     const loadMissions = async () => {
       const data = await loadRandomMissions();
-      console.log(data);
       if (data) {
         setTodayMission([...data]);
-        console.log(todayMission);
       }
     };
     loadMissions();
@@ -56,8 +54,8 @@ const SelectScreen: React.FC = () => {
 
   // onPress: 미션 선택 함수
   const onPress = (badge: number, el: MissionData) => {
-    if (badge === 2) return;
-    navigation.navigate("MissionScreen", { data: el });
+    if (badge === 3) return;
+    navigation.navigate("MissionScreen", { data: el, badge: badge });
   };
 
   // 남은 시간 업데이트 함수
@@ -104,13 +102,13 @@ const SelectScreen: React.FC = () => {
               return (
                 <Card
                   key={el.id}
-                  isDone={badge === 2}
+                  isDone={badge === 3}
                   image={el.bgImage}
                   onPress={() => onPress(badge, el)}
                 >
-                  <ContentView isDone={badge === 2}>
-                    <Title isDone={badge === 2}>{el.title}</Title>
-                    <Comment isDone={badge === 2}>{el.comment}</Comment>
+                  <ContentView isDone={badge === 3}>
+                    <Title badge={badge}>{el.title}</Title>
+                    <Comment isDone={badge === 3}>{el.comment}</Comment>
                   </ContentView>
                 </Card>
               );
@@ -153,11 +151,16 @@ const ContentView = styled.View<{ isDone: boolean }>`
   gap: 20px;
 `;
 
-const Title = styled.Text<{ isDone: boolean }>`
+const Title = styled.Text<{ badge: number }>`
   font-size: 18px;
   font-family: "Bold";
   line-height: ${(props) => props.theme.font.title};
-  color: ${(props) => (props.isDone ? "rgba(0, 0, 0, 0.2)" : props.theme.color.textColor)};
+  color: ${(props) =>
+    props.badge === 3
+      ? "rgba(0, 0, 0, 0.2)"
+      : props.badge === 2
+      ? props.theme.color.green_200
+      : props.theme.color.textColor};
 `;
 
 const Comment = styled.Text<{ isDone: boolean }>`

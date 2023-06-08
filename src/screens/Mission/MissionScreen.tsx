@@ -13,11 +13,12 @@ import Header from "@components/Header";
 import Margin from "@components/Margin";
 
 type RootStackParamList = {
-  MissionScreen: { data: MissionData };
+  MissionScreen: { data: MissionData; badge: number };
 };
 
 const MissionScreen: React.FC = () => {
   const { params } = useRoute<RouteProp<RootStackParamList, "MissionScreen">>();
+  const { data, badge } = params;
 
   const [id, setId] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
@@ -26,18 +27,23 @@ const MissionScreen: React.FC = () => {
   const [method, setMethod] = useState<string | string[]>("");
   const [bgImage, setBgImage] = useState<ImageURISource>();
   const [type, setType] = useState<number>(0);
+  const [missionStatus, setMissionStatus] = useState("Start");
 
   useEffect(() => {
-    setId(params?.data?.id);
-    setTitle(params?.data?.title);
-    setComment(params?.data?.comment);
-    setDesc(params?.data?.desc);
-    setMethod(params?.data?.method);
-    setBgImage(params?.data?.bgImage);
-    setType(params?.data?.type);
-  }, [params]);
+    setId(data?.id);
+    setTitle(data?.title);
+    setComment(data?.comment);
+    setDesc(data?.desc);
+    setMethod(data?.method);
+    setBgImage(data?.bgImage);
+    setType(data?.type);
+  }, [data]);
 
-  const [missionStatus, setMissionStatus] = useState("Start");
+  // 진행 중 상태일때는 미션 시작 화면 건너 뜀
+  useEffect(() => {
+    console.log(badge);
+    badge === 2 ? setMissionStatus("InProgress") : null;
+  }, [badge]);
 
   let pageComponent;
 
