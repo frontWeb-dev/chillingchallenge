@@ -14,7 +14,7 @@ const SplashScreen = () => {
 
   // 스플래시 화면이 켜지고 시간이 지나면 없어지기
   useEffect(() => {
-    // AsyncStorage.clear();
+    AsyncStorage.clear();
     setTimeout(() => {
       navigation.navigate("TabNavigator");
     }, 3000);
