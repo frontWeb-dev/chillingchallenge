@@ -63,6 +63,16 @@ const SelectScreen: React.FC = () => {
   // 남은 시간 업데이트 함수
   const updateRemainingTime = useCallback(() => {
     const currentTime = new Date();
+
+    const Today10AM = new Date(
+      currentTime.getFullYear(),
+      currentTime.getMonth(),
+      currentTime.getDate(),
+      10,
+      0,
+      0
+    );
+
     const nextDay10AM = new Date(
       currentTime.getFullYear(),
       currentTime.getMonth(),
@@ -71,7 +81,10 @@ const SelectScreen: React.FC = () => {
       0,
       0
     );
-    const timeDiff = nextDay10AM.getTime() - currentTime.getTime();
+
+    const next10AM = currentTime.getHours() < 10 ? Today10AM : nextDay10AM;
+
+    const timeDiff = next10AM.getTime() - currentTime.getTime();
 
     const hours = Math.floor(timeDiff / (1000 * 60 * 60));
     const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
