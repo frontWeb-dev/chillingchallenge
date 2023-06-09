@@ -19,21 +19,23 @@ const UserBedgeScreen = () => {
 
   return (
     <Container>
-      <Row>
-        {renderCell(0)}
-        {renderCell(1)}
-        {renderCell(2)}
-      </Row>
-      <Row>
-        {renderCell(3)}
-        {renderCell(4)}
-        {renderCell(5)}
-      </Row>
-      <Row>
-        {renderCell(6)}
-        {renderCell(7)}
-        {renderCell(8)}
-      </Row>
+      <Wrapper>
+        <Row>
+          {renderCell(0)}
+          {renderCell(1)}
+          {renderCell(2)}
+        </Row>
+        <Row>
+          {renderCell(3)}
+          {renderCell(4)}
+          {renderCell(5)}
+        </Row>
+        <Row>
+          {renderCell(6)}
+          {renderCell(7)}
+          {renderCell(8)}
+        </Row>
+      </Wrapper>
     </Container>
   );
 };
@@ -42,6 +44,15 @@ export default UserBedgeScreen;
 
 const Container = styled.ScrollView`
   width: 100%;
+`;
+
+const Wrapper = styled.View`
+  width: 100%;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
 `;
 
 const Bedge = styled.View`
@@ -60,7 +71,7 @@ const BedgeImage = styled.Image`
 `;
 
 const BedgeName = styled.Text<{ type: string }>`
-  top: -10px;
+  top: 0px;
   font-size: 14px;
   color: ${(props) =>
     props.type === "active" ? props.theme.color.textColor : props.theme.color.subTextColor};
@@ -69,4 +80,5 @@ const BedgeName = styled.Text<{ type: string }>`
 
 const Row = styled.View`
   flex-direction: row;
+  padding: 10px 0;
 `;

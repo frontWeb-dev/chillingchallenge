@@ -18,6 +18,6 @@ const Layout = ({ color, children }: LayoutProps) => {
 const Inner = styled.View<{ color?: string }>`
   width: 100%;
   flex: 1;
-  background-color: ${(props) => props.color || props.theme.color.mainBgColor};
+  background-color: #fff;
 `;
 export default Layout;

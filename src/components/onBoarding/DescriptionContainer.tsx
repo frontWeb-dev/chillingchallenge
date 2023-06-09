@@ -9,7 +9,12 @@ interface DescriptionContainerProps {
   pageIndex: number;
 }
 
-const DescriptionContainer = ({ headerText, contentText, pageIndex, activePageIndex }: DescriptionContainerProps) => {
+const DescriptionContainer = ({
+  headerText,
+  contentText,
+  pageIndex,
+  activePageIndex,
+}: DescriptionContainerProps) => {
   const headerTextAnim = useRef(new Animated.Value(0)).current;
   const contentTextAnim = useRef(new Animated.Value(0)).current;
 
@@ -18,7 +23,7 @@ const DescriptionContainer = ({ headerText, contentText, pageIndex, activePageIn
       Animated.timing(headerTextAnim, {
         toValue: pageIndex === activePageIndex ? 1 : 0,
         useNativeDriver: true,
-        duration: 1000,
+        duration: 500,
         easing: Easing.out(Easing.linear),
       }).start();
       setTimeout(() => {
@@ -27,7 +32,7 @@ const DescriptionContainer = ({ headerText, contentText, pageIndex, activePageIn
           useNativeDriver: true,
           easing: Easing.out(Easing.linear),
         }).start();
-      }, 1000);
+      }, 500);
     };
 
     startAnimation();
@@ -49,8 +54,10 @@ const Wrapper = styled.View`
   flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 30px;
+  margin-bottom: 60px;
 `;
 
 const HeaderText = styled(Animated.Text)`

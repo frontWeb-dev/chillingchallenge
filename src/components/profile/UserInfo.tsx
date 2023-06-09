@@ -4,27 +4,22 @@ import styled from "styled-components/native";
 interface UserInfoProps {
   name: string;
   email: string;
-};
+}
 
-const UserInfo = ({name, email} : UserInfoProps) => {
-
+const UserInfo = ({ name, email }: UserInfoProps) => {
   return (
     <>
       <Wrapper>
         <InfoContainer>
           <InfoHeader>닉네임</InfoHeader>
           <InputContainer>
-            <InfoInput
-              placeholder={name}
-            />
+            <InfoInput placeholder={name} />
           </InputContainer>
         </InfoContainer>
         <InfoContainer>
           <InfoHeader>이메일</InfoHeader>
           <InputContainer>
-            <InfoInput
-              placeholder={email}
-            />
+            <InfoInput placeholder={email} />
           </InputContainer>
         </InfoContainer>
       </Wrapper>
@@ -67,6 +62,4 @@ const InputContainer = styled.View`
   border-radius: 12px;
 `;
 
-const InfoInput = styled.TextInput`
-
-`;
+const InfoInput = styled.TextInput``;

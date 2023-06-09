@@ -12,9 +12,13 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
   return (
     <>
       <ButtonListContainer>
-        <ButtonContainer onPress={() => setIsSelected(3)} isSelected={isSelected === 3}>
+        <ButtonContainer
+          activeOpacity={0.8}
+          onPress={() => setIsSelected(3)}
+          isSelected={isSelected === 3}
+        >
           <Ionicons name="calendar" size={30} color={isSelected === 3 ? "#6ebe75" : "#c2c2c2"} />
-          <ButtonText>출석 확인</ButtonText>
+          <ButtonText isSelected={isSelected === 3}>출석 확인</ButtonText>
         </ButtonContainer>
         <ButtonContainer
           activeOpacity={0.8}
@@ -26,15 +30,19 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
             size={30}
             color={isSelected === 1 ? "#6ebe75" : "#c2c2c2"}
           />
-          <ButtonText>배지 보기</ButtonText>
+          <ButtonText isSelected={isSelected === 1}>배지 보기</ButtonText>
         </ButtonContainer>
-        <ButtonContainer onPress={() => setIsSelected(2)} isSelected={isSelected === 2}>
+        <ButtonContainer
+          activeOpacity={0.8}
+          onPress={() => setIsSelected(2)}
+          isSelected={isSelected === 2}
+        >
           <MaterialCommunityIcons
             name="tree"
             size={30}
             color={isSelected === 2 ? "#6ebe75" : "#c2c2c2"}
           />
-          <ButtonText>나무 보기</ButtonText>
+          <ButtonText isSelected={isSelected === 2}>나무 보기</ButtonText>
         </ButtonContainer>
       </ButtonListContainer>
     </>
@@ -64,7 +72,7 @@ const ButtonContainer = styled.TouchableOpacity<{ isSelected: boolean }>`
   border-bottom-color: ${(props) => (props.isSelected ? "#6ebe75" : "#fff")};
 `;
 
-const ButtonText = styled.Text`
-  font-size: 13px;
-  font-family: "Medium";
+const ButtonText = styled.Text<{ isSelected: boolean }>`
+  font-size: 16px;
+  font-family: ${(props) => (props.isSelected == true ? "Bold" : "Light")};
 `;

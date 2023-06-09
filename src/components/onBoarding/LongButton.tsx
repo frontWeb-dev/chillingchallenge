@@ -7,7 +7,7 @@ const LongButton = () => {
   const navigation = useNavigation<RootNavigatorParamList>();
 
   const handlePress = () => {
-    navigation.navigate("TabNavigator");
+    navigation.navigate("AfterLoginSplashScreen");
   };
 
   return (

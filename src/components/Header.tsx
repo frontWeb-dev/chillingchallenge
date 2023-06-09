@@ -20,7 +20,6 @@ const Header = ({ text, color, noBack = false }: HeaderProps) => {
 
   return (
     <>
-      <Margin props={30} />
       <HeaderView color={color}>
         {noBack && (
           <Button activeOpacity={0.8} onPress={handleBackButton}>
@@ -41,10 +40,11 @@ const HeaderView = styled.View<{ color?: string }>`
   width: 100%;
   flex-direction: row;
   background-color: ${(props) => props.color || props.theme.color.white};
-  padding: 0px 30px;
-  margin-bottom: 10px;
+  padding: 0px 35px;
+  padding-bottom: 20px;
   justify-content: space-between;
   align-items: center;
+  padding-top: 20px;
 `;
 
 const Text = styled.Text<{ color?: string }>`
@@ -58,6 +58,7 @@ const Button = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  transform: translateX(-15px);
 `;
 
 const Container = styled.View`

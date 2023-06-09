@@ -64,6 +64,7 @@ const ImageView = styled.View`
   justify-content: center;
   align-items: center;
   padding: 10px;
+  padding-right: 25px;
 `;
 
 const BgImage = styled.Image`

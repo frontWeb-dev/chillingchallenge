@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
+import { Keyboard, TouchableWithoutFeedback } from "react-native";
 
 interface InProgressPageProps {
   type: number;
@@ -13,13 +14,20 @@ const TextUploader = ({ type, setForm, form }: InProgressPageProps) => {
   };
 
   return (
-    <TextForm>
-      <TextInput
-        placeholder="텍스트를 입력하세요."
-        onChangeText={(text: string) => onChangeText(text)}
-        value={form}
-      />
-    </TextForm>
+    <TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      <TextForm>
+        <TextInput
+          placeholder="텍스트를 입력하세요."
+          onChangeText={(text: string) => onChangeText(text)}
+          value={form}
+          multiline
+        />
+      </TextForm>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -33,7 +41,10 @@ const TextForm = styled.View`
   flex: 1;
   justify-content: space-between;
   border: 1px solid ${(props) => props.theme.color.borderColor};
-  border-radius: 20px;
+  border-radius: 14px;
 `;
 
-const TextInput = styled.TextInput``;
+const TextInput = styled.TextInput`
+  font-size: 16px;
+  line-height: ${(props) => props.theme.font.title};
+`;

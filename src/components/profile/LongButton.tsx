@@ -3,15 +3,13 @@ import styled from "styled-components/native";
 
 interface LongButtonProps {
   handlePress: () => void;
-};
+}
 
-const LongButton = ({handlePress} : LongButtonProps) => {
+const LongButton = ({ handlePress }: LongButtonProps) => {
   return (
     <>
       <ButtonContainer onPress={handlePress}>
-        <ButtonText>
-          변경하기
-        </ButtonText>
+        <ButtonText>변경하기</ButtonText>
       </ButtonContainer>
     </>
   );

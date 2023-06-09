@@ -1,13 +1,12 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, Text } from "react-native";
 import styled from "styled-components/native";
 
 interface TreeProps {
   badgeNumber: number;
-};
+}
 
-const Tree = ({badgeNumber} : TreeProps) => {
-
+const Tree = ({ badgeNumber }: TreeProps) => {
   const getImageSource = (badgeNumber: number) => {
     const images: { [key: number]: any } = {
       0: require("../../assets/trees/tree_0.png"),
@@ -21,7 +20,7 @@ const Tree = ({badgeNumber} : TreeProps) => {
       8: require("../../assets/trees/tree_8.png"),
       9: require("../../assets/trees/tree_9.png"),
     };
-  
+
     return images[badgeNumber];
   };
 
@@ -29,10 +28,10 @@ const Tree = ({badgeNumber} : TreeProps) => {
     <ScrollView>
       <PageWrapper>
         <BadgeText>
-          배지 {badgeNumber}개를 모았어요.
+          배지 <BoldText>{badgeNumber}개</BoldText>를 모았어요!
         </BadgeText>
         <ImageContainer>
-          <TreeImage source={getImageSource(badgeNumber)}/>
+          <TreeImage source={getImageSource(badgeNumber)} />
         </ImageContainer>
       </PageWrapper>
     </ScrollView>
@@ -51,13 +50,14 @@ const PageWrapper = styled.View`
 `;
 
 const BadgeText = styled.Text`
-  font-size: 16px;
-  font-family: "Bold";
+  font-size: 18px;
+  font-family: "Medium";
   line-height: ${(props) => props.theme.font.subtitle};
   margin-bottom: 15px;
 `;
 
 const ImageContainer = styled.View`
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -65,7 +65,12 @@ const ImageContainer = styled.View`
 `;
 
 const TreeImage = styled.Image`
-  width: 300px;
-  height: 300px;
+  width: 360px;
+  height: 360px;
   object-fit: scale-down;
+`;
+
+const BoldText = styled.Text`
+  color: ${(props) => props.theme.color.green_200};
+  font-family: "Bold";
 `;
