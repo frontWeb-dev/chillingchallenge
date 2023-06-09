@@ -4,9 +4,13 @@ import styled from "styled-components/native";
 import HappyStar from "./HappyStar";
 import HappyText from "./HappyText";
 
-const Happiness: React.FC = () => {
+interface HappyTextProps {
+  happyText: string;
+  setHappyText: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Happiness = ({ happyText, setHappyText }: HappyTextProps) => {
   const [happyPoint, setHappyPoint] = useState(0);
-  const [happyText, setHappyText] = useState("");
 
   return (
     <>
