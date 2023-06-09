@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { ref, set } from "@firebase/database"; // 백 서버가 성공하면 주석처리
 
 import { database } from "../../../firebaseConfig"; // 백 주석처리
-import { useImageStore, useLongTextStore } from "@store/store";
+import { useImageStore, useTextStore } from "@store/store";
 import { MissionNavigatorParamList } from "@navigations/MissionNavigator";
 import { setMissionState } from "@utils/MissionState";
 import { setAttendance } from "@utils/Attendance";
@@ -26,7 +26,7 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
   const [loading, setLoading] = useState(true);
   const [happyText, setHappyText] = useState("");
   const { uri, addUri, clearUri } = useImageStore(); // 이미지 uri 전역 상태 저장
-  const { texts, addTexts, clearTexts } = useLongTextStore(); //  텍스트 전역 상태 저장
+  const { texts, addTexts, clearTexts } = useTextStore(); //  텍스트 전역 상태 저장
 
   // 미션 등록 함수
   const postData = async (key: any) => {

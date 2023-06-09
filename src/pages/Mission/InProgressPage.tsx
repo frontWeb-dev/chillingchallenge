@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { ref, uploadBytes, getDownloadURL } from "@firebase/storage";
 
-import { useImageStore, useLongTextStore } from "@store/store";
+import { useImageStore, useTextStore } from "@store/store";
 import { storage } from "../../../firebaseConfig";
 
 import ImageUploader from "@components/imageUpload/ImageUploader";
@@ -23,7 +23,7 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
   const [imageSelected, setImageSelected] = useState(""); // state: 이미지 uri
 
   const { uri, addUri, clearUri } = useImageStore(); // 이미지 uri 전역 상태 저장
-  const { texts, addTexts, clearTexts } = useLongTextStore(); // 텍스트 전역 상태 저장
+  const { texts, addTexts, clearTexts } = useTextStore(); // 텍스트 전역 상태 저장
 
   // 사진 업로드 함수
   const uploadImage = async () => {
