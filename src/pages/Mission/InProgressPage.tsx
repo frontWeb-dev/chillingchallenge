@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 
-import { useLongTextStore, useShortTextStore } from "@store/store";
+import { useLongTextStore } from "@store/store";
 import ImageUploader from "@components/imageUpload/ImageUploader";
 import TextUploader from "@components/TextUpload/TextUploader";
 import LongButton from "@components/mission/LongButton";
@@ -19,7 +19,6 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
   const [form, setForm] = useState("");
   const [imageSelected, setImageSelected] = useState("");
 
-  const { text, addText, clearText } = useShortTextStore();
   const { texts, addTexts, clearTexts } = useLongTextStore();
 
   let uploader;
@@ -40,22 +39,22 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
 
   const handleSubmit = () => {
     if (type === 2) {
-      addText(form);
+      addTexts(form);
       setMissionStatus("Complete");
     } else if (type === 3) {
       addTexts(form);
       setForm("");
       setPage(page + 1);
-      if (page === 4) setMissionStatus("Complete");
+      if (page === 3) setMissionStatus("Complete");
     } else if (type === 1) {
       setMissionStatus("Complete");
     }
   };
 
   useEffect(() => {
+    console.log(form);
     console.log(texts);
-    console.log(text);
-  }, [texts, text]);
+  }, [texts]);
 
   return (
     <Wrapper>

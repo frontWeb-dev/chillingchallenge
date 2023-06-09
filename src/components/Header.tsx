@@ -41,8 +41,8 @@ const HeaderView = styled.View<{ color?: string }>`
   width: 100%;
   flex-direction: row;
   background-color: ${(props) => props.color || props.theme.color.white};
-  padding: 0px 20px;
-  margin-bottom: 15px;
+  padding: 0px 30px;
+  margin-bottom: 10px;
   justify-content: space-between;
   align-items: center;
 `;
