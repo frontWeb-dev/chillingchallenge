@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 
 import LongButton from "@components/mission/LongButton";
 import { setMissionState } from "@utils/MissionState";
+import { ImageURISource, ScrollView } from "react-native";
 
 interface StartPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -10,24 +11,25 @@ interface StartPageProps {
   comment: string;
   desc: string;
   type: number;
+  bgImage: ImageURISource;
 }
 
-const StartPage = ({ setMissionStatus, comment, desc, id }: StartPageProps) => {
+const StartPage = ({ setMissionStatus, comment, desc, id, bgImage }: StartPageProps) => {
   const handleStartMission = async () => {
     await setMissionState(id, 2);
     setMissionStatus("InProgress");
   };
 
   return (
-    <>
-      <Wrapper>
-        <ContentContainer>
-          <MissionQuote>"{comment}"</MissionQuote>
-          <Description>{desc}</Description>
-        </ContentContainer>
-        <LongButton text="시작하기" onSubmit={handleStartMission} />
-      </Wrapper>
-    </>
+    <Wrapper>
+      <ImageContainer>
+        <Image source={bgImage} />
+      </ImageContainer>
+      <ContentContainer>
+        <Description>{desc}</Description>
+      </ContentContainer>
+      <LongButton text="시작하기" onSubmit={handleStartMission} />
+    </Wrapper>
   );
 };
 
@@ -42,27 +44,31 @@ const Wrapper = styled.View`
   padding: 10px 20px;
 `;
 
+const ImageContainer = styled.View`
+  margin-bottom: 20px;
+  height: 230px;
+`;
+
+const Image = styled.Image`
+  width: 250px;
+  height: 100%;
+  object-fit: contain;
+`;
+
 const ContentContainer = styled.View`
-  flex: 1;
+  margin-bottom: 30px;
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 50px;
-`;
-
-const MissionQuote = styled.Text`
-  font-size: 18px;
-  font-family: "Light";
-  font-style: italic;
-  color: ${(props) => props.theme.color.subTextColor};
-  text-align: center;
+  gap: 20px;
 `;
 
 const Description = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   font-family: "Regular";
   color: dimgrey;
-  line-height: ${(props) => props.theme.font.small};
+  line-height: ${(props) => props.theme.font.normal};
   text-align: center;
 `;

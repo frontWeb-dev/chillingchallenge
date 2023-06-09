@@ -10,6 +10,7 @@ import { getMissionState } from "@utils/MissionState";
 import Layout from "@components/Layout";
 import Header from "@components/Header";
 import Card from "@components/Card";
+import { Image } from "react-native";
 
 interface Time {
   hours: number;
@@ -107,7 +108,11 @@ const SelectScreen: React.FC = () => {
                   onPress={() => onPress(badge, el)}
                 >
                   <ContentView isDone={badge === 3}>
-                    <Title badge={badge}>{el.title}</Title>
+                    <TitleView>
+                      <Title badge={badge}>{el.title}</Title>
+                      {badge === 2 && <Image source={require("@assets/progress.png")}></Image>}
+                    </TitleView>
+
                     <Comment isDone={badge === 3}>{el.comment}</Comment>
                   </ContentView>
                 </Card>
@@ -149,6 +154,12 @@ const ContentView = styled.View<{ isDone: boolean }>`
   margin-right: 10px;
   justify-content: center;
   gap: 20px;
+`;
+
+const TitleView = styled.View`
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 `;
 
 const Title = styled.Text<{ badge: number }>`
