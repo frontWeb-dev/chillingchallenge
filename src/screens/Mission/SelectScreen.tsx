@@ -11,6 +11,7 @@ import Layout from "@components/Layout";
 import Header from "@components/Header";
 import Card from "@components/Card";
 import { Image } from "react-native";
+import ImageText from "@components/ImageText";
 
 interface Time {
   hours: number;
@@ -94,6 +95,7 @@ const SelectScreen: React.FC = () => {
   return (
     <Layout>
       <Header text="오늘의 챌링" />
+      <ImageText text="하루 24시간이 즐거워지는 간단한 마법!" image={require("@assets/time.png")} />
       <Container>
         {todayMission && (
           <CardContainer>
