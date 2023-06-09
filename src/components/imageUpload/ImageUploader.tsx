@@ -2,15 +2,19 @@ import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import * as ImagePicker from "expo-image-picker";
 
+import { getProfileImage } from "@utils/ProfileImage";
+
 interface ImageUploaderProps {
   setImageSelected: (imageUri: string) => void;
   uploaderType: string;
 }
 
 const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) => {
-  const [imageUri, setImageUri] = useState<string | null>(null);
-  const [isImageUploaded, setIsImageUploaded] = useState<boolean>(false);
+  const [image, setImage] = useState(""); // state: 기존 프로필 이미지 주소
+  const [imageUri, setImageUri] = useState<string | null>(null); // state: 이미지 URI
+  const [isImageUploaded, setIsImageUploaded] = useState<boolean>(false); // state: 이미지 업로드 여부
 
+  // 이미지 피커 작동 함수
   const handleSelectImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
@@ -34,12 +38,20 @@ const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) =
     }
   };
 
+  useEffect(() => {
+    const loadImage = async () => {
+      const originalImage = await getProfileImage();
+      setImage(originalImage);
+    };  
+    loadImage();
+  }, []);
+
   return (
     <UploaderContainer>
       <PreviewImageContainer activeOpacity={0.8} onPress={() => handleSelectImage()}>
         {isImageUploaded === false ? <></> : <UploadText>📷 사진 변경하기</UploadText>}
         <PreviewImageView uploaderType={uploaderType}>
-          <PreviewImage source={{ uri: imageUri! }} />
+          <PreviewImage source={{ uri: imageUri || image }} />
         </PreviewImageView>
       </PreviewImageContainer>
     </UploaderContainer>
