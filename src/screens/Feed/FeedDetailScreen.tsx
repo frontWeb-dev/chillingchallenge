@@ -5,6 +5,7 @@ import { DetailParamsList } from "./FeedScreen";
 
 import Layout from "@components/Layout";
 import Header from "@components/Header";
+import ImageText from "@components/ImageText";
 
 const FeedDetailScreen = () => {
   const { params } = useRoute<RouteProp<DetailParamsList, "FeedDetailScreen">>();
@@ -14,9 +15,8 @@ const FeedDetailScreen = () => {
   return (
     <Layout>
       <Header text="나의 칠링" />
+      <ImageText text="김새싹님, 이만큼이나 해냈어요!" image={require("@assets/write.png")} />
       <Container>
-        <Comment>김새싹님, 이만큼이나 해냈어요!</Comment>
-
         <Feed>
           <TitleView>
             <Title>{mission.title}</Title>
@@ -24,12 +24,12 @@ const FeedDetailScreen = () => {
           </TitleView>
           <ContentsView>
             {mission?.type === 1 ? (
-              <Image source={{ uri: data.missionContents[0] }} />
+              <Image source={{ uri: data.stringAndPath[0] }} />
             ) : (
-              <Text>{data.missionContents.slice(0, -1).join(" ")}</Text>
+              <Text>{data.stringAndPath.slice(0, -1).join(" ")}</Text>
             )}
           </ContentsView>
-          <Text>{data.missionContents[data.missionContents.length - 1]}</Text>
+          <Text>{data.stringAndPath[data.stringAndPath.length - 1]}</Text>
         </Feed>
       </Container>
     </Layout>
@@ -41,12 +41,12 @@ export default FeedDetailScreen;
 const Comment = styled.Text``;
 
 const Container = styled.View`
-  padding: 0 20px;
+  padding: 0 30px;
 `;
 
 const Feed = styled.View`
   padding: 20px;
-  margin-top: 30px;
+  margin-top: 40px;
   border-radius: 20px;
   background-color: #f5f5f8;
   box-shadow: 2px 2px 2px #bbb;

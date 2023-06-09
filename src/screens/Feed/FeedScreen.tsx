@@ -7,30 +7,38 @@ import { FeedData, feeds } from "@mocks/feeds";
 import { MissionData, editedMissions } from "@mocks/missions";
 import Layout from "@components/Layout";
 import Header from "@components/Header";
+import ImageText from "@components/ImageText";
+import axios, { AxiosResponse } from "axios";
 
 export type DetailParamsList = {
   FeedDetailScreen: { data: FeedData; missionData: MissionData };
 };
 
+interface DataResult {
+  localDateTime: Date;
+  missionId: number;
+  stringAndPath: string[];
+  uuid: string;
+}
+
 const FeedScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<DetailParamsList>>();
   const [loading, setLoading] = useState(false);
-  const [state, setState] = useState<FeedData[]>([]);
-  const [page, setPage] = useState(1);
+  const [state, setState] = useState<DataResult[]>([]);
+  const [page, setPage] = useState(0);
 
-  const getData = () => {
-    feeds.map((feed) => {
-      setState((prev) => [...prev, feed]);
-    });
-    // const url = `https://jsonplaceholder.typicode.com/photos?_limit=10&_page=${page}`;
-    // fetch(url)
-    //   .then((r) => r.json())
-    //   .then((data) => {
-    //     setState({
-    //       data: state.data.concat(data),
-    //     });
-    //     setPage((prev) => prev + 1);
-    //   });
+  const getData = async () => {
+    const url = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8080/showMyHistory?code=5&page=${page}&size=5`;
+    try {
+      const response = await axios.get(url);
+      console.log(response.data);
+      response.data.map((data: DataResult) => {
+        setState((prev) => [...prev, data]);
+      });
+      setPage((page) => page + 1);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const renderItem = ({ item }: any) => {
@@ -43,13 +51,9 @@ const FeedScreen: React.FC = () => {
           <Date>2023-05-30</Date>
         </TitleView>
         <ContentsView>
-          {mission?.type === 1 ? (
-            <Image source={{ uri: item.missionContents[0] }} />
-          ) : (
-            <Text>{item.missionContents.slice(0, -1).join(" ")}</Text>
-          )}
+          <Text>{item.stringAndPath.slice(0, -1).join(" ")}</Text>
         </ContentsView>
-        <Text>{item.missionContents[item.missionContents.length - 1]}</Text>
+        <Text>{item.stringAndPath[item.stringAndPath.length - 1]}</Text>
       </Feed>
     );
   };
@@ -59,9 +63,7 @@ const FeedScreen: React.FC = () => {
   };
 
   const handleLoadMore = () => {
-    if (feeds.length > 3) {
-      getData();
-    }
+    getData();
   };
 
   useEffect(() => {
@@ -71,10 +73,11 @@ const FeedScreen: React.FC = () => {
   return (
     <Layout>
       <Header text="나의 칠링챌링" />
+      <ImageText text="김새싹님, 이만큼이나 해냈어요!" image={require("@assets/write.png")} />
       <Container
         data={state}
         renderItem={renderItem}
-        keyExtractor={(item: any) => item.id}
+        keyExtractor={(item: any) => item.missionId}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={1}
       />
@@ -85,7 +88,8 @@ const FeedScreen: React.FC = () => {
 export default FeedScreen;
 
 const Container = styled.FlatList`
-  padding: 20px;
+  margin-top: 10px;
+  padding: 10px 20px 20px 20px;
   flex: 1;
 `;
 
