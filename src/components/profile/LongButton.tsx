@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components/native";
 
+interface LongButtonProps {
+  handlePress: () => void;
+};
 
-const LongButton = () => {
+const LongButton = ({handlePress} : LongButtonProps) => {
   return (
     <>
-      <ButtonContainer>
+      <ButtonContainer onPress={handlePress}>
         <ButtonText>
           변경하기
         </ButtonText>
