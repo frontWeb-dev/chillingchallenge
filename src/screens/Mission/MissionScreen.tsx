@@ -56,6 +56,7 @@ const MissionScreen: React.FC = () => {
           comment={comment}
           desc={desc}
           type={type}
+          bgImage={bgImage!}
         />
       );
       break;
@@ -80,7 +81,7 @@ const MissionScreen: React.FC = () => {
   return (
     <Layout>
       <Header text={title.replace("\n", "")} />
-      <Margin props={30} />
+      <Margin props={20} />
       {pageComponent}
       <Margin props={30} />
     </Layout>

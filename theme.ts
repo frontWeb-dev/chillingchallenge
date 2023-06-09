@@ -14,8 +14,8 @@ export const lightTheme = {
   font: {
     title: "28px", // 24px
     subtitle: "24px", // 20px
-    normal: "18px", // 15px
-    small: "16px", // 14px
+    normal: "28.8px", // 16px
+    small: "25.2px", // 14px
     smaller: "15px", // 13px
   },
 };
