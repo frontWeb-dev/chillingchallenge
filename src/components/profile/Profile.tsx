@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/core";
-
+import { useFocusEffect } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+
 import { UserNavigatorParamList } from "@navigations/UserNavigator";
+import { getProfileImage } from "@utils/ProfileImage";
 
 interface ProfileProps {
   username: string;
@@ -12,18 +14,32 @@ interface ProfileProps {
 }
 
 const Profile: React.FC<ProfileProps> = ({ username, registerDate, missionNumber }) => {
-  const navigation = useNavigation<UserNavigatorParamList>();
+  const [ imageUri, setImageUri ] = useState("");
+  const navigation = useNavigation<UserNavigatorParamList>(); // navigation: 사용자 설정 화면 이동
 
+  // 사용자 설정 화면 버튼 함수
   const handleSettingButtonPress = () => {
     navigation.navigate("UserSettingScreen");
   };
+
+  // 프로필 사진 Async-Storage에서 불러오기
+  useFocusEffect(
+    React.useCallback(() => {
+      const loadImage = async () => {
+        const uri = await getProfileImage();
+        setImageUri(uri);
+        console.log("되어라", imageUri, uri);
+      };
+      loadImage();
+    }, [])
+  );
 
   return (
     <>
       <ProfileContainer>
         <ProfileImage
           resizeMode="cover"
-          source={{ uri: "https://picsum.photos/seed/picsum/65/65" }}
+          source={{ uri: imageUri === "" ? "https://picsum.photos/seed/picsum/65/65" : imageUri }}
         />
         <ProfileTextContainer>
           <UsernameText>{username}</UsernameText>
