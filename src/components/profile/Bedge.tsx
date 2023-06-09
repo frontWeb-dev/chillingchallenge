@@ -53,6 +53,9 @@ const Bedge = styled.View`
 `;
 
 const BedgeImage = styled.Image`
+  width: 90px;
+  height: 90px;
+  object-fit: scale-down;
   padding: 0;
 `;
 
