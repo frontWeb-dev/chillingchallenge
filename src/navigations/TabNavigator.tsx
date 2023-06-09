@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { FontAwesome5, Ionicons, FontAwesome } from "@expo/vector-icons";
 
@@ -37,9 +38,9 @@ const TabNavigator: React.FC = () => {
           },
           tabBarIcon: ({ focused }) =>
             !focused ? (
-              <Ionicons name="people" size={24} color="#cbe7d9" />
+              <TabIconImage source={require("@assets/tabIconWhite.png")} />
             ) : (
-              <Ionicons name="people" size={24} color="#10b767" />
+              <TabIconImage source={require("@assets/tabIcon.png")} />
             ),
         }}
       />
@@ -64,3 +65,10 @@ const TabNavigator: React.FC = () => {
 };
 
 export default TabNavigator;
+
+// styled
+const TabIconImage = styled.Image`
+  width: 32px;
+  height: 32px;
+  object-fit: scale-down;
+`;

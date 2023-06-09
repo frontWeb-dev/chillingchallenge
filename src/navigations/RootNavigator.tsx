@@ -35,7 +35,11 @@ const linking: LinkingOptions<RootNavigatorParamList> = {
 const RootNavigator: React.FC = () => {
   return (
     <Stack.Navigator initialRouteName="SplashScreen">
-      <Stack.Screen name="FirebaseLoginScreen" component={FirebaseLoginScreen} options={{ headerShown: false }} />
+      <Stack.Screen
+        name="FirebaseLoginScreen"
+        component={FirebaseLoginScreen}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
       <Stack.Screen
         name="AfterLoginSplashScreen"
