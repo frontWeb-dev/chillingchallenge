@@ -13,6 +13,7 @@ interface FirstPageProps {
 const FirstPage = ({ setPageStatus, activePageIndex, pageIndex }: FirstPageProps) => {
   return (
     <>
+      <Margin props={40} />
       <MediaContainer type={1} />
       <Margin props={30} />
       <DescriptionContainer
