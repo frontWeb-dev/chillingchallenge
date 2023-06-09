@@ -42,8 +42,10 @@ const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) =
     const loadImage = async () => {
       const originalImage = await getProfileImage();
       setImage(originalImage);
-    };  
-    loadImage();
+    };
+    if (uploaderType === "PROFILE") {
+      loadImage();
+    }
   }, []);
 
   return (
@@ -79,9 +81,9 @@ const PreviewImageContainer = styled.TouchableOpacity`
 
 const PreviewImageView = styled.View<{ uploaderType: string }>`
   width: ${(props: { uploaderType: string }) =>
-    props.uploaderType === "PROFILE" ? "150px" : "100%"};
+    props.uploaderType === "PROFILE" ? "150px" : "300px"};
   height: ${(props: { uploaderType: string }) =>
-    props.uploaderType === "PROFILE" ? "150px" : "100%"};
+    props.uploaderType === "PROFILE" ? "150px" : "300px"};
   border: 1px solid ${(props) => props.theme.color.borderColor};
   border-radius: ${(props: { uploaderType: string }) =>
     props.uploaderType === "PROFILE" ? "150px" : "8px"};

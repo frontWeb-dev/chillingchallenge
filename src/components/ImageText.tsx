@@ -9,22 +9,31 @@ interface ImageTextProps {
 
 const ImageText = ({ text, image }: ImageTextProps) => {
   return (
-    <TextView>
-      <Text>{text}</Text>
-      <Image source={image}></Image>
-    </TextView>
+    <SubTitleContainer>
+      <SubTitle>{text}</SubTitle>
+      <SubTitleImage source={image}></SubTitleImage>
+    </SubTitleContainer>
   );
 };
 
 export default ImageText;
 
-const TextView = styled.View`
-  padding: 0 30px;
-  flex-direction: row;
+const SubTitleContainer = styled.View`
+  width: 100%;
+  justify-content: flex-start;
   align-items: center;
+  padding: 0 35px;
   gap: 5px;
 `;
 
-const Text = styled.Text``;
+const SubTitle = styled.Text`
+  font-size: 14px;
+  font-family: "Regular";
+  color: #696969;
+`;
 
-const Image = styled.Image``;
+const SubTitleImage = styled.Image`
+  width: 24px;
+  height: 24px;
+  object-fit: scale-down;
+`;

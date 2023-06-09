@@ -10,11 +10,10 @@ import { getProfileImage } from "@utils/ProfileImage";
 interface ProfileProps {
   username: string;
   registerDate: number;
-  missionNumber: number;
 }
 
-const Profile: React.FC<ProfileProps> = ({ username, registerDate, missionNumber }) => {
-  const [ imageUri, setImageUri ] = useState("");
+const Profile: React.FC<ProfileProps> = ({ username, registerDate }) => {
+  const [imageUri, setImageUri] = useState("");
   const navigation = useNavigation<UserNavigatorParamList>(); // navigation: 사용자 설정 화면 이동
 
   // 사용자 설정 화면 버튼 함수
@@ -62,13 +61,14 @@ const ProfileContainer = styled.View`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 10px;
+  gap: 15px;
+  padding-left: 15px;
 `;
 
 const ProfileImage = styled.Image`
-  width: 65px;
-  height: 65px;
-  border-radius: 12px;
+  width: 80px;
+  height: 80px;
+  border-radius: 80px;
 `;
 
 const ProfileTextContainer = styled.View`
@@ -88,7 +88,7 @@ const UsernameText = styled.Text`
 
 const DateText = styled.Text`
   color: ${(props) => props.theme.color.white};
-  font-size: 13px;
+  font-size: 14px;
   font-family: "Regular";
   line-height: ${(props) => props.theme.font.smaller};
 `;
@@ -101,4 +101,6 @@ const MissionText = styled.Text`
   color: ${(props) => props.theme.color.white};
 `;
 
-const SettingButton = styled.TouchableOpacity``;
+const SettingButton = styled.TouchableOpacity`
+  padding-right: 15px;
+`;

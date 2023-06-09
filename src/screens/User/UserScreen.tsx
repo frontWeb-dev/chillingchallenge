@@ -27,6 +27,7 @@ const UserScreen: React.FC = () => {
   useEffect(() => {
     setBedge(bedges.filter((el) => el.type === "active").length);
   }, []);
+
   // 출석 상태 불러오기
   useEffect(() => {
     const fetchAttendance = async () => {
@@ -40,8 +41,8 @@ const UserScreen: React.FC = () => {
     <Layout color="#10b767">
       <Header text="마이페이지" color="#10b767" />
       <Container>
-        <Profile username="웃고 싶은 날엔" registerDate={55} missionNumber={1} />
-        <Margin props={30} />
+        <Profile username="웃고 싶은 날엔" registerDate={55} />
+        <Margin props={20} />
       </Container>
       <TabContainer>
         <UserButton isSelected={isSelected} setIsSelected={setIsSelected} />
@@ -72,6 +73,7 @@ const TabContainer = styled.View`
   flex: 1;
   gap: 30px;
   padding: 10px 15px;
+  overflow: hidden;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background-color: ${(props) => props.theme.color.white};

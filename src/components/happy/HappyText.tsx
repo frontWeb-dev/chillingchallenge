@@ -23,6 +23,7 @@ const HappyText = ({ happyText, setHappyText }: HappyTextProps) => {
             placeholder="텍스트를 입력하세요."
             onChangeText={(text: string) => onChangeText(text)}
             value={happyText}
+            multiline
           />
         </HappyForm>
       </Wrapper>
@@ -39,7 +40,8 @@ const Wrapper = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  gap: 40px;
+  padding: 0 10px;
 `;
 
 const HappyDesc = styled.Text`
@@ -57,4 +59,7 @@ const HappyForm = styled.View`
   border-radius: 10px;
 `;
 
-const HappyTextInput = styled.TextInput``;
+const HappyTextInput = styled.TextInput`
+  font-size: 16px;
+  line-height: ${(props) => props.theme.font.subtitle};
+`;

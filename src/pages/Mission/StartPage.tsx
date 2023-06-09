@@ -8,13 +8,12 @@ import { ImageURISource, ScrollView } from "react-native";
 interface StartPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
   id: number;
-  comment: string;
   desc: string;
   type: number;
   bgImage: ImageURISource;
 }
 
-const StartPage = ({ setMissionStatus, comment, desc, id, bgImage }: StartPageProps) => {
+const StartPage = ({ setMissionStatus, desc, id, bgImage }: StartPageProps) => {
   const handleStartMission = async () => {
     await setMissionState(id, 2);
     setMissionStatus("InProgress");
