@@ -16,7 +16,7 @@ const SplashScreen = () => {
   useEffect(() => {
     AsyncStorage.clear();
     setTimeout(() => {
-      navigation.navigate("TabNavigator");
+      navigation.navigate("OnBoardingScreen");
     }, 3000);
   }, []);
 
@@ -50,7 +50,7 @@ const SplashScreen = () => {
 
   return (
     <>
-      <Layout>
+      {/* <Layout>
         <View style={{ flex: 1, alignItems: "center", justifyContent: "space-around" }}>
           <Text>Your expo push token: {expoPushToken}</Text>
           <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -70,7 +70,10 @@ const SplashScreen = () => {
             }}
           />
         </View>
-      </Layout>
+      </Layout> */}
+      <Wrapper>
+        <Image source={require("@assets/Splash.png")} />
+      </Wrapper>
     </>
   );
 };
@@ -78,6 +81,14 @@ const SplashScreen = () => {
 export default SplashScreen;
 
 // styled
-const Text = styled.Text`
-  font-size: 20px;
+
+const Wrapper = styled.View`
+  width: 100%;
+  flex: 1;
+`;
+
+const Image = styled.Image`
+  width: 100%;
+  height: 100%;
+  object-fit: scale-down;
 `;

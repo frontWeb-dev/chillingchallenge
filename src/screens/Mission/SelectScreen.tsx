@@ -124,7 +124,7 @@ const SelectScreen: React.FC = () => {
         )}
         {remainingTime ? (
           <DDate>
-            미션 업데이트까지{" "}
+            챌린지 업데이트까지{" "}
             <Time>
               {remainingTime.hours}시간 {remainingTime.minutes}분
             </Time>{" "}
@@ -165,7 +165,7 @@ const TitleView = styled.View`
 `;
 
 const Title = styled.Text<{ badge: number }>`
-  font-size: 18px;
+  font-size: 20px;
   font-family: "Bold";
   line-height: ${(props) => props.theme.font.title};
   color: ${(props) =>
@@ -177,14 +177,17 @@ const Title = styled.Text<{ badge: number }>`
 `;
 
 const Comment = styled.Text<{ isDone: boolean }>`
-  font-size: 13px;
+  font-size: 14px;
   line-height: ${(props) => props.theme.font.smaller};
   color: ${(props) => (props.isDone ? "rgba(0, 0, 0, 0.2)" : props.theme.color.textColor)};
 `;
 
 const DDate = styled.Text`
   text-align: center;
+  color: #696969;
 `;
+
 const Time = styled.Text`
   font-family: "Bold";
+  color: #696969;
 `;

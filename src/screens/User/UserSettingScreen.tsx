@@ -15,7 +15,7 @@ import UserInfo from "@components/profile/UserInfo";
 const UserSettingScreen: React.FC = () => {
   const [imageSelected, setImageSelected] = useState(""); // state: 선택한 사진
 
-  // 프로필 사진 업로드 
+  // 프로필 사진 업로드
   const uploadFile = async () => {
     try {
       if (imageSelected) {
@@ -28,11 +28,11 @@ const UserSettingScreen: React.FC = () => {
 
         // storageRef 설정
         const storageRef = ref(storage, imagePath);
-  
+
         // 해당 uri
         const response = await fetch(imageSelected);
         const blob = await response.blob();
-  
+
         await uploadBytes(storageRef, blob).then((snapshot) => {
           getDownloadURL(snapshot.ref).then((url) => {
             setProfileImage(url);
@@ -56,14 +56,11 @@ const UserSettingScreen: React.FC = () => {
       <Layout>
         <Header text="사용자 정보 수정" />
         <Margin props={80} />
-        <ImageUploader 
-          setImageSelected={setImageSelected} 
-          uploaderType="PROFILE" 
-        />
+        <ImageUploader setImageSelected={setImageSelected} uploaderType="PROFILE" />
         <Margin props={50} />
         <UserInfo name="김아무개" email="amoogae@naver.com" />
         <Margin props={20} />
-        <LongButton handlePress={handlePress}/>
+        <LongButton handlePress={handlePress} />
         <Margin props={100} />
       </Layout>
     </>

@@ -2,23 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 
-import { loadRandomMissions } from "@utils/RandomizeMissions";
 import { RootNavigatorParamList } from "@navigations/RootNavigator";
 
 const AfterLoginSplashScreen = () => {
   const navigation = useNavigation<RootNavigatorParamList>();
-  const [todayMission, setTodayMission] = useState([]);
 
   useEffect(() => {
-    const loadMissions = async () => {
-      const data: string | undefined = await loadRandomMissions();
-      if (data) {
-        const temp = JSON.parse(data);
-        setTodayMission(temp);
-        console.log(todayMission);
-      }
-    };
-    loadMissions();
     setTimeout(() => {
       navigation.navigate("TabNavigator");
     }, 2000);
@@ -27,7 +16,7 @@ const AfterLoginSplashScreen = () => {
   return (
     <>
       <PageWrapper>
-        <TempText>하이</TempText>
+        <SplashImage source={require("@assets/Splash_2.png")} />
       </PageWrapper>
     </>
   );
@@ -47,8 +36,5 @@ const PageWrapper = styled.View`
 const SplashImage = styled.Image`
   width: 100%;
   height: 100%;
-`;
-
-const TempText = styled.Text`
-  font-size: 16px;
+  object-fit: scale-down;
 `;

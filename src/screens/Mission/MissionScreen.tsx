@@ -53,7 +53,6 @@ const MissionScreen: React.FC = () => {
         <StartPage
           setMissionStatus={setMissionStatus}
           id={id}
-          comment={comment}
           desc={desc}
           type={type}
           bgImage={bgImage!}
@@ -79,8 +78,8 @@ const MissionScreen: React.FC = () => {
   }
 
   return (
-    <Layout>
-      <Header text={title.replace("\n", "")} />
+    <Layout color="#10b767">
+      <Header text={title.replace("\n", " ")} noBack={true} color="#10b767" />
       <Margin props={20} />
       {pageComponent}
       <Margin props={30} />

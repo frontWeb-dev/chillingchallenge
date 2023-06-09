@@ -3,7 +3,7 @@ import { Text } from "react-native";
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 
-import { FeedData, feeds } from "@mocks/feeds";
+import { FeedData } from "@mocks/feeds";
 import { MissionData, editedMissions } from "@mocks/missions";
 import Layout from "@components/Layout";
 import Header from "@components/Header";
@@ -48,10 +48,12 @@ const FeedScreen: React.FC = () => {
       <Feed onPress={() => feedPress(item, mission!)}>
         <TitleView>
           <Title>{mission?.title.replace("\n", " ")}</Title>
-          <Date>2023-05-30</Date>
+          <Date>{item.localDateTime.substring(0, 10)}</Date>
         </TitleView>
         <ContentsView>
-          <Text>{item.stringAndPath.slice(0, -1).join(" ")}</Text>
+          {item.stringAndPath.slice(0, -1).map((text: string) => (
+            <Text>{text}</Text>
+          ))}
         </ContentsView>
         <Text>{item.stringAndPath[item.stringAndPath.length - 1]}</Text>
       </Feed>
