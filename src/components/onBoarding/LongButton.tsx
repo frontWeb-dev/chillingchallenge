@@ -37,7 +37,7 @@ const Button = styled.TouchableOpacity`
 const ButtonText = styled.Text`
   color: ${(props) => props.theme.color.white};
   font-size: 18px;
-  font-family: "ExtraBold";
+  font-family: "Bold";
   line-height: ${(props) => props.theme.font.subtitle};
   letter-spacing: 4px;
 `;

@@ -4,18 +4,18 @@ import styled from "styled-components/native";
 import HappyStar from "./HappyStar";
 import HappyText from "./HappyText";
 
-interface HappyTextProps {
-  happyText: string;
-  setHappyText: React.Dispatch<React.SetStateAction<string>>;
+interface HappinessProps {
+  happy: string;
+  setHappy: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Happiness = ({ happyText, setHappyText }: HappyTextProps) => {
+const Happiness = ({ happy, setHappy }: HappinessProps) => {
   const [happyPoint, setHappyPoint] = useState(0);
 
   return (
     <>
       <Wrapper>
-        <HappyText happyText={happyText} setHappyText={setHappyText} />
+        <HappyText happy={happy} setHappy={setHappy} />
         <HappyStar happyPoint={happyPoint} setHappyPoint={setHappyPoint} />
       </Wrapper>
     </>

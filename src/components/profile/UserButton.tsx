@@ -12,11 +12,7 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
   return (
     <>
       <ButtonListContainer>
-        <ButtonContainer
-          activeOpacity={0.8}
-          onPress={() => setIsSelected(3)}
-          isSelected={isSelected === 3}
-        >
+        <ButtonContainer activeOpacity={0.8} onPress={() => setIsSelected(3)} isSelected={isSelected === 3}>
           <Ionicons name="calendar" size={30} color={isSelected === 3 ? "#6ebe75" : "#c2c2c2"} />
           <ButtonText isSelected={isSelected === 3}>출석 확인</ButtonText>
         </ButtonContainer>
@@ -32,11 +28,7 @@ const UserButton = ({ isSelected, setIsSelected }: UserButtonProps) => {
           />
           <ButtonText isSelected={isSelected === 1}>배지 보기</ButtonText>
         </ButtonContainer>
-        <ButtonContainer
-          activeOpacity={0.8}
-          onPress={() => setIsSelected(2)}
-          isSelected={isSelected === 2}
-        >
+        <ButtonContainer activeOpacity={0.8} onPress={() => setIsSelected(2)} isSelected={isSelected === 2}>
           <MaterialCommunityIcons
             name="tree"
             size={30}
@@ -74,5 +66,5 @@ const ButtonContainer = styled.TouchableOpacity<{ isSelected: boolean }>`
 
 const ButtonText = styled.Text<{ isSelected: boolean }>`
   font-size: 16px;
-  font-family: ${(props) => (props.isSelected == true ? "Bold" : "Light")};
+  font-family: ${(props) => props.isSelected == true ? "Bold" : "Light"};
 `;
