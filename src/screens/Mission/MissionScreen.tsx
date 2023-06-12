@@ -11,6 +11,7 @@ import CompletePage from "@pages/Mission/CompletePage";
 import Layout from "@components/Layout";
 import Header from "@components/Header";
 import Margin from "@components/Margin";
+import ForImagePage from "@pages/Mission/ForImagePage";
 
 type RootStackParamList = {
   MissionScreen: { data: MissionData; badge: number };
@@ -41,9 +42,14 @@ const MissionScreen: React.FC = () => {
 
   // 진행 중 상태일때는 미션 시작 화면 건너 뜀
   useEffect(() => {
-    console.log(badge);
-    badge === 2 ? setMissionStatus("InProgress") : null;
-  }, [badge]);
+    if (badge === 2 && type === 1) {
+      setMissionStatus("ForImage");
+    } else if (badge === 2) {
+      setMissionStatus("InProgress");
+    } else {
+      setMissionStatus("Start");
+    }
+  }, [badge, type]);
 
   let pageComponent;
 
@@ -58,6 +64,9 @@ const MissionScreen: React.FC = () => {
           bgImage={bgImage!}
         />
       );
+      break;
+    case "ForImage":
+      pageComponent = <ForImagePage setMissionStatus={setMissionStatus} />;
       break;
     case "InProgress":
       pageComponent = (

@@ -13,7 +13,7 @@ interface InProgressPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
   id: number;
   comment: string;
-  method: string;
+  method: string | string[];
   type: number;
 }
 
@@ -88,13 +88,6 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
       setMissionStatus("Complete");
     }
   };
-
-  // 텍스트 반영 확인
-  useEffect(() => {
-    if (type === 3) {
-      setParsedMethod(JSON.parse(method));
-    }
-  }, [texts]);
 
   return (
     <Wrapper>
