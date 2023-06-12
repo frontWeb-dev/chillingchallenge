@@ -1,5 +1,7 @@
 import React from "react";
+import { Animated } from "react-native";
 import styled from "styled-components/native";
+
 import { AntDesign } from "@expo/vector-icons";
 
 interface HappyStarProps {
@@ -60,7 +62,7 @@ export default HappyStar;
 // styled
 const ButtonWrapper = styled.View`
   width: 100%;
-  display: flex;
+
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -68,7 +70,6 @@ const ButtonWrapper = styled.View`
 `;
 
 const StarContainer = styled.TouchableOpacity`
-  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;

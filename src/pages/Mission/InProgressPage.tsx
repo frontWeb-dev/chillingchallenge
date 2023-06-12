@@ -21,6 +21,7 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
   const [page, setPage] = useState(1); // state: 페이지네이션
   const [form, setForm] = useState(""); // state: 입력 폼
   const [imageSelected, setImageSelected] = useState(""); // state: 이미지 uri
+  const [parsedMethod, setParsedMethod] = useState([]);
 
   const { uri, addUri, clearUri } = useImageStore(); // 이미지 uri 전역 상태 저장
   const { texts, addTexts, clearTexts } = useTextStore(); // 텍스트 전역 상태 저장

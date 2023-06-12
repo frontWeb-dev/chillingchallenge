@@ -27,8 +27,6 @@ export default AfterLoginSplashScreen;
 // styled
 const PageWrapper = styled.View`
   flex: 1;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;

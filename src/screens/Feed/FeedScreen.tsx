@@ -23,7 +23,6 @@ interface DataResult {
 
 const FeedScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<DetailParamsList>>();
-  const [loading, setLoading] = useState(false);
   const [state, setState] = useState<DataResult[]>([]);
   const [page, setPage] = useState(0);
 
@@ -31,7 +30,7 @@ const FeedScreen: React.FC = () => {
     const url = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8080/showMyHistory?code=5&page=${page}&size=5`;
     try {
       const response = await axios.get(url);
-      console.log(response.data);
+
       response.data.map((data: DataResult) => {
         setState((prev) => [...prev, data]);
       });

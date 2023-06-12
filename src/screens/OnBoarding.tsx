@@ -92,7 +92,6 @@ const PageWrapper = styled.View`
 `;
 
 const ButtonWrapper = styled.View`
-  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;

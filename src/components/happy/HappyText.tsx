@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components/native";
 
 interface HappyTextProps {
-  happyText: string;
-  setHappyText: React.Dispatch<React.SetStateAction<string>>;
+  happy: string;
+  setHappy: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const HappyText = ({ happyText, setHappyText }: HappyTextProps) => {
+const HappyText = ({ happy, setHappy }: HappyTextProps) => {
   const onChangeText = (text: string) => {
-    setHappyText(text);
+    setHappy(text);
   };
 
   return (
@@ -22,7 +22,7 @@ const HappyText = ({ happyText, setHappyText }: HappyTextProps) => {
           <HappyTextInput
             placeholder="텍스트를 입력하세요."
             onChangeText={(text: string) => onChangeText(text)}
-            value={happyText}
+            value={happy}
             multiline
           />
         </HappyForm>

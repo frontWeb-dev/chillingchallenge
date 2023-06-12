@@ -38,7 +38,12 @@ const Profile: React.FC<ProfileProps> = ({ username, registerDate }) => {
       <ProfileContainer>
         <ProfileImage
           resizeMode="cover"
-          source={{ uri: imageUri === "" ? "https://picsum.photos/seed/picsum/65/65" : imageUri }}
+          source={{
+            uri:
+              imageUri === ""
+                ? "https://img.lovepik.com/free-png/20211215/lovepik-sprouts-in-the-soil-png-image_401634018_wh1200.png"
+                : imageUri,
+          }}
         />
         <ProfileTextContainer>
           <UsernameText>{username}</UsernameText>
@@ -91,14 +96,6 @@ const DateText = styled.Text`
   font-size: 14px;
   font-family: "Regular";
   line-height: ${(props) => props.theme.font.smaller};
-`;
-
-const MissionText = styled.Text`
-  margin-top: 10px;
-  font-size: 14px;
-  font-family: "Regular";
-  line-height: ${(props) => props.theme.font.small};
-  color: ${(props) => props.theme.color.white};
 `;
 
 const SettingButton = styled.TouchableOpacity`
