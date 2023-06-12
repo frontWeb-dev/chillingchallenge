@@ -1,38 +1,80 @@
 import React from "react";
-import { View, Button, Platform } from "react-native";
+import { useForm, Controller } from "react-hook-form";
 
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/core";
-import { NavigationProp } from "@react-navigation/native";
 
 import Layout from "@components/Layout";
-
-export type RootStackParamList = {
-  KakaoLogin: { screen: string } | undefined;
-};
+import { RootNavigatorParamList } from "@navigations/RootNavigator";
+import LongButton from "@components/mission/LongButton";
 
 const MainScreen: React.FC = () => {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<RootNavigatorParamList>();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    control,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const handleButtonPress = () => {
+    navigation.navigate("AfterLoginSplashScreen");
+  };
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
 
   return (
     <Layout>
-      {Platform.OS === "web" ? (
-        <Container>
-          <Title>Loading...</Title>
-        </Container>
-      ) : (
-        <Container>
-          <Title>오늘 당신의 기분은 어떠신가요?</Title>
-          <Desc>당신의 이야기를 그려볼까요?</Desc>
-          <Desc>'칠링 챌링'과 첫 걸음을 내딛어봐요.</Desc>
-          <View>
-            <Button
-              title="카카오"
-              onPress={() => navigation.navigate("KakaoLogin", { screen: "KakaoLogin" })}
+      <Container>
+        <LogoView>
+          <LogoImage source={require("@assets/tabIcon.png")} />
+          <Title>칠링챌링</Title>
+        </LogoView>
+        <LoginForm>
+          <InputView>
+            <Controller
+              control={control}
+              rules={{ required: true }}
+              name="email"
+              defaultValue={""}
+              render={({ field: { onChange, value } }) => (
+                <Input onChangeText={(value) => onChange(value)} value={value} placeholder="ID" />
+              )}
             />
-          </View>
-        </Container>
-      )}
+            {errors.email && <ErrorMessage>아이디를 입력해주세요</ErrorMessage>}
+          </InputView>
+          <InputView>
+            <Controller
+              control={control}
+              rules={{ required: true }}
+              name="password"
+              defaultValue={""}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  onChangeText={(value) => onChange(value)}
+                  value={value}
+                  placeholder="Password"
+                  secureTextEntry
+                />
+              )}
+            />
+            {errors.password && <ErrorMessage>비밀번호를 입력해주세요</ErrorMessage>}
+          </InputView>
+        </LoginForm>
+        <ButtonView>
+          <LongButton text="로그인하기" onSubmit={handleSubmit(onSubmit)} />
+          <FindPasswordButton>
+            <FindPasswordText>비밀번호 찾기</FindPasswordText>
+          </FindPasswordButton>
+          <JoinButton>
+            <JoinText>새로 오셨나요? 회원가입 하기</JoinText>
+          </JoinButton>
+        </ButtonView>
+      </Container>
     </Layout>
   );
 };
@@ -41,18 +83,70 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  padding: 30px 0;
+  gap: 30px;
+`;
+
+const LogoView = styled.View`
+  align-items: center;
+`;
+
+const LogoImage = styled.Image`
+  width: 180px;
+  height: 100px;
 `;
 
 const Title = styled.Text`
-  margin-bottom: 20px;
-  font-size: 20px;
-  font-family: Light;
+  font-size: 24px;
+  font-family: "Bold";
+  color: ${(props) => props.theme.color.green_200};
 `;
 
-const Desc = styled.Text`
-  margin-bottom: 5px;
+const LoginForm = styled.View`
+  width: 100%;
+  padding: 0 20px;
+  gap: 24px;
+`;
+
+const InputView = styled.View`
+  width: 100%;
+  gap: 10px;
+`;
+
+const Input = styled.TextInput`
+  width: 100%;
+  font-family: "Light";
+  border: 1px solid #ddd;
+  padding: 15px 20px;
+  border-radius: 5px;
+`;
+
+const ErrorMessage = styled.Text`
+  padding-left: 10px;
+  font-size: 14px;
+  color: red;
+`;
+
+const ButtonView = styled.View`
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+`;
+
+const FindPasswordButton = styled.TouchableOpacity``;
+const FindPasswordText = styled.Text`
   font-size: 16px;
-  font-family: Light;
+  color: ${(props) => props.theme.color.green_200};
+`;
+
+const JoinButton = styled.TouchableOpacity`
+  margin-top: 30px;
+  color: ${(props) => props.theme.color.green_200};
+`;
+
+const JoinText = styled.Text`
+  font-size: 16px;
+  color: ${(props) => props.theme.color.green_200};
 `;
 
 export default MainScreen;

@@ -13,10 +13,10 @@ interface StartPageProps {
   bgImage: ImageURISource;
 }
 
-const StartPage = ({ setMissionStatus, desc, id, bgImage }: StartPageProps) => {
+const StartPage = ({ setMissionStatus, desc, id, type, bgImage }: StartPageProps) => {
   const handleStartMission = async () => {
     await setMissionState(id, 2);
-    setMissionStatus("InProgress");
+    type === 1 ? setMissionStatus("ForImage") : setMissionStatus("InProgress");
   };
 
   return (
