@@ -13,7 +13,7 @@ interface InProgressPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
   id: number;
   comment: string;
-  method: string | string[];
+  method: string;
   type: number;
 }
 
@@ -21,6 +21,7 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
   const [page, setPage] = useState(1); // state: 페이지네이션
   const [form, setForm] = useState(""); // state: 입력 폼
   const [imageSelected, setImageSelected] = useState(""); // state: 이미지 uri
+  const [parsedMethod, setParsedMethod] = useState([]);
 
   const { uri, addUri, clearUri } = useImageStore(); // 이미지 uri 전역 상태 저장
   const { texts, addTexts, clearTexts } = useTextStore(); // 텍스트 전역 상태 저장
@@ -87,6 +88,13 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
       setMissionStatus("Complete");
     }
   };
+
+  // 텍스트 반영 확인
+  useEffect(() => {
+    if (type === 3) {
+      setParsedMethod(JSON.parse(method));
+    }
+  }, [texts]);
 
   return (
     <Wrapper>

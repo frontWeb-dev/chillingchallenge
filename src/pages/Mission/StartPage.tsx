@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 
 import LongButton from "@components/mission/LongButton";
 import { setMissionState } from "@utils/MissionState";
-import { ImageURISource, ScrollView } from "react-native";
+import { ImageURISource } from "react-native";
 
 interface StartPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;

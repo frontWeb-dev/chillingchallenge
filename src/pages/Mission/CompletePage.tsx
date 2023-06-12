@@ -96,7 +96,7 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
     <>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Wrapper>
-          <Happiness setHappyText={setHappyText} happyText={happyText} />
+          <Happiness setHappy={setHappyText} happy={happyText} />
           <LongButton text="업로드하기" onSubmit={() => handleUploadButton()} />
         </Wrapper>
       </ScrollView>

@@ -20,6 +20,7 @@ export default ImageText;
 
 const SubTitleContainer = styled.View`
   width: 100%;
+  flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   padding: 0 35px;
