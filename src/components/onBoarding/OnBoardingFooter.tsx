@@ -103,7 +103,7 @@ const SkipText = styled.Text`
   font-size: 16px;
   font-family: "Medium";
   line-height: ${(props) => props.theme.font.subtitle};
-  letter-spacing: 0.5;
+  letter-spacing: 0.5px;
 `;
 
 const ProgressContainer = styled.View`
