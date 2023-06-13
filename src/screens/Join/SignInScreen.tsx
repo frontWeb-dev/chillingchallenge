@@ -8,7 +8,7 @@ import Layout from "@components/Layout";
 import { RootNavigatorParamList } from "@navigations/RootNavigator";
 import LongButton from "@components/mission/LongButton";
 
-const MainScreen: React.FC = () => {
+const SignInScreen: React.FC = () => {
   const navigation = useNavigation<RootNavigatorParamList>();
   const {
     register,
@@ -70,7 +70,7 @@ const MainScreen: React.FC = () => {
           <FindPasswordButton>
             <FindPasswordText>비밀번호 찾기</FindPasswordText>
           </FindPasswordButton>
-          <JoinButton>
+          <JoinButton onPress={() => navigation.navigate("SignUpScreen")}>
             <JoinText>새로 오셨나요? 회원가입 하기</JoinText>
           </JoinButton>
         </ButtonView>
@@ -149,4 +149,4 @@ const JoinText = styled.Text`
   color: ${(props) => props.theme.color.green_200};
 `;
 
-export default MainScreen;
+export default SignInScreen;
