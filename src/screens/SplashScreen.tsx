@@ -10,14 +10,26 @@ import { registerForPushNotificationsAsync, sendPushNotification } from "@utils/
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SplashScreen = () => {
-  const navigation = useNavigation<RootNavigatorParamList>(); // navigation: 스크린 네비게이션
+  const navigation = useNavigation<RootNavigatorParamList>();
+
+  const userInfo = async () => {
+    const user = await AsyncStorage.getItem("user-info");
+    console.log(user);
+    if (user) {
+      setTimeout(() => {
+        navigation.navigate("AfterLoginSplashScreen");
+      }, 3000);
+    } else {
+      setTimeout(() => {
+        navigation.navigate("OnBoardingScreen");
+      }, 3000);
+    }
+  };
 
   // 스플래시 화면이 켜지고 시간이 지나면 없어지기
   useEffect(() => {
     AsyncStorage.clear();
-    setTimeout(() => {
-      navigation.navigate("OnBoardingScreen");
-    }, 3000);
+    userInfo();
   }, []);
 
   // 푸쉬 알림 상태
