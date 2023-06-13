@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Text } from "react-native";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
+import React, { useCallback, useEffect, useState } from "react";
+import { ActivityIndicator, Text } from "react-native";
+import { NavigationProp, useFocusEffect, useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 
 import { FeedData } from "@mocks/feeds";
@@ -17,26 +17,31 @@ export type DetailParamsList = {
 interface DataResult {
   localDateTime: Date;
   missionId: number;
+  missionType: number;
   stringAndPath: string[];
   uuid: string;
 }
 
 const FeedScreen: React.FC = () => {
   const navigation = useNavigation<NavigationProp<DetailParamsList>>();
+  const [loading, setLoading] = useState(false);
   const [state, setState] = useState<DataResult[]>([]);
   const [page, setPage] = useState(0);
 
   const getData = async () => {
-    const url = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8080/showMyHistory?code=5&page=${page}&size=5`;
+    const url = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8080/showMyHistory?code=5&page=${page}&size=${5}`;
     try {
       const response = await axios.get(url);
+      console.log(response.data);
 
       response.data.map((data: DataResult) => {
         setState((prev) => [...prev, data]);
+        setLoading(false);
       });
       setPage((page) => page + 1);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -50,9 +55,9 @@ const FeedScreen: React.FC = () => {
           <Date>{item.localDateTime.substring(0, 10)}</Date>
         </TitleView>
         <ContentsView>
-          {item.stringAndPath.slice(0, -1).map((text: string) => (
-            <Text>{text}</Text>
-          ))}
+          {mission?.type === 1 && <Image source={{ uri: item.stringAndPath[0] }} />}
+          {mission?.type !== 1 &&
+            item.stringAndPath.slice(0, -1).map((text: string) => <Text>{text}</Text>)}
         </ContentsView>
         <Text>{item.stringAndPath[item.stringAndPath.length - 1]}</Text>
       </Feed>
@@ -64,7 +69,11 @@ const FeedScreen: React.FC = () => {
   };
 
   const handleLoadMore = () => {
-    getData();
+    if (loading) {
+      return;
+    } else {
+      getData();
+    }
   };
 
   useEffect(() => {
@@ -78,9 +87,9 @@ const FeedScreen: React.FC = () => {
       <Container
         data={state}
         renderItem={renderItem}
-        keyExtractor={(item: any) => item.missionId}
+        keyExtractor={(item: any) => item.localDateTime}
         onEndReached={handleLoadMore}
-        onEndReachedThreshold={1}
+        onEndReachedThreshold={0.8}
       />
     </Layout>
   );
@@ -130,6 +139,6 @@ const ContentsView = styled.View`
 
 const Image = styled.Image`
   width: 100%;
-  height: 100px;
+  height: 200px;
   object-fit: contain;
 `;

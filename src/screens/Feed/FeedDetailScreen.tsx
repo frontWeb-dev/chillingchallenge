@@ -24,9 +24,8 @@ const FeedDetailScreen = () => {
           </TitleView>
           <ContentsView>
             {mission?.type === 1 && <Image source={{ uri: data.stringAndPath[0] }} />}
-            {data.stringAndPath.slice(0, -1).map((text) => (
-              <Text>{text}</Text>
-            ))}
+            {mission?.type !== 1 &&
+              data.stringAndPath.slice(0, -1).map((text) => <Text>{text}</Text>)}
           </ContentsView>
           <Text>{data.stringAndPath[data.stringAndPath.length - 1]}</Text>
         </Feed>

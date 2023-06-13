@@ -19,7 +19,7 @@ const Stack = createNativeStackNavigator<UserNavigatorParamList>();
 const FeedNavigator: React.FC = () => {
   return (
     <>
-      <Stack.Navigator initialRouteName="TempFeedScreen">
+      <Stack.Navigator initialRouteName="FeedScreen">
         <Stack.Screen name="FeedScreen" component={FeedScreen} options={{ headerShown: false }} />
         <Stack.Screen
           name="FeedDetailScreen"
