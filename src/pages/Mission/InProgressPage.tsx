@@ -8,6 +8,7 @@ import { storage } from "../../../firebaseConfig";
 import ImageUploader from "@components/imageUpload/ImageUploader";
 import TextUploader from "@components/TextUpload/TextUploader";
 import LongButton from "@components/mission/LongButton";
+import { UploadResult } from "firebase/storage";
 
 interface InProgressPageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -26,35 +27,41 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
   const { uri, addUri, clearUri } = useImageStore(); // 이미지 uri 전역 상태 저장
   const { texts, addTexts, clearTexts } = useTextStore(); // 텍스트 전역 상태 저장
 
+  const getURL = async (snapshot: UploadResult) => {
+    await getDownloadURL(snapshot.ref)
+      .then((url) => {
+        console.log("파이어 베이스에 업로드된 uri 주소: ", url);
+        addUri(url);
+        addTexts(url);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  console.log(texts);
   // 사진 업로드 함수
   const uploadImage = async () => {
-    try {
-      if (imageSelected) {
-        // Ref 설정을 위한 파일명 가공
-        const fileName = imageSelected.substring(
-          imageSelected.lastIndexOf("/") + 1,
-          imageSelected.length
-        );
-        const imagePath = `image/${fileName}`;
+    if (!imageSelected) return;
 
-        // storageRef 설정
-        const storageRef = ref(storage, imagePath);
+    // Ref 설정을 위한 파일명 가공
+    const fileName = imageSelected.substring(
+      imageSelected.lastIndexOf("/") + 1,
+      imageSelected.length
+    );
+    const imagePath = `image/${fileName}`;
 
-        // 해당 uri
-        const response = await fetch(imageSelected);
-        const blob = await response.blob();
+    // storageRef 설정
+    const storageRef = ref(storage, imagePath);
 
-        await uploadBytes(storageRef, blob).then((snapshot) => {
-          getDownloadURL(snapshot.ref).then((url) => {
-            console.log("파이어 베이스에 업로드된 uri 주소: ", url);
-            addUri(url);
-          });
-        });
+    // 해당 uri
+    const response = await fetch(imageSelected);
+    const blob = await response.blob();
+
+    await uploadBytes(storageRef, blob)
+      .then((snapshot) => {
+        getURL(snapshot);
         console.log("이미지가 성공적으로 업로드되었습니다!");
-      }
-    } catch (error) {
-      console.error("파이어 베이스 스토리지 에러:", error);
-    }
+      })
+      .catch((error) => console.log(error));
   };
 
   // 유형따라 업로더 구분
@@ -129,8 +136,4 @@ const MissionQuote = styled.Text`
   text-align: center;
   line-height: ${(props) => props.theme.font.normal};
   color: ${(props) => props.theme.color.black};
-`;
-
-const FormContainer = styled.View`
-  padding: 0 10px;
 `;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components/native";
 import * as ImagePicker from "expo-image-picker";
-
 import { getProfileImage } from "@utils/ProfileImage";
+import { manipulateAsync, SaveFormat } from "expo-image-manipulator";
 
 interface ImageUploaderProps {
   setImageSelected: (imageUri: string) => void;
@@ -10,8 +10,8 @@ interface ImageUploaderProps {
 }
 
 const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) => {
-  const [image, setImage] = useState(""); // state: 기존 프로필 이미지 주소
-  const [imageUri, setImageUri] = useState<string | null>(null); // state: 이미지 URI
+  const [image, setImage] = useState<string | undefined>(undefined); // state: 기존 프로필 이미지 주소
+  const [imageUri, setImageUri] = useState<string | undefined>(undefined); // state: 이미지 URI
   const [isImageUploaded, setIsImageUploaded] = useState<boolean>(false); // state: 이미지 업로드 여부
 
   // 이미지 피커 작동 함수
@@ -31,10 +31,16 @@ const ImageUploader = ({ setImageSelected, uploaderType }: ImageUploaderProps) =
 
     if (!result.canceled && result.assets && result.assets.length > 0) {
       const selectedAsset = result.assets[0];
-      await setImageUri(selectedAsset.uri);
-      setImageSelected(selectedAsset.uri);
+
+      const manipResult = await manipulateAsync(
+        selectedAsset.uri,
+        [{ resize: { width: 500, height: 500 } }],
+        { compress: 1, format: SaveFormat.JPEG }
+      );
+
+      setImageUri(manipResult.uri);
+      setImageSelected(manipResult.uri);
       setIsImageUploaded(true);
-      console.log("imageUri: ", imageUri);
     }
   };
 
