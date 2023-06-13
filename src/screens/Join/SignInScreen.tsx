@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import styled from "styled-components/native";
@@ -7,9 +7,19 @@ import { useNavigation } from "@react-navigation/core";
 import Layout from "@components/Layout";
 import { RootNavigatorParamList } from "@navigations/RootNavigator";
 import LongButton from "@components/mission/LongButton";
+import ToastContainer from "@components/ToastContainer";
+import { LoginNavigatorParamList } from "@navigations/LoginNavigator";
+import InputControl from "@components/login/InputControl";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SignInScreen: React.FC = () => {
   const navigation = useNavigation<RootNavigatorParamList>();
+  const loginNavigation = useNavigation<LoginNavigatorParamList>();
+
+  const [modal, setModal] = useState(false);
+  const [toast, setToast] = useState(false);
+  const [toastText, setToastText] = useState("");
+
   const {
     register,
     setValue,
@@ -19,58 +29,50 @@ const SignInScreen: React.FC = () => {
     formState: { errors },
   } = useForm();
 
-  const handleButtonPress = () => {
-    navigation.navigate("AfterLoginSplashScreen");
-  };
+  const onSubmit = async (data: any) => {
+    try {
+      /* 
+        Todo 
+        - Axios 로그인 , Token 받아서 async storage 저장하기
+      */
+      await AsyncStorage.setItem("user-info", JSON.stringify(data));
 
-  const onSubmit = (data: any) => {
-    console.log(data);
+      setToastText("로그인에 성공하였습니다");
+      setToast(true);
+    } catch {
+      setToastText("로그인에 실패하였습니다.");
+      setToast(true);
+    } finally {
+      setTimeout(() => {
+        navigation.navigate("AfterLoginSplashScreen");
+      }, 1500);
+    }
   };
 
   return (
     <Layout>
+      <ToastContainer text={toastText} show={toast} setShow={setToast} />
       <Container>
         <LogoView>
           <LogoImage source={require("@assets/tabIcon.png")} />
           <Title>칠링챌링</Title>
         </LogoView>
         <LoginForm>
-          <InputView>
-            <Controller
-              control={control}
-              rules={{ required: true }}
-              name="email"
-              defaultValue={""}
-              render={({ field: { onChange, value } }) => (
-                <Input onChangeText={(value) => onChange(value)} value={value} placeholder="ID" />
-              )}
-            />
-            {errors.email && <ErrorMessage>아이디를 입력해주세요</ErrorMessage>}
-          </InputView>
-          <InputView>
-            <Controller
-              control={control}
-              rules={{ required: true }}
-              name="password"
-              defaultValue={""}
-              render={({ field: { onChange, value } }) => (
-                <Input
-                  onChangeText={(value) => onChange(value)}
-                  value={value}
-                  placeholder="Password"
-                  secureTextEntry
-                />
-              )}
-            />
-            {errors.password && <ErrorMessage>비밀번호를 입력해주세요</ErrorMessage>}
-          </InputView>
+          <InputControl control={control} name="email" placeholder={"Email"} errors={errors} />
+          <InputControl
+            control={control}
+            name="password"
+            placeholder={"Password"}
+            errors={errors}
+          />
         </LoginForm>
+
         <ButtonView>
           <LongButton text="로그인하기" onSubmit={handleSubmit(onSubmit)} />
-          <FindPasswordButton>
+          <FindPasswordButton onPress={() => loginNavigation.navigate("FindPasswordScreen")}>
             <FindPasswordText>비밀번호 찾기</FindPasswordText>
           </FindPasswordButton>
-          <JoinButton onPress={() => navigation.navigate("SignUpScreen")}>
+          <JoinButton onPress={() => loginNavigation.navigate("SignUpScreen")}>
             <JoinText>새로 오셨나요? 회원가입 하기</JoinText>
           </JoinButton>
         </ButtonView>
@@ -84,6 +86,7 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   padding: 30px 0;
+  margin-bottom: 40px;
   gap: 30px;
 `;
 
@@ -105,26 +108,7 @@ const Title = styled.Text`
 const LoginForm = styled.View`
   width: 100%;
   padding: 0 20px;
-  gap: 24px;
-`;
-
-const InputView = styled.View`
-  width: 100%;
-  gap: 10px;
-`;
-
-const Input = styled.TextInput`
-  width: 100%;
-  font-family: "Light";
-  border: 1px solid #ddd;
-  padding: 15px 20px;
-  border-radius: 5px;
-`;
-
-const ErrorMessage = styled.Text`
-  padding-left: 10px;
-  font-size: 14px;
-  color: red;
+  gap: 14px;
 `;
 
 const ButtonView = styled.View`

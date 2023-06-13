@@ -3,14 +3,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import SignInScreen from "@screens/Join/SignInScreen";
 import SignUpScreen from "@screens/Join/SignUpScreen";
+import FindPasswordScreen from "@screens/Join/FindPasswordScreen";
 
-export type MissionNavigatorParamList = {
+export type LoginNavigatorParamList = {
   [x: string]: any;
   SignInScreen: undefined;
   SignUpScreen: undefined;
+  FindPasswordScreen: undefined;
 };
 
-const Stack = createNativeStackNavigator<MissionNavigatorParamList>();
+const Stack = createNativeStackNavigator<LoginNavigatorParamList>();
 
 const LoginNavigator: React.FC = () => {
   return (
@@ -24,6 +26,11 @@ const LoginNavigator: React.FC = () => {
         <Stack.Screen
           name="SignUpScreen"
           component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="FindPasswordScreen"
+          component={FindPasswordScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
