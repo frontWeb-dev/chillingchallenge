@@ -5,15 +5,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "@screens/SplashScreen";
 import AfterLoginSplashScreen from "@screens/AfterLoginSplashScreen";
 import OnBoardingScreen from "@screens/OnBoarding";
-import SignInScreen from "@screens/Join/SignInScreen";
 import TabNavigator from "./TabNavigator";
-import KakaoLogin from "@components/login/KakaoLogin";
 import FirebaseLoginScreen from "@screens/FirebaseLoginScreen";
-import LoginNavigator from "./LoginNavigator";
 
 export type RootNavigatorParamList = {
   [x: string]: any;
-  LoginNavigator: undefined;
   TabNavigator: undefined;
   OnBoardingScreen: undefined;
   SplashScreen: undefined;
@@ -44,11 +40,6 @@ const RootNavigator: React.FC = () => {
       <Stack.Screen
         name="OnBoardingScreen"
         component={OnBoardingScreen}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="LoginNavigator"
-        component={LoginNavigator}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />

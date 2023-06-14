@@ -3,7 +3,7 @@ import Layout from "@components/Layout";
 import React from "react";
 import styled from "styled-components/native";
 
-const FindPasswordScreen = () => {
+const FindPasswordPage = () => {
   return (
     <Layout color="#10b767">
       <Header text="비밀번호 찾기" color="#10b767" noBack />
@@ -12,7 +12,7 @@ const FindPasswordScreen = () => {
   );
 };
 
-export default FindPasswordScreen;
+export default FindPasswordPage;
 
 const Wrapper = styled.View`
   width: 100%;
