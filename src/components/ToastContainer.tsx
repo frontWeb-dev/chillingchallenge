@@ -19,7 +19,7 @@ const ToastContainer = ({ text, show, setShow }: ToastContainerProps) => {
     outputRange: [-300, 0],
   });
 
-  const Y = useState(new Animated.Value(-200))[0];
+  const Y = useState(new Animated.Value(1000))[0];
 
   const widthX = () => {
     Animated.timing(X, {
@@ -31,7 +31,7 @@ const ToastContainer = ({ text, show, setShow }: ToastContainerProps) => {
 
   const toastDown = () => {
     Animated.timing(Y, {
-      toValue: show ? 20 : -200,
+      toValue: show ? 0 : 1000,
       useNativeDriver: true,
     }).start();
   };
@@ -52,7 +52,7 @@ const ToastContainer = ({ text, show, setShow }: ToastContainerProps) => {
     <Wrapper>
       <ToastBox
         style={{
-          transform: [{ translateY: Y }],
+          transform: [{ translateX: Y }],
         }}
       >
         <ToastText>{text}</ToastText>
@@ -71,9 +71,13 @@ const ToastContainer = ({ text, show, setShow }: ToastContainerProps) => {
 export default ToastContainer;
 
 const Wrapper = styled.View`
+  position: absolute;
+  top: 60px;
+  left: 0;
   width: 100%;
-  align-items: center;
+  align-items: flex-end;
   transition: all 0.5s;
+  z-index: 999;
 `;
 const ToastView = styled.View`
   width: 80%;
@@ -82,6 +86,7 @@ const ToastView = styled.View`
   border: 1px solid #ccc;
   border-radius: 5px;
   justify-content: space-between;
+  background-color: #fff;
 `;
 
 const ToastText = styled.Text`

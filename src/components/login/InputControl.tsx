@@ -3,18 +3,20 @@ import { Control, Controller, FieldError, FieldErrors, FieldValues } from "react
 import styled from "styled-components/native";
 
 interface InputControlProps {
+  label: string;
   control: Control<FieldValues, any>;
   name: string;
   placeholder: string;
   errors: any;
 }
 
-const InputControl = ({ control, name, placeholder, errors }: InputControlProps) => {
+const InputControl = ({ label, control, name, placeholder, errors }: InputControlProps) => {
   return (
     <InputView>
+      <Label>{label}</Label>
       <Controller
         control={control}
-        rules={{ required: `${name}을 입력해주세요.` }}
+        rules={{ required: true }}
         name={name}
         defaultValue={""}
         render={({ field: { onChange, value } }) => (
@@ -22,7 +24,7 @@ const InputControl = ({ control, name, placeholder, errors }: InputControlProps)
             onChangeText={(value) => onChange(value)}
             value={value}
             placeholder={placeholder}
-            secureTextEntry={name === "password"}
+            secureTextEntry={name.includes("password")}
           />
         )}
       />
@@ -35,19 +37,24 @@ export default InputControl;
 
 const InputView = styled.View`
   width: 100%;
-  gap: 10px;
+`;
+
+const Label = styled.Text`
+  margin-bottom: 10px;
 `;
 
 const Input = styled.TextInput`
   width: 100%;
+  padding: 10px;
   font-family: "Light";
-  border: 1px solid #ddd;
-  padding: 15px 20px;
-  border-radius: 5px;
+  font-size: 14px;
+  border: 1px solid #999;
+  border-radius: 10px;
 `;
 
 const ErrorMessage = styled.Text`
-  padding-left: 10px;
+  padding-left: 5px;
+  margin-top: 5px;
   font-size: 14px;
   color: red;
 `;
