@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styled from "styled-components/native";
 
 import LongButton from "@components/mission/LongButton";
 import InputControl from "@components/login/InputControl";
 import { SignInProps } from "./SignInPage";
-import ToastContainer from "@components/ToastContainer";
+import axios from "axios";
+import { signUpAPI } from "api/auth";
 
 export interface SignUpProps extends SignInProps {
   setTab: React.Dispatch<React.SetStateAction<number>>;
@@ -13,18 +14,27 @@ export interface SignUpProps extends SignInProps {
 
 const SignUpPage = ({ setToast, setToastText, setTab }: SignUpProps) => {
   const {
-    register,
-    setValue,
     handleSubmit,
     control,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
-    // data axios
-    setToastText("회원 가입에 성공하였습니다.");
-    setToast(true);
+  const onSubmit = async (data: any) => {
+    const body = {
+      email: data.email,
+      password: data.password,
+      nickName: data.nickName,
+    };
+
+    try {
+      const response = await signUpAPI(body);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setToastText("회원 가입에 성공하였습니다.");
+      setToast(true);
+    }
 
     setTimeout(() => {
       setTab!(1);
@@ -36,7 +46,7 @@ const SignUpPage = ({ setToast, setToastText, setTab }: SignUpProps) => {
       <SignUpForm>
         <InputControl
           label="닉네임"
-          name="nickname"
+          name="nickName"
           placeholder="닉네임을 입력해주세요"
           control={control}
           errors={errors}

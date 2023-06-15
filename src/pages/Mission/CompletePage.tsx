@@ -13,6 +13,7 @@ import { setMissionState } from "@utils/MissionState";
 import { setAttendance } from "@utils/Attendance";
 import LongButton from "@components/mission/LongButton";
 import Happiness from "@components/happy/Happiness";
+import { uploadFeedAPI } from "api/feed";
 
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -69,14 +70,14 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
         missionId: id,
         missionType: type,
         stringAndPath: texts,
-        usercode: 5,
+        usercode: "5",
       },
     ];
 
+    console.log(body);
+
     try {
-      const url = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8080/completeMission`;
-      const response = await axios.post(url, body);
-      console.log(response.data);
+      const response = await uploadFeedAPI(body);
       clearTexts();
       navigation.navigate("SelectScreen");
     } catch (error) {
