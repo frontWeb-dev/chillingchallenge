@@ -8,7 +8,7 @@ import { MissionData, editedMissions } from "@mocks/missions";
 import Layout from "@components/Layout";
 import Header from "@components/Header";
 import ImageText from "@components/ImageText";
-import axios, { AxiosResponse } from "axios";
+import { getFeedAPI } from "api/feed";
 
 export type DetailParamsList = {
   FeedDetailScreen: { data: FeedData; missionData: MissionData };
@@ -29,15 +29,15 @@ const FeedScreen: React.FC = () => {
   const [page, setPage] = useState(0);
 
   const getData = async () => {
-    const url = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8080/showMyHistory?code=5&page=${page}&size=${5}`;
+    const code = "usercode"; // await AsyncStorage.getItem('user-code');
     try {
-      const response = await axios.get(url);
-      console.log(response.data);
+      const response = await getFeedAPI(code, page);
 
-      response.data.map((data: DataResult) => {
+      response.map((data: DataResult) => {
         setState((prev) => [...prev, data]);
         setLoading(false);
       });
+
       setPage((page) => page + 1);
     } catch (error) {
       console.log(error);
