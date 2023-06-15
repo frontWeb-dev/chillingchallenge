@@ -6,16 +6,18 @@ import { DetailParamsList } from "./FeedScreen";
 import Layout from "@components/Layout";
 import Header from "@components/Header";
 import ImageText from "@components/ImageText";
+import useUserStore from "@store/store";
 
 const FeedDetailScreen = () => {
   const { params } = useRoute<RouteProp<DetailParamsList, "FeedDetailScreen">>();
+  const { user, setUser } = useUserStore();
   const data = params.data;
   const mission = params.missionData;
 
   return (
     <Layout>
       <Header text="나의 칠링" />
-      <ImageText text="김새싹님, 이만큼이나 해냈어요!" image={require("@assets/write.png")} />
+      <ImageText image={require("@assets/write.png")} isUser />
       <Container>
         <Feed>
           <TitleView>

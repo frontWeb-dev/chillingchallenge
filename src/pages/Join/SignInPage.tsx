@@ -11,6 +11,7 @@ import InputControl from "@components/login/InputControl";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { signInAPI } from "api/auth";
+import useUserStore from "@store/store";
 
 export interface SignInProps {
   setToast: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,13 +20,11 @@ export interface SignInProps {
 
 const SignInPage = ({ setToast, setToastText }: SignInProps) => {
   const navigation = useNavigation<RootNavigatorParamList>();
+  const { user, setUser } = useUserStore();
 
   const {
-    register,
-    setValue,
     handleSubmit,
     control,
-    reset,
     formState: { errors },
   } = useForm();
 
@@ -37,9 +36,13 @@ const SignInPage = ({ setToast, setToastText }: SignInProps) => {
 
     try {
       const response = await signInAPI(body);
-      const { accessToken, userCode } = response;
+      const {
+        accessToken,
+        userCode,
+        user: { nickname },
+      } = response;
 
-      console.log(response);
+      setUser({ email: data.email, nickname: nickname });
 
       await AsyncStorage.setItem("user-code", JSON.stringify(userCode));
       await AsyncStorage.setItem("user-token", JSON.stringify(accessToken));

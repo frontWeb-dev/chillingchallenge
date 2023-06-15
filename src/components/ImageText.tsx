@@ -1,16 +1,24 @@
+import useUserStore from "@store/store";
 import React from "react";
 import { ImageURISource } from "react-native";
 import styled from "styled-components/native";
 
 interface ImageTextProps {
-  text: string;
+  text?: string;
   image: ImageURISource;
+  isUser?: boolean;
 }
 
-const ImageText = ({ text, image }: ImageTextProps) => {
+const ImageText = ({ text, image, isUser = false }: ImageTextProps) => {
+  const { user, setUser } = useUserStore();
+
   return (
     <SubTitleContainer>
-      <SubTitle>{text}</SubTitle>
+      {isUser ? (
+        <SubTitle>{`${user.nickname}님, 이만큼이나 해냈어요!`}</SubTitle>
+      ) : (
+        <SubTitle>{text}</SubTitle>
+      )}
       <SubTitleImage source={image}></SubTitleImage>
     </SubTitleContainer>
   );
