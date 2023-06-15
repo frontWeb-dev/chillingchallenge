@@ -18,6 +18,23 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getUserInfoAPI } from "api/user";
 
 const UserScreen: React.FC = () => {
+  useEffect(() => {
+    (async () => {
+      const mission = await AsyncStorage.getItem("success-mission");
+      const attendance = await AsyncStorage.getItem("attendance-state");
+
+      bedges.map((a) => {
+        if (a.mission) {
+          a.mission <= +JSON.parse(mission!) ? (a.type = "active") : (a.type = "default");
+        } else if (a.attendance) {
+          a.attendance <= JSON.parse(attendance!) ? (a.type = "active") : (a.type = "default");
+        }
+
+        setBedge(bedges.filter((el) => el.type === "active").length);
+      });
+    })();
+  }, []);
+
   // state
   const [bedge, setBedge] = useState(0);
   const [isSelected, setIsSelected] = useState(1); // 카테고리 선택 관련
@@ -37,8 +54,6 @@ const UserScreen: React.FC = () => {
         setUser({ email: "", nickname: response.nickname });
       }
     })();
-
-    setBedge(bedges.filter((el) => el.type === "active").length);
   }, []);
 
   // 출석 상태 불러오기

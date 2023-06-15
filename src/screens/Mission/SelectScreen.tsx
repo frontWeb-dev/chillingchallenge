@@ -10,9 +10,11 @@ import { getMissionState } from "@utils/MissionState";
 import Layout from "@components/Layout";
 import Header from "@components/Header";
 import Card from "@components/Card";
-import { Image } from "react-native";
+import { Image, View } from "react-native";
 import ImageText from "@components/ImageText";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import bedges, { bedgesTypes } from "@mocks/bedges";
+import BedgeModal from "@components/BedgeModal";
 
 interface Time {
   hours: number;
@@ -28,23 +30,39 @@ const SelectScreen: React.FC = () => {
   const [missionState, setMissionState] = useState<MissionState>({}); // state: 미션 완료 여부
   const [remainingTime, setRemainingTime] = useState<Time | null>(null); // state: 남은 시간
   const navigation = useNavigation<MissionNavigatorParamList>(); // navigation: 스크린 네비게이션 함수
+  const [bedge, setBedge] = useState<bedgesTypes | null>(null);
+
+  const getBedge = async () => {
+    const successMission = await AsyncStorage.getItem("success-mission");
+    const get = bedges.filter((a) => a.mission === +JSON.parse(successMission!));
+
+    if (get.length === 0) return;
+
+    get.map((a) => (a.type = "active"));
+
+    setBedge(get[0]);
+  };
 
   // 랜덤화된 미션 불러오기
-  useEffect(() => {
-    const loadMissions = async () => {
-      const data = await loadRandomMissions();
+  const loadMissions = async () => {
+    const data = await loadRandomMissions();
 
-      if (data) {
-        setTodayMission([...data]);
-      }
-    };
-    loadMissions();
+    if (data) {
+      setTodayMission([...data]);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      loadMissions();
+    })();
   }, []);
 
   // 미션 상태 실시간 반영, 스크린이 포커스될 때 새롭게 반영
   useFocusEffect(
     React.useCallback(() => {
       const fetchMissionState = async () => {
+        await getBedge();
         const state = await getMissionState();
         if (state !== null) {
           const missionStateObj = JSON.parse(state);
@@ -108,48 +126,54 @@ const SelectScreen: React.FC = () => {
   }, [updateRemainingTime]);
 
   return (
-    <Layout>
-      <Header text="오늘의 챌링" />
-      <ImageText text="하루 24시간이 즐거워지는 간단한 마법!" image={require("@assets/time.png")} />
-      <Container>
-        {todayMission && (
-          <CardContainer>
-            {todayMission.map((el) => {
-              const missionStateValue = parseInt(missionState[el.id]);
-              const badge = missionStateValue !== undefined ? missionStateValue : 1;
-              return (
-                <Card
-                  key={el.id}
-                  isDone={badge === 3}
-                  image={el.bgImage}
-                  onPress={() => onPress(badge, el)}
-                >
-                  <ContentView isDone={badge === 3}>
-                    <TitleView>
-                      <Title badge={badge}>{el.title}</Title>
-                      {badge === 2 && <Image source={require("@assets/progress.png")}></Image>}
-                    </TitleView>
+    <>
+      <Layout>
+        <Header text="오늘의 챌링" />
+        <ImageText
+          text="하루 24시간이 즐거워지는 간단한 마법!"
+          image={require("@assets/time.png")}
+        />
+        <Container>
+          {todayMission && (
+            <CardContainer>
+              {todayMission.map((el) => {
+                const missionStateValue = parseInt(missionState[el.id]);
+                const badge = missionStateValue !== undefined ? missionStateValue : 1;
+                return (
+                  <Card
+                    key={el.id}
+                    isDone={badge === 3}
+                    image={el.bgImage}
+                    onPress={() => onPress(badge, el)}
+                  >
+                    <ContentView isDone={badge === 3}>
+                      <TitleView>
+                        <Title badge={badge}>{el.title}</Title>
+                        {badge === 2 && <Image source={require("@assets/progress.png")}></Image>}
+                      </TitleView>
 
-                    <Comment isDone={badge === 3}>{el.comment}</Comment>
-                  </ContentView>
-                </Card>
-              );
-            })}
-          </CardContainer>
-        )}
-        {remainingTime ? (
-          <DDate>
-            챌린지 업데이트까지{" "}
-            <Time>
-              {remainingTime.hours}시간 {remainingTime.minutes}분
-            </Time>{" "}
-            남았어요.
-          </DDate>
-        ) : (
-          ""
-        )}
-      </Container>
-    </Layout>
+                      <Comment isDone={badge === 3}>{el.comment}</Comment>
+                    </ContentView>
+                  </Card>
+                );
+              })}
+            </CardContainer>
+          )}
+          {remainingTime ? (
+            <DDate>
+              챌린지 업데이트까지{" "}
+              <Time>
+                {remainingTime.hours}시간 {remainingTime.minutes}분
+              </Time>{" "}
+              남았어요.
+            </DDate>
+          ) : (
+            ""
+          )}
+        </Container>
+      </Layout>
+      {bedge !== null && <BedgeModal bedge={bedge} setBedge={setBedge} />}
+    </>
   );
 };
 

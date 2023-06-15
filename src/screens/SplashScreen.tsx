@@ -7,6 +7,7 @@ import * as Notifications from "expo-notifications";
 import { RootNavigatorParamList } from "@navigations/RootNavigator";
 import { registerForPushNotificationsAsync, sendPushNotification } from "@utils/PushNotifications";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getFeedLength } from "api/feed";
 
 const SplashScreen = () => {
   const navigation = useNavigation<RootNavigatorParamList>();
@@ -15,6 +16,9 @@ const SplashScreen = () => {
     const user = await AsyncStorage.getItem("user-code");
 
     if (user) {
+      // const response = await getFeedLength(JSON.parse(user));
+      await AsyncStorage.setItem("success-mission", JSON.stringify(9));
+
       setTimeout(() => {
         navigation.navigate("TabNavigator");
       }, 3000);
