@@ -193,7 +193,7 @@ const Title = styled.Text<{ badge: number }>`
 
 const Comment = styled.Text<{ isDone: boolean }>`
   font-size: 14px;
-  line-height: ${(props) => props.theme.font.smaller};
+  line-height: ${(props) => props.theme.font.small};
   color: ${(props) => (props.isDone ? "rgba(0, 0, 0, 0.2)" : props.theme.color.textColor)};
 `;
 

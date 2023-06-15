@@ -13,18 +13,31 @@ import UserButton from "@components/profile/UserButton";
 import Calendar from "@components/profile/Calendar";
 import Bedge from "@components/profile/Bedge";
 import Tree from "@components/profile/Tree";
+import useUserStore from "@store/store";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getUserInfoAPI } from "api/user";
 
 const UserScreen: React.FC = () => {
   // state
   const [bedge, setBedge] = useState(0);
   const [isSelected, setIsSelected] = useState(1); // 카테고리 선택 관련
   const [isAttended, setIsAttended] = useState(["2023-05-15", "2023-05-16"]); // 출석 관련
+  const { user, setUser } = useUserStore();
 
   // 달력 관련 hooks
   const { selectedDate, handleSelectDate, handlePrevMonth, handleNextMonth } = useCalendar();
 
-  // bedge 개수
+  // bedge 개수 & 유저 닉네임 가져오기
   useEffect(() => {
+    (async () => {
+      const code = await AsyncStorage.getItem("user-code");
+
+      if (!user.nickname) {
+        const response = await getUserInfoAPI(JSON.parse(code!));
+        setUser({ email: "", nickname: response.nickname });
+      }
+    })();
+
     setBedge(bedges.filter((el) => el.type === "active").length);
   }, []);
 
@@ -41,7 +54,7 @@ const UserScreen: React.FC = () => {
     <Layout color="#10b767">
       <Header text="마이페이지" color="#10b767" />
       <Container>
-        <Profile username="웃고 싶은 날엔" registerDate={55} />
+        <Profile username={user.nickname!} registerDate={55} />
         <Margin props={20} />
       </Container>
       <TabContainer>

@@ -54,7 +54,6 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
   const handleUpload = async () => {
     // 미션 DB 저장
     const result = await postData(Date.now());
-    console.log(result);
 
     // 출석 관련 상태 저장
     const today = dayjs();
@@ -63,14 +62,11 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
 
     // 미션 완료 여부 상태 저장
     await setMissionState(id, 3);
-
-    // 미션 선택 스크린으로 이동
-    navigation.navigate("SelectScreen");
   };
+
   const postText = async () => {
     const code = await AsyncStorage.getItem("user-code");
     if (!code) return;
-    console.log("post", code);
 
     const body = {
       missionId: id,
@@ -80,15 +76,24 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
     };
 
     try {
-      console.log(body);
       const response = await uploadFeedAPI(body);
-      setText("미션 등록이 완료되었습니다!");
-      clearTexts();
-      navigation.navigate("SelectScreen");
+      await sucessResponse();
     } catch (error) {
       console.log(error);
       clearTexts();
     }
+  };
+
+  const sucessResponse = async () => {
+    setLoading(true);
+
+    setText("미션 등록이 완료되었습니다!");
+    setToast(true);
+
+    clearTexts();
+    setTimeout(() => {
+      navigation.navigate("SelectScreen");
+    }, 2000);
   };
 
   useEffect(() => {
@@ -96,7 +101,6 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
   }, [loading]);
 
   useEffect(() => {
-    console.log(texts);
     if (!loading) postText();
   }, [texts]);
 

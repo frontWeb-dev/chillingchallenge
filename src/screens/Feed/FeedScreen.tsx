@@ -105,7 +105,7 @@ const FeedScreen: React.FC = () => {
   return (
     <Layout>
       <Header text="나의 칠링챌링" />
-      <ImageText text="김새싹님, 이만큼이나 해냈어요!" image={require("@assets/write.png")} />
+      <ImageText image={require("@assets/write.png")} isUser />
       <Container
         ref={flatListRef}
         data={state}

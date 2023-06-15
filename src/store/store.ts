@@ -18,6 +18,14 @@ interface HappyStore {
   clearHappy: () => void;
 }
 
+interface UserStore {
+  user: {
+    email?: string;
+    nickname?: string;
+  };
+  setUser: (userInfo: { email: string; nickname: string }) => void;
+}
+
 export const useImageStore = create<ImageStore>((set) => ({
   uri: "",
   addUri: (uri) => set(() => ({ uri: uri })),
@@ -35,3 +43,12 @@ export const useHappyStore = create<HappyStore>((set) => ({
   addHappy: (happy) => set(() => ({ happy: happy })),
   clearHappy: () => set({ happy: "" }),
 }));
+
+export const useUserStore = create<UserStore>((set) => ({
+  user: {},
+  setUser: (userInfo) => {
+    set((state) => ({ user: { ...userInfo } }));
+  },
+}));
+
+export default useUserStore;
