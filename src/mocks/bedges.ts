@@ -1,7 +1,9 @@
 import { ImageURISource } from "react-native/types";
 
-interface bedgesTypes {
+export interface bedgesTypes {
   id: number;
+  mission?: number;
+  attendance?: number;
   type: string;
   text: string;
   default: ImageURISource;
@@ -13,6 +15,7 @@ const bedges: bedgesTypes[] = [
     id: 1,
     type: "active",
     text: "첫 챌링 성공",
+    mission: 1,
     default: require("@assets/bedge/mission.png"),
     active: require("@assets/bedge/logo_1.png"),
   },
@@ -20,6 +23,7 @@ const bedges: bedgesTypes[] = [
     id: 2,
     type: "active",
     text: "챌링 5개 성공",
+    mission: 5,
     default: require("@assets/bedge/mission.png"),
     active: require("@assets/bedge/logo_2.png"),
   },
@@ -27,6 +31,7 @@ const bedges: bedgesTypes[] = [
     id: 3,
     type: "default",
     text: "챌링 10개 성공",
+    mission: 10,
     default: require("@assets/bedge/mission.png"),
     active: require("@assets/bedge/logo_3.png"),
   },
@@ -34,6 +39,7 @@ const bedges: bedgesTypes[] = [
     id: 4,
     type: "default",
     text: "챌링 20개 성공",
+    mission: 20,
     default: require("@assets/bedge/mission.png"),
     active: require("@assets/bedge/logo_4.png"),
   },
@@ -41,6 +47,7 @@ const bedges: bedgesTypes[] = [
     id: 5,
     type: "default",
     text: "챌링 30개 성공",
+    mission: 30,
     default: require("@assets/bedge/mission.png"),
     active: require("@assets/bedge/logo_5.png"),
   },
@@ -48,6 +55,7 @@ const bedges: bedgesTypes[] = [
     id: 6,
     type: "active",
     text: "3일 연속 출석",
+    attendance: 3,
     default: require("@assets/bedge/attendance.png"),
     active: require("@assets/bedge/logo_6.png"),
   },
@@ -55,6 +63,7 @@ const bedges: bedgesTypes[] = [
     id: 7,
     type: "default",
     text: "5일 연속 출석",
+    attendance: 5,
     default: require("@assets/bedge/attendance.png"),
     active: require("@assets/bedge/logo_7.png"),
   },
@@ -62,6 +71,7 @@ const bedges: bedgesTypes[] = [
     id: 8,
     type: "default",
     text: "7일 연속 출석",
+    attendance: 7,
     default: require("@assets/bedge/attendance.png"),
     active: require("@assets/bedge/logo_8.png"),
   },
@@ -69,6 +79,7 @@ const bedges: bedgesTypes[] = [
     id: 9,
     type: "default",
     text: "10일 연속 출석",
+    attendance: 10,
     default: require("@assets/bedge/attendance.png"),
     active: require("@assets/bedge/logo_9.png"),
   },
