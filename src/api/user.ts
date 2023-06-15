@@ -4,7 +4,7 @@ const BASE_URL = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8
 
 export const getUserInfoAPI = async (code: string) => {
   const response = await API.get(`${BASE_URL}/auth/showMyInfo?code=${code}`);
-  console.log(response);
+
   return response.data;
 };
 

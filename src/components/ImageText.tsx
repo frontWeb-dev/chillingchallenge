@@ -1,5 +1,8 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import useUserStore from "@store/store";
-import React from "react";
+import { API } from "api/token";
+import { getUserInfoAPI } from "api/user";
+import React, { useEffect } from "react";
 import { ImageURISource } from "react-native";
 import styled from "styled-components/native";
 
@@ -11,6 +14,17 @@ interface ImageTextProps {
 
 const ImageText = ({ text, image, isUser = false }: ImageTextProps) => {
   const { user, setUser } = useUserStore();
+
+  useEffect(() => {
+    (async () => {
+      const code = await AsyncStorage.getItem("user-code");
+
+      if (!user.nickname) {
+        const response = await getUserInfoAPI(JSON.parse(code!));
+        setUser({ email: "", nickname: response.nickname });
+      }
+    })();
+  }, []);
 
   return (
     <SubTitleContainer>

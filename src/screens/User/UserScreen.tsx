@@ -14,6 +14,8 @@ import Calendar from "@components/profile/Calendar";
 import Bedge from "@components/profile/Bedge";
 import Tree from "@components/profile/Tree";
 import useUserStore from "@store/store";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getUserInfoAPI } from "api/user";
 
 const UserScreen: React.FC = () => {
   // state
@@ -25,9 +27,17 @@ const UserScreen: React.FC = () => {
   // 달력 관련 hooks
   const { selectedDate, handleSelectDate, handlePrevMonth, handleNextMonth } = useCalendar();
 
-  // bedge 개수
+  // bedge 개수 & 유저 닉네임 가져오기
   useEffect(() => {
-    console.log(user);
+    (async () => {
+      const code = await AsyncStorage.getItem("user-code");
+
+      if (!user.nickname) {
+        const response = await getUserInfoAPI(JSON.parse(code!));
+        setUser({ email: "", nickname: response.nickname });
+      }
+    })();
+
     setBedge(bedges.filter((el) => el.type === "active").length);
   }, []);
 
