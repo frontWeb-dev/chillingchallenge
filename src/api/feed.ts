@@ -20,3 +20,8 @@ export const uploadFeedAPI = async (data: uploadFeedBody) => {
 
   return response.data;
 };
+
+export const getFeedLength = async (code: string) => {
+  const response = await API.get(`${BASE_URL}/auth/showMyHistory?code=${code}`);
+  return response.data.length;
+};

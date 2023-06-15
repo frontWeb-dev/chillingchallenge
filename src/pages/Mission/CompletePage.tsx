@@ -90,6 +90,9 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
     setText("미션 등록이 완료되었습니다!");
     setToast(true);
 
+    const before = await AsyncStorage.getItem("success-mission");
+    await AsyncStorage.setItem("success-mission", JSON.stringify(+JSON.parse(before!) + 1));
+
     clearTexts();
     setTimeout(() => {
       navigation.navigate("SelectScreen");
