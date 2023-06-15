@@ -62,7 +62,7 @@ const Tab = styled.View`
 `;
 
 const TabButton = styled.TouchableOpacity<{ isSelected: boolean }>`
-  border-bottom-width: 2;
+  border-bottom-width: 2px;
   border-bottom-color: ${(props) => (props.isSelected ? props.theme.color.green_200 : "#fff")};
   padding: 0px 10px 10px 10px;
 `;

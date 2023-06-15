@@ -1,5 +1,5 @@
 import React from "react";
-import { Control, Controller, FieldError, FieldErrors, FieldValues } from "react-hook-form";
+import { Control, Controller, FieldValues } from "react-hook-form";
 import styled from "styled-components/native";
 
 interface InputControlProps {
