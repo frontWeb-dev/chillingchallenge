@@ -1,17 +1,17 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { MissionData, editedMissions } from "@mocks/missions";
+import { editedMissions } from "@mocks/missions";
 
 // 미션 무작위 추출한 객체 리턴
 export const randomizeMissions = () => {
-  var numbers: number[] = [];
+  var numbers: number[] = [2, 4, 17];
 
-  while (numbers.length < 3) {
-    var randomNumber = Math.floor(Math.random() * 18) + 1;
-    if (!numbers.includes(randomNumber)) {
-      numbers.push(randomNumber);
-    }
-  }
+  // while (numbers.length < 3) {
+  //   var randomNumber = Math.floor(Math.random() * editedMissions.length) + 1;
+  //   if (!numbers.includes(randomNumber)) {
+  //     numbers.push(randomNumber);
+  //   }
+  // }
 
   const selectedMissions = numbers.map((number) =>
     editedMissions.find((mission) => mission.id === number)
@@ -31,6 +31,7 @@ export const randomizeMissions = () => {
 export const loadRandomMissions = async () => {
   try {
     const randomMission = await AsyncStorage.getItem("random-mission");
+
     if (randomMission !== null) {
       return JSON.parse(randomMission);
     } else {
