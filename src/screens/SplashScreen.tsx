@@ -4,7 +4,6 @@ import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import * as Notifications from "expo-notifications";
 
-import Layout from "@components/Layout";
 import { RootNavigatorParamList } from "@navigations/RootNavigator";
 import { registerForPushNotificationsAsync, sendPushNotification } from "@utils/PushNotifications";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -13,11 +12,11 @@ const SplashScreen = () => {
   const navigation = useNavigation<RootNavigatorParamList>();
 
   const userInfo = async () => {
-    const user = await AsyncStorage.getItem("user-info");
-    console.log(user);
+    const user = await AsyncStorage.getItem("user-code");
+
     if (user) {
       setTimeout(() => {
-        navigation.navigate("AfterLoginSplashScreen");
+        navigation.navigate("TabNavigator");
       }, 3000);
     } else {
       setTimeout(() => {
@@ -28,7 +27,7 @@ const SplashScreen = () => {
 
   // 스플래시 화면이 켜지고 시간이 지나면 없어지기
   useEffect(() => {
-    AsyncStorage.clear();
+    // AsyncStorage.clear();
     userInfo();
   }, []);
 

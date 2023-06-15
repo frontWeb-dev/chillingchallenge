@@ -8,8 +8,9 @@ export const getUserInfoAPI = async (code: string) => {
   return response.data;
 };
 
-export const updateProfileAPI = async (code: string) => {
-  const response = await API.put(`${BASE_URL}/update/imageUrl/${code}`);
+export const updateProfileAPI = async (code: string, body: { imageUrl: string }) => {
+  console.log(body);
+  const response = await API.put(`${BASE_URL}/update/imageUrl/${code}`, body);
 
   return response.data;
 };

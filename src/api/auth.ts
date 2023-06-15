@@ -1,6 +1,7 @@
 import { API } from "./token";
 
 const BASE_URL = `http://ec2-3-37-214-191.ap-northeast-2.compute.amazonaws.com:8080/api/v1/auth`;
+// const BASE_URL = `http://localhost:8080/api/v1/auth`;
 
 interface signUpBody {
   email: string;

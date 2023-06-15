@@ -12,6 +12,7 @@ import Header from "@components/Header";
 import Card from "@components/Card";
 import { Image } from "react-native";
 import ImageText from "@components/ImageText";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Time {
   hours: number;
@@ -32,6 +33,7 @@ const SelectScreen: React.FC = () => {
   useEffect(() => {
     const loadMissions = async () => {
       const data = await loadRandomMissions();
+
       if (data) {
         setTodayMission([...data]);
       }

@@ -37,17 +37,23 @@ const SignInPage = ({ setToast, setToastText }: SignInProps) => {
 
     try {
       const response = await signInAPI(body);
+      const { accessToken, userCode } = response;
+
       console.log(response);
+
+      await AsyncStorage.setItem("user-code", JSON.stringify(userCode));
+      await AsyncStorage.setItem("user-token", JSON.stringify(accessToken));
+
       setToastText("로그인에 성공하였습니다");
       setToast(true);
+
+      setTimeout(() => {
+        navigation.navigate("TabNavigator");
+      }, 1500);
     } catch (error) {
       console.log(error);
       setToastText("로그인에 실패하였습니다.");
       setToast(true);
-    } finally {
-      setTimeout(() => {
-        navigation.navigate("SelectScreen");
-      }, 1500);
     }
   };
 
