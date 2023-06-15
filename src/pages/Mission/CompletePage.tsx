@@ -14,6 +14,8 @@ import { setAttendance } from "@utils/Attendance";
 import LongButton from "@components/mission/LongButton";
 import Happiness from "@components/happy/Happiness";
 import { uploadFeedAPI } from "api/feed";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import ToastContainer from "@components/ToastContainer";
 
 interface CompletePageProps {
   setMissionStatus: React.Dispatch<React.SetStateAction<string>>;
@@ -22,9 +24,10 @@ interface CompletePageProps {
 }
 
 const CompletePage = ({ id, type }: CompletePageProps) => {
-  const [data, setData] = useState([]);
   const navigation = useNavigation<MissionNavigatorParamList>(); // navigation: 미션 등록 성공 후네비게이션
   const [loading, setLoading] = useState(true);
+  const [toast, setToast] = useState(false);
+  const [text, setText] = useState("");
   const [happyText, setHappyText] = useState("");
   const { uri, addUri, clearUri } = useImageStore(); // 이미지 uri 전역 상태 저장
   const { texts, addTexts, clearTexts } = useTextStore(); //  텍스트 전역 상태 저장
@@ -65,19 +68,21 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
     navigation.navigate("SelectScreen");
   };
   const postText = async () => {
-    const body = [
-      {
-        missionId: id,
-        missionType: type,
-        stringAndPath: texts,
-        usercode: "5",
-      },
-    ];
+    const code = await AsyncStorage.getItem("user-code");
+    if (!code) return;
+    console.log("post", code);
 
-    console.log(body);
+    const body = {
+      missionId: id,
+      missionType: type,
+      stringAndPath: [...texts],
+      usercode: JSON.parse(code),
+    };
 
     try {
+      console.log(body);
       const response = await uploadFeedAPI(body);
+      setText("미션 등록이 완료되었습니다!");
       clearTexts();
       navigation.navigate("SelectScreen");
     } catch (error) {
@@ -85,16 +90,19 @@ const CompletePage = ({ id, type }: CompletePageProps) => {
       clearTexts();
     }
   };
+
   useEffect(() => {
     if (!loading) addTexts(happyText);
   }, [loading]);
 
   useEffect(() => {
+    console.log(texts);
     if (!loading) postText();
   }, [texts]);
 
   return (
     <>
+      <ToastContainer text={text} show={toast} setShow={setToast} />
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <Wrapper>
           <Happiness setHappy={setHappyText} happy={happyText} />

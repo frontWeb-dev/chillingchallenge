@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { ActivityIndicator, Text } from "react-native";
+import React, { useEffect, useState, useRef } from "react";
+import { Text } from "react-native";
 import { NavigationProp, useFocusEffect, useNavigation } from "@react-navigation/native";
 import styled from "styled-components/native";
 
@@ -9,6 +9,7 @@ import Layout from "@components/Layout";
 import Header from "@components/Header";
 import ImageText from "@components/ImageText";
 import { getFeedAPI } from "api/feed";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export type DetailParamsList = {
   FeedDetailScreen: { data: FeedData; missionData: MissionData };
@@ -23,27 +24,64 @@ interface DataResult {
 }
 
 const FeedScreen: React.FC = () => {
+  const flatListRef = useRef<any>(null);
   const navigation = useNavigation<NavigationProp<DetailParamsList>>();
   const [loading, setLoading] = useState(false);
   const [state, setState] = useState<DataResult[]>([]);
   const [page, setPage] = useState(0);
 
   const getData = async () => {
-    const code = "usercode"; // await AsyncStorage.getItem('user-code');
+    const code = await AsyncStorage.getItem("user-code");
+
+    if (!code) {
+      console.log("로그인 요청");
+      return;
+    }
+
     try {
-      const response = await getFeedAPI(code, page);
+      setLoading(true);
 
-      response.map((data: DataResult) => {
-        setState((prev) => [...prev, data]);
-        setLoading(false);
-      });
+      const response = await getFeedAPI(JSON.parse(code), page);
 
+      setState((prev) => [...prev, ...response]);
       setPage((page) => page + 1);
+
+      setLoading(false);
     } catch (error) {
       console.log(error);
       setLoading(false);
     }
   };
+
+  const scrollToTop = () => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToOffset({ offset: 0, animated: true });
+      setPage(0);
+      setState([]);
+    }
+  };
+
+  const feedPress = (item: FeedData, mission: MissionData) => {
+    navigation.navigate("FeedDetailScreen", { data: item, missionData: mission });
+  };
+
+  const handleLoadMore = () => {
+    if (loading) {
+      return;
+    } else {
+      getData();
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      scrollToTop();
+    }, [])
+  );
 
   const renderItem = ({ item }: any) => {
     const mission = editedMissions.find((m) => m.id === item.missionId);
@@ -64,32 +102,17 @@ const FeedScreen: React.FC = () => {
     );
   };
 
-  const feedPress = (item: FeedData, mission: MissionData) => {
-    navigation.navigate("FeedDetailScreen", { data: item, missionData: mission });
-  };
-
-  const handleLoadMore = () => {
-    if (loading) {
-      return;
-    } else {
-      getData();
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
   return (
     <Layout>
       <Header text="나의 칠링챌링" />
       <ImageText text="김새싹님, 이만큼이나 해냈어요!" image={require("@assets/write.png")} />
       <Container
+        ref={flatListRef}
         data={state}
         renderItem={renderItem}
-        keyExtractor={(item: any) => item.localDateTime}
+        keyExtractor={(item: any) => item.localDateTime.substring(21)}
         onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.8}
+        onEndReachedThreshold={0.7}
       />
     </Layout>
   );

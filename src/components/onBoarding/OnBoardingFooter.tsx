@@ -28,13 +28,13 @@ const OnBoardingFooter = ({ step, setPageStatus, handleStepPress }: OnBoardingFo
   const handleSkipButton = () => {
     switch (step) {
       case 1:
-        navigation.navigate("TabNavigator");
+        navigation.navigate("AfterLoginSplashScreen");
         break;
       case 2:
-        navigation.navigate("TabNavigator");
+        navigation.navigate("AfterLoginSplashScreen");
         break;
       case 3:
-        navigation.navigate("TabNavigator");
+        navigation.navigate("AfterLoginSplashScreen");
         break;
       default:
         break;

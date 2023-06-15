@@ -9,7 +9,7 @@ API.interceptors.request.use(async (res) => {
 
   if (accessToken) {
     res.headers!["Content-Type"] = "application/json;charset=UTF-8";
-    res.headers!["Authorization"] = `Bearer ${accessToken}`;
+    res.headers!["Authorization"] = `Bearer ${JSON.parse(accessToken)}`;
   }
   return res;
 });

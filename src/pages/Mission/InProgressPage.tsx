@@ -37,7 +37,6 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
       .catch((error) => console.log(error));
   };
 
-  console.log(texts);
   // 사진 업로드 함수
   const uploadImage = async () => {
     if (!imageSelected) return;
@@ -96,10 +95,20 @@ const InProgressPage = ({ setMissionStatus, type, method }: InProgressPageProps)
     }
   };
 
+  const step = type === 3 ? method[page - 1].split("\n")[0] : null;
+
   return (
     <Wrapper>
       <Container>
-        <MissionQuote>{type === 3 ? method[page - 1] : method}</MissionQuote>
+        <MissionQuote>{type === 3 && step}</MissionQuote>
+        <MissionDesc>
+          {type === 3
+            ? method[page - 1]
+                .split("\n")
+                .filter((a) => a !== step)
+                .join("\n")
+            : method}
+        </MissionDesc>
         <Uploader>{uploader}</Uploader>
       </Container>
       <LongButton text={page === 4 ? "인증 등록 하기" : "다음"} onSubmit={handleSubmit} />
@@ -130,6 +139,15 @@ const Uploader = styled.View`
 `;
 
 const MissionQuote = styled.Text`
+  padding: 0 10px;
+  font-size: 16px;
+  font-family: "Bold";
+  text-align: center;
+  line-height: ${(props) => props.theme.font.normal};
+  color: ${(props) => props.theme.color.black};
+`;
+
+const MissionDesc = styled.Text`
   padding: 0 10px;
   font-size: 16px;
   font-family: "Regular";
