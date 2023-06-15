@@ -4,12 +4,13 @@ import styled from "styled-components/native";
 interface LongButtonProps {
   text: string;
   onSubmit?: () => void;
+  small?: boolean;
 }
 
-const LongButton = ({ text, onSubmit }: LongButtonProps) => {
+const LongButton = ({ text, onSubmit, small = false }: LongButtonProps) => {
   return (
     <Wrapper>
-      <ButtonContainer activeOpacity={0.8} onPress={onSubmit}>
+      <ButtonContainer activeOpacity={0.8} onPress={onSubmit} small={small}>
         <ButtonText>{text}</ButtonText>
       </ButtonContainer>
     </Wrapper>
@@ -25,11 +26,11 @@ const Wrapper = styled.View`
   padding: 0 20px;
 `;
 
-const ButtonContainer = styled.TouchableOpacity`
+const ButtonContainer = styled.TouchableOpacity<{ small: boolean }>`
   width: 100%;
   border-radius: 14px;
   background-color: ${(props) => props.theme.color.green_200};
-  padding: 14px 0;
+  padding: ${(props) => (props.small ? "10px 0" : "14px 0")};
 `;
 
 const ButtonText = styled.Text`
