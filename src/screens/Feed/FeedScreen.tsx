@@ -55,7 +55,6 @@ const FeedScreen: React.FC = () => {
 
   const scrollToTop = () => {
     if (flatListRef.current) {
-      console.log(flatListRef.current);
       flatListRef.current.scrollToOffset({ offset: 0, animated: true });
       setPage(0);
       setState([]);
