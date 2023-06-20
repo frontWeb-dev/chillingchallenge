@@ -22,7 +22,7 @@ const BedgeModal = ({ bedge, setBedge }: ModalProps) => {
         <ModalWrapper>
           <BedgeImage source={bedge.active} />
           <View>
-            <AlertText>새로운 뱃지를 획득했어요!</AlertText>
+            <AlertText>새로운 배지를 획득했어요!</AlertText>
             <AlertText>마이페이지에서 확인해 보세요!</AlertText>
           </View>
           <LongButton text="확인" small onSubmit={handleSubmit} />

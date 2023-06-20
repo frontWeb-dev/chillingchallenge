@@ -4,7 +4,7 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 
 import { MissionData } from "@mocks/missions";
 import { MissionNavigatorParamList } from "@navigations/MissionNavigator";
-import { loadRandomMissions } from "@utils/RandomizeMissions";
+import { loadRandomMissions, randomizeMissions } from "@utils/RandomizeMissions";
 import { getMissionState } from "@utils/MissionState";
 
 import Layout from "@components/Layout";
@@ -53,9 +53,7 @@ const SelectScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    (async () => {
-      loadMissions();
-    })();
+    loadMissions();
   }, []);
 
   // 미션 상태 실시간 반영, 스크린이 포커스될 때 새롭게 반영
@@ -102,12 +100,17 @@ const SelectScreen: React.FC = () => {
       0
     );
 
-    const next10AM = currentTime.getHours() < 10 ? Today10AM : nextDay10AM;
+    // 10시 미션 업데이트
+    if (currentTime.toString().substring(0, 21) === Today10AM.toString().substring(0, 21)) {
+      randomizeMissions();
+      AsyncStorage.setItem("mission-state", "");
+    }
 
+    const next10AM = currentTime.getHours() < 10 ? Today10AM : nextDay10AM;
     const timeDiff = next10AM.getTime() - currentTime.getTime();
 
     const hours = Math.floor(timeDiff / (1000 * 60 * 60));
-    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+    const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)) + 1;
 
     setRemainingTime({ hours, minutes });
   }, []);
