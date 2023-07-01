@@ -12,7 +12,7 @@ interface uploadFeedBody {
 
 export const getFeedAPI = async (code: string, page: number) => {
   const response = await API.get(`${BASE_URL}/auth/showMyHistory?code=${code}&page=${page}&size=5`);
-  return response.data;
+  return response.data.reverse();
 };
 
 export const uploadFeedAPI = async (data: uploadFeedBody) => {

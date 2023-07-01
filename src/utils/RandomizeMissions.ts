@@ -4,14 +4,14 @@ import { editedMissions } from "@mocks/missions";
 
 // 미션 무작위 추출한 객체 리턴
 export const randomizeMissions = () => {
-  var numbers: number[] = [2, 4, 17];
+  var numbers: number[] = [];
 
-  // while (numbers.length < 3) {
-  //   var randomNumber = Math.floor(Math.random() * editedMissions.length) + 1;
-  //   if (!numbers.includes(randomNumber)) {
-  //     numbers.push(randomNumber);
-  //   }
-  // }
+  while (numbers.length < 3) {
+    var randomNumber = Math.floor(Math.random() * editedMissions.length) + 1;
+    if (!numbers.includes(randomNumber)) {
+      numbers.push(randomNumber);
+    }
+  }
 
   const selectedMissions = numbers.map((number) =>
     editedMissions.find((mission) => mission.id === number)
